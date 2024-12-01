@@ -38,7 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "jsdom": "^21.1.0",
     "prettier": "^3.0.3",
     "source-map-explorer": "^2.5.3",
