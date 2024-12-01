@@ -20,7 +20,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
     <PackageReference Include="Intility.Logging.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="2.1.1" />
-    <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="2.1.1" />
+    <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.0.2" />
     <PackageReference Include="Intility.Extensions.Logging.Dynatrace" Version="2.1.1" />
     <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="1.0.1" />
   </ItemGroup>
