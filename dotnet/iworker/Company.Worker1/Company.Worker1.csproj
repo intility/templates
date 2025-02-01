@@ -13,7 +13,7 @@
 		<PackageReference Include="Azure.Identity" Version="1.13.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.0.0" />
-		<PackageReference Include="Intility.Logging.AspNetCore" Version="2.1.1" />
+		<PackageReference Include="Intility.Logging.AspNetCore" Version="3.0.3" />
 		<PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="2.1.1" />
 		<PackageReference Include="Intility.Extensions.Logging.Sentry" Version="2.1.1" />
     <PackageReference Include="Intility.Extensions.Logging.Dynatrace" Version="2.1.1" />
