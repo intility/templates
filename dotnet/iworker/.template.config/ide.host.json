@@ -4,6 +4,15 @@
   "supportsDocker": false,
   "symbolInfo": [
     {
+      "id": "Framework",
+      "name": {
+        "text": "Target Framework"
+      },
+      "isVisible": true,
+      "group": "Project Settings",
+      "precedence": 100
+    },
+    {
       "id": "projectOnly",
       "name": {
         "text": "Project Only"
@@ -11,21 +20,30 @@
       "description": {
         "text": "Sets it up as a project only, skipping solution."
       },
-      "invertBoolean": false,
       "isVisible": true,
-      "defaultValue": false
+      "group": "Project Settings",
+      "precedence": 110
     },
     {
       "id": "cronJob",
       "name": {
-        "text": "Cron job"
+        "text": "Cron Job"
       },
       "description": {
-        "text": "Adds a cron jon instead of a continuous job"
+        "text": "Creates a cron job instead of a continuous job"
       },
-      "invertBoolean": false,
       "isVisible": true,
-      "defaultValue": false
+      "group": "Job Configuration",
+      "precedence": 200
+    },
+    {
+      "id": "skipRestore",
+      "name": {
+        "text": "Skip Restore"
+      },
+      "isVisible": true,
+      "group": "Advanced",
+      "precedence": 900
     }
   ]
 }

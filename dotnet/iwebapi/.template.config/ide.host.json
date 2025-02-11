@@ -14,6 +14,15 @@
   ],
   "symbolInfo": [
     {
+      "id": "Framework",
+      "name": {
+        "text": "Target Framework"
+      },
+      "isVisible": true,
+      "group": "Project Settings",
+      "precedence": 100
+    },
+    {
       "id": "projectOnly",
       "name": {
         "text": "Project Only"
@@ -21,9 +30,96 @@
       "description": {
         "text": "Sets it up as a project only, skipping solution."
       },
-      "invertBoolean": false,
       "isVisible": true,
-      "defaultValue": false
+      "group": "Project Settings",
+      "precedence": 110
+    },
+    {
+      "id": "auth",
+      "name": {
+        "text": "Authentication Type"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 200
+    },
+    {
+      "id": "AADInstance",
+      "name": {
+        "text": "AAD Instance"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 210
+    },
+    {
+      "id": "ClientId",
+      "name": {
+        "text": "Client ID"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 220
+    },
+    {
+      "id": "Domain",
+      "name": {
+        "text": "Domain"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 230
+    },
+    {
+      "id": "TenantId",
+      "name": {
+        "text": "Tenant ID"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 240
+    },
+    {
+      "id": "DefaultScope",
+      "name": {
+        "text": "Default Scope"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 250
+    },
+    {
+      "id": "SwaggerClientId",
+      "name": {
+        "text": "Swagger Client ID"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 260
+    },
+    {
+      "id": "SwaggerAppName",
+      "name": {
+        "text": "Swagger App Name"
+      },
+      "isVisible": true,
+      "group": "Authentication",
+      "precedence": 270
+    },
+    {
+      "id": "skipRestore",
+      "name": {
+        "text": "Skip Restore"
+      },
+      "isVisible": true,
+      "group": "Advanced",
+      "precedence": 900
+    },
+    {
+      "id": "UserSecretsId",
+      "isVisible": false,
+      "group": "Advanced",
+      "precedence": 910
     }
   ]
 }

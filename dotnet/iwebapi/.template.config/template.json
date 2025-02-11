@@ -8,7 +8,9 @@
   "shortName": "iwebapi",
   "tags": {
     "language": "C#",
-    "type": "solution"
+    "type": "solution",
+    "vs_showParametersByDefault": "true",
+    "vs_parametersToHide": "UserSecretsId"
   },
   "sourceName": "Company.WebApplication1",
   "preferNameDirectory": true,
@@ -43,7 +45,7 @@
   "symbols": {
     "Framework": {
       "type": "parameter",
-      "description": "The target framework for the project.",
+      "description": "The target framework version for the project. Currently only supports .NET 9.",
       "datatype": "choice",
       "choices": [
         {
@@ -68,70 +70,85 @@
         }
       ],
       "defaultValue": "SingleOrg",
-      "description": "The type of authentication to use"
+      "description": "The authentication scheme to use. Currently supports single-tenant organizational authentication."
     },
     "AADInstance": {
       "type": "parameter",
       "datatype": "string",
+      "forms": {
+        "global": ["url"]
+      },
       "defaultValue": "https://login.microsoftonline.com/",
       "replaces": "https:////login.microsoftonline.com/",
-      "description": "The Azure Active Directory instance to connect to (use with SingleOrg auth)."
+      "description": "The Azure AD instance URL for authentication. Default is https://login.microsoftonline.com/"
     },
     "ClientId": {
       "type": "parameter",
       "datatype": "string",
+      "forms": {
+        "global": ["guid"]
+      },
       "replaces": "11111111-1111-1111-11111111111111111",
-      "description": "The Client ID for this project (use with SingleOrg or IndividualB2C auth)."
+      "description": "The Azure AD application (client) ID. Must be a valid GUID for the application registration."
     },
     "Domain": {
       "type": "parameter",
       "datatype": "string",
+      "forms": {
+        "global": ["domain"]
+      },
       "replaces": "intility.onmicrosoft.com",
-      "description": "The domain for the directory tenant (use with SingleOrg or IndividualB2C auth)."
+      "description": "The Azure AD domain name (e.g., intility.onmicrosoft.com) for the tenant."
     },
     "DefaultScope": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "api-scope",
       "defaultValue": "user_impersonation",
-      "description": "The API scope the client needs to request to provision an access token. (use with IndividualB2C, SingleOrg)."
+      "description": "The default OAuth 2.0 scope to request during authentication. Default is 'user_impersonation'."
     },
     "TenantId": {
       "type": "parameter",
       "datatype": "string",
+      "forms": {
+        "global": ["guid"]
+      },
       "replaces": "9b5ff18e-53c0-45a2-8bc2-9c0c8f60b2c6",
-      "description": "The TenantId ID of the directory to connect to (use with SingleOrg auth)."
+      "description": "The Azure AD directory (tenant) ID. Must be a valid GUID for your Azure AD tenant."
     },
     "SwaggerClientId": {
       "type": "parameter",
       "datatype": "string",
+      "forms": {
+        "global": ["guid"]
+      },
       "replaces": "22222222-2222-2222-22222222222222222",
-      "description": "The Client ID for Swagger."
+      "description": "The Azure AD application (client) ID for Swagger UI authentication. Must be a valid GUID."
     },
     "SwaggerAppName": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "Company.WebApplication1 Swagger",
-      "description": "The Client ID for Swagger."
+      "description": "The display name for the API in Swagger UI. Will be shown in the OAuth login prompt."
     },
     "UserSecretsId": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "aspnet-Company.WebApplication1-53bc9b9d-9d6a-45d4-8429-2a2761773502",
       "defaultValue": "aspnet-Company.WebApplication1-53bc9b9d-9d6a-45d4-8429-2a2761773502",
-      "description": "The ID to use for secrets (use with OrgReadAccess or Individual auth)."
+      "description": "The ID used for user secrets storage."
     },
     "skipRestore": {
       "type": "parameter",
       "datatype": "bool",
-      "description": "If specified, skips the automatic restore of the project on create.",
+      "description": "Skips the automatic restore of NuGet packages after project creation.",
       "defaultValue": "false"
     },
     "projectOnly": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Only sets it up as a project."
+      "description": "Creates a standalone project without a solution file. Use this when adding to an existing solution."
     }
   },
   "defaultName": "IntilityApi",
