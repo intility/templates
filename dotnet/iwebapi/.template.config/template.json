@@ -29,7 +29,11 @@
         },
         {
           "condition": "(projectOnly)",
-          "exclude": ["Company.WebApplication1.sln", ".gitignore"],
+          "exclude": [
+            "Company.WebApplication1.sln",
+            ".gitignore",
+            "Company.WebApplication1.Tests/**"
+          ],
           "rename": {
             "Company.WebApplication1/": "./"
           }
@@ -180,6 +184,10 @@
     {
       "condition": "(projectOnly)",
       "path": "Company.WebApplication1.csproj"
+    },
+    {
+      "condition": "(!projectOnly)",
+      "path": "Company.WebApplication1.Tests/Company.WebApplication1.Tests.csproj"
     }
   ]
 }
