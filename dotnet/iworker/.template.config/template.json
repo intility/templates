@@ -26,12 +26,6 @@
           "exclude": ["Company.Worker1/Properties/launchSettings.json"]
         },
         {
-          "condition": "(HostIdentifier != 'dotnetcli' && !projectOnly)",
-          "rename": {
-            "Company.Worker1.sln": "Company.Worker1.generated.sln"
-          }
-        },
-        {
           "condition": "(projectOnly)",
           "exclude": ["Company.Worker1.sln", ".gitignore"],
           "rename": {
