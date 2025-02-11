@@ -1,11 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Company.WebApplication1-53bc9b9d-9d6a-45d4-8429-2a2761773502</UserSecretsId>
     <RootNamespace Condition="'$(name)' != '$(name{-VALUE-FORMS-}safe_namespace)'">Company.WebApplication1</RootNamespace>
+    
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <IsPublishable>true</IsPublishable>
+    <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
+    <ContainerRepository>intility/Company.WebApplication1</ContainerRepository> <!-- TODO: Get safe name for container, maybe from parameters -->
+    <ContainerRegistry>ghcr.io</ContainerRegistry>
+    <ContainerBaseImage>mcr.microsoft.com/dotnet/runtime-deps:9.0-alpine-extra</ContainerBaseImage>
+    <SelfContained>true</SelfContained>
+    <PublishProfile>DefaultContainer</PublishProfile>
 
     <!-- https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-5.0&tabs=visual-studio#xml-comments -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -14,14 +23,13 @@
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="3.3.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
-    <PackageReference Include="Intility.Logging.AspNetCore" Version="2.1.1" />
-    <PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="2.1.1" />
-    <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="2.1.1" />
-    <PackageReference Include="Intility.Extensions.Logging.Dynatrace" Version="2.1.1" />
-    <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="3.7.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Intility.Logging.AspNetCore" Version="3.0.3" />
+    <PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.0.3" />
+    <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.0.3" />
+    <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.0.0" />
   </ItemGroup>
 </Project>
