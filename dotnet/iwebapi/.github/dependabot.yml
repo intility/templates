@@ -1,0 +1,35 @@
+version: 2
+updates:
+  # Check for updates to nuget packages
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "nuget"
+    commit-message:
+      prefix: "build:"
+    groups:
+      # Group all non-major updates together
+      minor-patch-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Check for updates to GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Europe/Oslo"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "build:"

@@ -1,0 +1,20 @@
+name: build, test and publish
+
+on:
+  push:
+    tags:
+      - "*"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    permissions:
+      contents: read
+      packages: write
+    uses: intility/reusable-workflows/.github/workflows/dotnet.yaml@main
+    with:
+      working-directory: ./
