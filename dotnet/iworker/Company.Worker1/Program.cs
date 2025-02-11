@@ -20,7 +20,7 @@ IHost host = Host.CreateDefaultBuilder(args)
                     // enable automatic settings refresh
                     .ConfigureRefresh(options => options
                         .Register("*", refreshAll: true)
-                        .SetCacheExpiration(TimeSpan.FromSeconds(5)));
+                        .SetRefreshInterval(TimeSpan.FromSeconds(5)));
             }, optional: true);
         }
     })
@@ -28,8 +28,7 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         logging.UseDefaultEnrichers()
             .UseElasticsearch()
-            .UseSentry()
-            .UseDynatrace();
+            .UseSentry();
     })
     .ConfigureServices(services =>
     {

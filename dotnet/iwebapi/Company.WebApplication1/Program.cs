@@ -25,7 +25,7 @@ if (!string.IsNullOrEmpty(endpoint))
             // enable automatic settings refresh
             .ConfigureRefresh(options => options
                 .Register("*", refreshAll: true)
-                .SetCacheExpiration(TimeSpan.FromSeconds(5)));
+                .SetRefreshInterval(TimeSpan.FromSeconds(5)));
     }, optional: true);
 }
 
@@ -33,8 +33,7 @@ builder.Host.UseIntilityLogging((ctx, logging) =>
 {
     logging.UseDefaultEnrichers()
         .UseElasticsearch()
-        .UseSentry()
-        .UseDynatrace();
+        .UseSentry();
 });
 
 // Add services to the container.
