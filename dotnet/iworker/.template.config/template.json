@@ -8,7 +8,8 @@
   "shortName": "iworker",
   "tags": {
     "language": "C#",
-    "type": "solution"
+    "type": "solution",
+    "vs_showParametersByDefault": "true"
   },
   "sourceName": "Company.Worker1",
   "preferNameDirectory": true,
@@ -51,7 +52,7 @@
   "symbols": {
     "Framework": {
       "type": "parameter",
-      "description": "The target framework for the project.",
+      "description": "The target framework version for the project. Currently only supports .NET 9.",
       "datatype": "choice",
       "choices": [
         {
@@ -65,20 +66,20 @@
     "skipRestore": {
       "type": "parameter",
       "datatype": "bool",
-      "description": "If specified, skips the automatic restore of the project on create.",
+      "description": "Skips the automatic restore of NuGet packages after project creation.",
       "defaultValue": "false"
     },
     "projectOnly": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Only sets it up as a project."
+      "description": "Creates a standalone project without a solution file. Use this when adding to an existing solution."
     },
     "cronJob": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Cron job instead of a continuous job"
+      "description": "Creates a Kubernetes cron job instead of a continuous deployment. Use for scheduled, periodic tasks."
     }
   },
   "defaultName": "IntilityWorkerService",
