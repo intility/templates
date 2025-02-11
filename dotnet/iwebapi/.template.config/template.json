@@ -27,12 +27,6 @@
           "exclude": ["Company.WebApplication1/Properties/launchSettings.json"]
         },
         {
-          "condition": "(HostIdentifier != 'dotnetcli' && !projectOnly)",
-          "rename": {
-            "Company.WebApplication1.sln": "Company.WebApplication1.generated.sln"
-          }
-        },
-        {
           "condition": "(projectOnly)",
           "exclude": ["Company.WebApplication1.sln", ".gitignore"],
           "rename": {
@@ -132,11 +126,11 @@
       "description": "The display name for the API in Swagger UI. Will be shown in the OAuth login prompt."
     },
     "UserSecretsId": {
-      "type": "parameter",
-      "datatype": "string",
-      "replaces": "aspnet-Company.WebApplication1-53bc9b9d-9d6a-45d4-8429-2a2761773502",
-      "defaultValue": "aspnet-Company.WebApplication1-53bc9b9d-9d6a-45d4-8429-2a2761773502",
-      "description": "The ID used for user secrets storage."
+      "type": "generated",
+      "generator": "guid",
+      "defaultFormat": "D",
+      "replaces": "53bc9b9d-9d6a-45d4-8429-2a2761773502",
+      "description": "The ID used for user secrets storage. Automatically generated as a unique GUID."
     },
     "skipRestore": {
       "type": "parameter",
