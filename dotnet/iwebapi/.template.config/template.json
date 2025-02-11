@@ -6,6 +6,7 @@
   "description": "A solution template for creating Intility APIs.",
   "identity": "Intility.Templates.ApiSolution.CSharp",
   "shortName": "iwebapi",
+  "icon": "icon.png",
   "tags": {
     "language": "C#",
     "type": "solution",
