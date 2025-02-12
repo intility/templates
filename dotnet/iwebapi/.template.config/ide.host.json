@@ -35,15 +35,6 @@
       "precedence": 110
     },
     {
-      "id": "auth",
-      "name": {
-        "text": "Authentication Type"
-      },
-      "isVisible": true,
-      "group": "Authentication",
-      "precedence": 200
-    },
-    {
       "id": "AADInstance",
       "name": {
         "text": "AAD Instance"
@@ -96,15 +87,6 @@
       "isVisible": true,
       "group": "Authentication",
       "precedence": 260
-    },
-    {
-      "id": "SwaggerAppName",
-      "name": {
-        "text": "Swagger App Name"
-      },
-      "isVisible": true,
-      "group": "Authentication",
-      "precedence": 270
     },
     {
       "id": "skipRestore",

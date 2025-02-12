@@ -58,6 +58,13 @@
       "replaces": "net9.0",
       "defaultValue": "net9.0"
     },
+    "ContainerRepository": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "safe_namespace.lower_case",
+      "replaces": "ContainerRepositoryPlaceholder",
+      "description": "The container repository name, derived from project name and made safe for container registry."
+    },
     "skipRestore": {
       "type": "parameter",
       "datatype": "bool",

@@ -11,7 +11,7 @@
 		<InvariantGlobalization>false</InvariantGlobalization>
 		<IsPublishable>true</IsPublishable>
 		<EnableSdkContainerSupport>true</EnableSdkContainerSupport>
-		<ContainerRepository>intility/Company.Worker1</ContainerRepository> <!-- TODO: Get safe name for container, maybe from parameters -->
+		<ContainerRepository>intility/ContainerRepositoryPlaceholder</ContainerRepository>
 		<ContainerRegistry>ghcr.io</ContainerRegistry>
 		<ContainerBaseImage>mcr.microsoft.com/dotnet/runtime-deps:9.0-alpine-extra</ContainerBaseImage>
 		<SelfContained>true</SelfContained>
