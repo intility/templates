@@ -29,10 +29,6 @@
       "longName": "swagger-client-id",
       "shortName": "swid"
     },
-    "SwaggerAppName": {
-      "longName": "swagger-name",
-      "shortName": "swn"
-    },
     "skipRestore": {
       "longName": "no-restore",
       "shortName": ""

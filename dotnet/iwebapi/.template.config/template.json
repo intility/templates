@@ -55,21 +55,16 @@
       "replaces": "net9.0",
       "defaultValue": "net9.0"
     },
+    "ContainerRepository": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "safe_namespace.lower_case",
+      "replaces": "ContainerRepositoryPlaceholder",
+      "description": "The container repository name, derived from project name and made safe for container registry."
+    },
     "HostIdentifier": {
       "type": "bind",
       "binding": "HostIdentifier"
-    },
-    "auth": {
-      "type": "parameter",
-      "datatype": "choice",
-      "choices": [
-        {
-          "choice": "SingleOrg",
-          "description": "Organizational authentication for a single tenant"
-        }
-      ],
-      "defaultValue": "SingleOrg",
-      "description": "The authentication scheme to use. Currently supports single-tenant organizational authentication."
     },
     "AADInstance": {
       "type": "parameter",
@@ -123,12 +118,6 @@
       },
       "replaces": "22222222-2222-2222-22222222222222222",
       "description": "The Azure AD application (client) ID for Swagger UI authentication. Must be a valid GUID."
-    },
-    "SwaggerAppName": {
-      "type": "parameter",
-      "datatype": "string",
-      "replaces": "Company.WebApplication1 Swagger",
-      "description": "The display name for the API in Swagger UI. Will be shown in the OAuth login prompt."
     },
     "UserSecretsId": {
       "type": "generated",
