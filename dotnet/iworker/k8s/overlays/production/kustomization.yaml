@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+nameSuffix: -prod
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-prod
+
+resources:
+  - ../../base'
+
+patches:
+  - path: deployment-patch.yaml
+  - path: pdb-patch.yaml
+
+configMapGenerator:
+  - name: ContainerRepositoryPlaceholder-config
+    literals:
+      - DOTNET_ENVIRONMENT=Production
+
+images:
+  - name: ContainerRepositoryPlaceholder
+    newName: ghcr.io/intility/ContainerRepositoryPlaceholder
+    newTag: 1.0.0

@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ContainerRepositoryPlaceholder
+  labels:
+    app.openshift.io/runtime: dotnet
+spec:
+  schedule: "0 0 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  startingDeadlineSeconds: 200
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          terminationGracePeriodSeconds: 30
+          containers:
+            - name: ContainerRepositoryPlaceholder
+              image: ghcr.io/intility/ContainerRepositoryPlaceholder
+              imagePullPolicy: Always
+              ports:
+                - name: http
+                  containerPort: 8080
+                  protocol: TCP
+              envFrom:
+                - configMapRef:
+                    name: ContainerRepositoryPlaceholder-config
+                - secretRef:
+                    name: ContainerRepositoryPlaceholder-secrets
