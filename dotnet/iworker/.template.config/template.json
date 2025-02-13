@@ -35,11 +35,17 @@
         },
         {
           "condition": "(cronJob)",
-          "exclude": ["Company.Worker1/chart/templates/deployment.yaml"]
+          "exclude": [
+            "Company.Worker1/k8s/base/deployment.yaml",
+            "Company.Worker1/k8s/overlays/production/deployment-patch.yaml"
+          ]
         },
         {
           "condition": "(!cronJob)",
-          "exclude": ["Company.Worker1/chart/templates/cronjob.yaml"]
+          "exclude": [
+            "Company.Worker1/k8s/base/cronjob.yaml",
+            "Company.Worker1/k8s/overlays/production/cronjob-patch.yaml"
+          ]
         }
       ]
     }
