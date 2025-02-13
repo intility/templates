@@ -11,8 +11,11 @@ resources:
   - ../../base'
 
 patches:
+  #if (cronJob)
+  - path: cronjob-patch.yaml
+  #else
   - path: deployment-patch.yaml
-  - path: pdb-patch.yaml
+  #endif
 
 configMapGenerator:
   - name: ContainerRepositoryPlaceholder-config
