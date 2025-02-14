@@ -32,4 +32,9 @@
     <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.0.3" />
     <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.0.0" />
   </ItemGroup>
+
+  <Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
+    <WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-digest=$(GeneratedContainerDigest)" />
+    <WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-image=$(ContainerRegistry)/$(ContainerRepository)" />
+  </Target>
 </Project>
