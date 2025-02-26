@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-     <InternalsVisibleTo Include="..\Company.WebApplication1.Tests\Company.WebApplication1.Tests.csproj" />
+     <InternalsVisibleTo Include="Company.WebApplication1.Tests" />
   </ItemGroup>
 
   <Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
