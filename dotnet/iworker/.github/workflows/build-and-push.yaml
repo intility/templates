@@ -17,4 +17,5 @@ jobs:
       packages: write
     uses: intility/reusable-workflows/.github/workflows/dotnet.yaml@main
     with:
-      working-directory: ./
+      directory: ./
+      docker: ${{ github.event_name != 'pull_request' }}
