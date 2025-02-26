@@ -42,7 +42,7 @@
     }
   },
   "usageExamples": [
-    "--client-id \"00000000-0000-0000-0000-000000000000\" --tenant-id \"00000000-0000-0000-0000-000000000000\" --domain \"contoso.onmicrosoft.com\"",
+    "--client-id \"11111111-1111-1111-11111111111111111\" --tenant-id \"9b5ff18e-53c0-45a2-8bc2-9c0c8f60b2c6\" --domain \"intility.onmicrosoft.com\"",
     "-p --no-restore"
   ]
 }
