@@ -33,6 +33,10 @@
     <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+     <InternalsVisibleTo Include="..\Company.WebApplication1.Tests\Company.WebApplication1.Tests.csproj" />
+  </ItemGroup>
+
   <Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
     <WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-digest=$(GeneratedContainerDigest)" />
     <WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-image=$(ContainerRegistry)/$(ContainerRepository)" />
