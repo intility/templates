@@ -137,6 +137,30 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Creates a standalone project without a solution file. Use this when adding to an existing solution."
+    },
+    "ArgoProject": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "ArgoProjectPlaceholder",
+      "defaultValue": "ContainerRepositoryPlaceholder",
+      "description": "Targets the correct argo project for the deployment"
+    },
+    "OpenShiftNamespace": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "OpenShiftNamespacePlaceholder",
+      "defaultValue": "aa-ContainerRepositoryPlaceholder-dev",
+      "description": "Targets the correct OpenShift namespace for the deployment"
+    },
+    "GitHubRepoUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "forms": {
+        "global": ["url"]
+      },
+      "replaces": "GitHubRepoUrlPlaceholder",
+      "defaultValue": "https://github.com/intility/ContainerRepositoryPlaceholder.git",
+      "description": "The URL to the GitHub repository for the project"
     }
   },
   "defaultName": "IntilityApi",

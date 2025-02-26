@@ -89,6 +89,33 @@
       "precedence": 260
     },
     {
+      "id": "ArgoProject",
+      "name": {
+        "text": "Argo Project"
+      },
+      "isVisible": true,
+      "group": "Deployment",
+      "precedence": 300
+    },
+    {
+      "id": "OpenShiftNamespace",
+      "name": {
+        "text": "OpenShift Namespace"
+      },
+      "isVisible": true,
+      "group": "Deployment",
+      "precedence": 310
+    },
+    {
+      "id": "GitHubRepoUrl",
+      "name": {
+        "text": "GitHub Repository Url"
+      },
+      "isVisible": true,
+      "group": "Deployment",
+      "precedence": 320
+    },
+    {
       "id": "skipRestore",
       "name": {
         "text": "Skip Restore"
