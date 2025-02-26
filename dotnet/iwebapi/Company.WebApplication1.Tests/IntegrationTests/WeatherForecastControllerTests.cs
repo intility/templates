@@ -8,7 +8,7 @@ public class WeatherForecastControllerTests : IClassFixture<WebApplicationFactor
 {
     private readonly WebApplicationFactory<Program> _factory;
 
-    public WeatherForecastControllerTests(WebApplicationFactory<Program> factory)
+    internal WeatherForecastControllerTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
     }
