@@ -4,6 +4,3 @@ metadata:
   name: ContainerRepositoryPlaceholder
   spec:
     minAvailable: 2
-    selector:
-      matchLabels:
-        app: ContainerRepositoryPlaceholder

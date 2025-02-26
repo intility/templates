@@ -2,7 +2,10 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: ContainerRepositoryPlaceholder
+  labels:
+    app.openshift.io/runtime: dotnet
 spec:
+  revisionHistoryLimit: 0
   schedule: "0 0 * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
