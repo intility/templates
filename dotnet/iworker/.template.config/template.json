@@ -67,7 +67,7 @@
     "ContainerRepository": {
       "type": "derived",
       "valueSource": "name",
-      "valueTransform": "safe_namespace.lower_case",
+      "valueTransform": "lower_safe_namespace",
       "replaces": "ContainerRepositoryPlaceholder",
       "description": "The container repository name, derived from project name and made safe for container registry."
     },
