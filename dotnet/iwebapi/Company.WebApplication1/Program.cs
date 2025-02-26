@@ -110,6 +110,3 @@ app.MapControllers().RequireAuthorization();
 app.MapHealthChecks("/health");
 
 app.Run();
-
-// This is required to allow the program to be used in integration tests
-public partial class Program { };
