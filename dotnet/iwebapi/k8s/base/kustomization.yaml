@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - ./deployment.yaml
   - ./service.yaml
-  - ./route.yaml
+  - ./ingress.yaml
   - ./pdb.yaml
