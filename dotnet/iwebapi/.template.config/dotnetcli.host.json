@@ -39,6 +39,18 @@
     },
     "UserSecretsId": {
       "isHidden": true
+    },
+    "ArgoProject": {
+      "longName": "argo-project",
+      "shortName": "ap"
+    },
+    "OpenShiftNamespace": {
+      "longName": "openshift-namespace",
+      "shortName": "on"
+    },
+    "GitHubRepoUrl": {
+      "longName": "github-repo-url",
+      "shortName": "gru"
     }
   },
   "usageExamples": [

@@ -7,13 +7,13 @@ metadata:
     argocd-image-updater.argoproj.io/update-strategy: digest
     argocd-image-updater.argoproj.io/force-update: "true"
 spec:
-  project: __ARGO_PROJECT__
+  project: ArgoProjectPlaceholder
   destination:
-    namespace: __OPENSHIFT_PROJECT_NAME__
+    namespace: OpenShiftNamespacePlaceholder
     server: https://kubernetes.default.svc
   # syncPolicy:
   #   automated: {}
   source:
-    repoURL: https://github.com/intility/__REPOSITORY_NAME__.git
+    repoURL: GitHubRepoUrlPlaceholder
     targetRevision: HEAD
     path: k8s/overlays/dev
