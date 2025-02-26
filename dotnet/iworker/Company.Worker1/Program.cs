@@ -29,6 +29,11 @@ IHost host = Host.CreateDefaultBuilder(args)
         logging.UseDefaultEnrichers()
             .UseElasticsearch()
             .UseSentry();
+
+        if (ctx.Configuration.GetValue<bool>("EnableOpenShiftLogging"))
+        {
+            logging.UseOpenshiftLogging();
+        }
     })
     .ConfigureServices(services =>
     {

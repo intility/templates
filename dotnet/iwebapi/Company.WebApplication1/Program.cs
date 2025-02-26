@@ -34,6 +34,11 @@ builder.Host.UseIntilityLogging((ctx, logging) =>
     logging.UseDefaultEnrichers()
         .UseElasticsearch()
         .UseSentry();
+
+    if (builder.Configuration.GetValue<bool>("EnableOpenShiftLogging"))
+    {
+        logging.UseOpenshiftLogging();
+    }
 });
 
 // Add services to the container.
