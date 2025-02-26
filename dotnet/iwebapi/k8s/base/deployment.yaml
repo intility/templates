@@ -6,6 +6,7 @@ metadata:
     app.openshift.io/runtime: dotnet
 spec:
   replicas: 2
+  revisionHistoryLimit: 0
   strategy:
     type: RollingUpdate
     rollingUpdate:

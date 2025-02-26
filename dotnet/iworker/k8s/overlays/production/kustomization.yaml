@@ -8,7 +8,7 @@ labels:
       app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-prod
 
 resources:
-  - ../../base'
+  - ../../base
 
 patches:
   #if (cronJob)

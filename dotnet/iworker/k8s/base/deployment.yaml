@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ContainerRepositoryPlaceholder
+  labels:
+    app.openshift.io/runtime: dotnet
 spec:
   replicas: 2
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app: ContainerRepositoryPlaceholder
