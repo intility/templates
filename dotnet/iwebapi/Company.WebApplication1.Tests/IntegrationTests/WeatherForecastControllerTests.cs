@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 using Xunit;
 
-namespace IntilityApi1ests.Tests.IntegrationTests;
+namespace Company.WebApplication1.Tests.IntegrationTests;
 
 public class WeatherForecastControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
