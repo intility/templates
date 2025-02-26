@@ -1,7 +1,7 @@
-using IntilityApi1ests.Controllers.V1;
+using Company.WebApplication1.Controllers.V1;
 using Xunit;
 
-namespace IntilityApi1ests.Tests.UnitTests;
+namespace Company.WebApplication1.Tests.UnitTests;
 
 public class WeatherForecastControllerTests
 {
