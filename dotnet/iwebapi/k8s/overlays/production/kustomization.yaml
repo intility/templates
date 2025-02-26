@@ -1,14 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+resources:
+  - ../../base
+
 nameSuffix: -prod
+
 labels:
   - includeSelectors: true
     pairs:
       app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-prod
-
-resources:
-  - ../../base
 
 patches:
   - path: deployment-patch.yaml
