@@ -53,7 +53,7 @@
   "symbols": {
     "Framework": {
       "type": "parameter",
-      "description": "The target framework version for the project. Currently only supports .NET 9.",
+      "description": "The target framework version for the project.",
       "datatype": "choice",
       "choices": [
         {
@@ -67,9 +67,76 @@
     "ContainerRepository": {
       "type": "derived",
       "valueSource": "name",
-      "valueTransform": "lower_safe_namespace",
+      "valueTransform": "kebabCase",
       "replaces": "ContainerRepositoryPlaceholder",
       "description": "The container repository name, derived from project name and made safe for container registry."
+    },
+    "cronJob": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Creates a Kubernetes cron job instead of a continuous deployment. Use for scheduled, periodic tasks."
+    },
+    "ArgoProject": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "",
+      "description": "Argo Project Name (e.g. AppServices)"
+    },
+    "OpenShiftNamespace": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "",
+      "description": "OpenShift Namespace (e.g. aa-appservices-dev)"
+    },
+    "GitHubRepoUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "forms": {
+        "global": ["url"]
+      },
+      "defaultValue": "",
+      "description": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
+    },
+    "FormattedOpenShiftNamespace": {
+      "type": "derived",
+      "valueSource": "ContainerRepository",
+      "valueTransform": "openShiftFormat"
+    },
+    "FormattedGitHubRepoUrl": {
+      "type": "derived",
+      "valueSource": "ContainerRepository",
+      "valueTransform": "githubUrlFormat"
+    },
+    "ArgoProjectCoalesced": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "ArgoProject",
+        "fallbackVariableName": "ContainerRepository"
+      },
+      "replaces": "ArgoProjectPlaceholder",
+      "description": "Uses ArgoProject if provided, otherwise ContainerRepository"
+    },
+    "OpenShiftNamespaceCoalesced": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "OpenShiftNamespace",
+        "fallbackVariableName": "FormattedOpenShiftNamespace"
+      },
+      "replaces": "OpenShiftNamespacePlaceholder",
+      "description": "Uses OpenShiftNamespace if provided, otherwise generates from ContainerRepository"
+    },
+    "GitHubRepoUrlCoalesced": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "GitHubRepoUrl",
+        "fallbackVariableName": "FormattedGitHubRepoUrl"
+      },
+      "replaces": "GitHubRepoUrlPlaceholder",
+      "description": "Uses GitHubRepoUrl if provided, otherwise generates from ContainerRepository"
     },
     "skipRestore": {
       "type": "parameter",
@@ -82,36 +149,21 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Creates a standalone project without a solution file. Use this when adding to an existing solution."
+    }
+  },
+  "forms": {
+    "kebabCase": {
+      "identifier": "kebabCase"
     },
-    "cronJob": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Creates a Kubernetes cron job instead of a continuous deployment. Use for scheduled, periodic tasks."
+    "openShiftFormat": {
+      "identifier": "replace",
+      "pattern": "^(.*)$",
+      "replacement": "aa-$1-dev"
     },
-    "ArgoProject": {
-      "type": "parameter",
-      "datatype": "string",
-      "replaces": "ArgoProjectPlaceholder",
-      "defaultValue": "ContainerRepositoryPlaceholder",
-      "description": "Targets the correct argo project for the deployment"
-    },
-    "OpenShiftNamespace": {
-      "type": "parameter",
-      "datatype": "string",
-      "replaces": "OpenShiftNamespacePlaceholder",
-      "defaultValue": "aa-ContainerRepositoryPlaceholder-dev",
-      "description": "Targets the correct OpenShift namespace for the deployment"
-    },
-    "GitHubRepoUrl": {
-      "type": "parameter",
-      "datatype": "string",
-      "forms": {
-        "global": ["url"]
-      },
-      "replaces": "GitHubRepoUrlPlaceholder",
-      "defaultValue": "https://github.com/intility/ContainerRepositoryPlaceholder.git",
-      "description": "The URL to the GitHub repository for the project"
+    "githubUrlFormat": {
+      "identifier": "replace",
+      "pattern": "^(.*)$",
+      "replacement": "https://github.com/intility/$1.git"
     }
   },
   "defaultName": "IntilityWorkerService",

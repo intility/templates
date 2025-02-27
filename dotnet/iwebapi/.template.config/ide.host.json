@@ -91,7 +91,10 @@
     {
       "id": "ArgoProject",
       "name": {
-        "text": "Argo Project"
+        "text": "Argo Project (e.g. AppServices)"
+      },
+      "description": {
+        "text": "Argo Project Name (e.g. AppServices)"
       },
       "isVisible": true,
       "group": "Deployment",
@@ -100,7 +103,10 @@
     {
       "id": "OpenShiftNamespace",
       "name": {
-        "text": "OpenShift Namespace"
+        "text": "OpenShift Namespace (e.g. aa-appservices-dev)"
+      },
+      "description": {
+        "text": "OpenShift Namespace (e.g. aa-appservices-dev)"
       },
       "isVisible": true,
       "group": "Deployment",
@@ -109,7 +115,10 @@
     {
       "id": "GitHubRepoUrl",
       "name": {
-        "text": "GitHub Repository Url"
+        "text": "GitHub Repository Url (e.g. https://github.com/intility/appservices.git)"
+      },
+      "description": {
+        "text": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
       },
       "isVisible": true,
       "group": "Deployment",
