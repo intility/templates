@@ -23,7 +23,9 @@ configMapGenerator:
     literals:
       - DOTNET_ENVIRONMENT=Production
 
+# x-release-please-start-version
 images:
   - name: ContainerRepositoryPlaceholder
     newName: ghcr.io/intility/ContainerRepositoryPlaceholder
     newTag: 1.0.0
+# x-release-please-end
