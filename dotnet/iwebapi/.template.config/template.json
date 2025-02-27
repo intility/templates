@@ -32,6 +32,8 @@
           "exclude": [
             "Company.WebApplication1.sln",
             ".gitignore",
+            ".release-please-manifest.json",
+            "release-please-config.json",
             "Company.WebApplication1.Tests/**"
           ],
           "rename": {

@@ -28,7 +28,12 @@
         },
         {
           "condition": "(projectOnly)",
-          "exclude": ["Company.Worker1.sln", ".gitignore"],
+          "exclude": [
+            "Company.Worker1.sln",
+            ".gitignore",
+            ".release-please-manifest.json",
+            "release-please-config.json"
+          ],
           "rename": {
             "Company.Worker1/": "./"
           }
