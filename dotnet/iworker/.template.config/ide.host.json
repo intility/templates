@@ -45,6 +45,8 @@
         "text": "Argo Project Name (e.g. AppServices)"
       },
       "isVisible": true,
+      "isEnabled": "!projectOnly",
+      "visibilityCondition": "!projectOnly",
       "group": "Deployment",
       "precedence": 300
     },
@@ -57,6 +59,8 @@
         "text": "OpenShift Namespace Name (e.g. aa-appservices-dev)"
       },
       "isVisible": true,
+      "isEnabled": "!projectOnly",
+      "visibilityCondition": "!projectOnly",
       "group": "Deployment",
       "precedence": 310
     },
@@ -69,6 +73,8 @@
         "text": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
       },
       "isVisible": true,
+      "isEnabled": "!projectOnly",
+      "visibilityCondition": "!projectOnly",
       "group": "Deployment",
       "precedence": 320
     },
