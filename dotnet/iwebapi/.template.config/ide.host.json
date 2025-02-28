@@ -35,15 +35,6 @@
       "precedence": 110
     },
     {
-      "id": "AADInstance",
-      "name": {
-        "text": "AAD Instance"
-      },
-      "isVisible": true,
-      "group": "Authentication",
-      "precedence": 210
-    },
-    {
       "id": "ClientId",
       "name": {
         "text": "Client ID"
@@ -51,15 +42,6 @@
       "isVisible": true,
       "group": "Authentication",
       "precedence": 220
-    },
-    {
-      "id": "Domain",
-      "name": {
-        "text": "Domain"
-      },
-      "isVisible": true,
-      "group": "Authentication",
-      "precedence": 230
     },
     {
       "id": "TenantId",
