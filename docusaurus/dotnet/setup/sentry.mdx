@@ -1,6 +1,6 @@
 ---
 title: Sentry
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 The project comes included with error reporting to Sentry, and a pipeline job to upload sourcemaps and create releases.
@@ -18,4 +18,9 @@ For the project name, use the project slug from GitLab.
 Select a fitting team, or create a new one, and hit Create.
 
 You'll be taken to a Configure .NET page.
-In the code examples, copy the DSN value passed to `Sentry.Init`, and [add it to GitLab CI/CD variables](/dotnet/setup/gitlab#adding-cicd-variables) with the key `SENTRY_DSN`.
+In the code examples, copy the DSN value passed to `Sentry.Init`, and add it to your ConfigMap in Openshift.
+
+```yaml title="ConfigMap"
+data:
+  SENTRY_DSN: 'https://<long-random-string>@sentry.intility.no/<int>'
+```

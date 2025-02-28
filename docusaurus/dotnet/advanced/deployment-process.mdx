@@ -1,0 +1,197 @@
+---
+title: Deployment Process
+sidebar_position: 1
+---
+
+# Deployment Process
+
+The template includes a complete CI/CD pipeline that automates building, testing, and deploying your application to multiple environments. This guide explains how the deployment process works from GitHub workflow to production deployment.
+
+## Deployment Architecture
+
+The deployment process follows a GitOps approach with these key components:
+
+1. **GitHub Actions**: Builds and publishes container images to GitHub Container Registry (ghcr.io)
+2. **Release Please**: Automates versioning and release creation using conventional commits
+3. **ArgoCD**: Handles deployment to Kubernetes clusters (separate instances for dev and prod)
+
+This architecture provides:
+
+- Fully automated deployments to development environments
+- Controlled, pull request-based releases to production
+- Clear separation between environments
+
+## Container Image Creation
+
+Container images are automatically built and published by the GitHub Actions workflow:
+
+### Development Images
+
+When you push to the `main` branch:
+
+- A container image is built and tagged with `main`
+- This image is used for the development environment
+- The image is published to GitHub Container Registry (ghcr.io)
+
+```yaml
+# Example container image for dev
+ghcr.io/intility/my-service:main
+```
+
+### Production Images
+
+When a new release tag is created (by Release Please):
+
+- A container image is built and tagged with the semantic version (e.g., `1.2.3`)
+- This image is used for the production environment
+- The image is published to GitHub Container Registry (ghcr.io)
+
+```yaml
+# Example container image for prod
+ghcr.io/intility/my-service:1.2.3
+```
+
+## Release Please
+
+The template integrates [Release Please](https://github.com/googleapis/release-please), which automates versioning and release creation using conventional commits.
+
+### How Release Please Works
+
+1. You write commits following the [Conventional Commits](https://www.conventionalcommits.org/) format:
+
+   - `feat: add new user API` (minor version bump)
+   - `fix: resolve login issue` (patch version bump)
+   - `feat!: change authentication flow` (major version bump)
+
+2. Release Please tracks these commits and automatically:
+   - Creates a release PR when new commits are pushed to `main`
+   - Determines the next semantic version based on commit types
+   - Updates version references in your code
+   - Updates the image tag in the Kustomize configuration for production
+
+### Release Please Configuration
+
+The template includes two Release Please configuration files:
+
+```json title="release-please-config.json"
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "release-type": "simple",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "k8s/overlays/production/kustomization.yaml"
+        }
+      ]
+    }
+  }
+}
+```
+
+```json title=".release-please-manifest.json"
+{
+  ".": "1.0.0"
+}
+```
+
+The `extra-files` configuration ensures that when a new version is released, the image tag in your Kustomize configuration is updated to match the new version.
+
+### Creating a Release
+
+To create a new release:
+
+1. Make changes to your code and commit them using conventional commit messages
+2. Push your changes to the `main` branch
+3. Release Please will create or update a release PR
+4. Review and merge the release PR
+5. Release Please will:
+   - Create a new GitHub release and tag
+   - Update the image tag in the production Kustomize configuration
+   - Trigger the GitHub workflow to build and publish a new production image
+
+## ArgoCD Deployment
+
+The template is configured with two separate ArgoCD configurations, one for development and one for production.
+
+### Development Environment (Automatic Updates)
+
+The development ArgoCD application is configured with automatic image updates:
+
+```yaml title="argo/aa/dev-application.yaml"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-service-dev
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/intility/my-service:main
+    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/force-update: 'true'
+spec:
+  project: MyProject
+  destination:
+    namespace: my-namespace-dev
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/intility/my-service.git
+    targetRevision: HEAD
+    path: k8s/overlays/dev
+```
+
+Key features:
+
+- Uses ArgoCD Image Updater annotations
+- Automatically deploys new images when the digest changes (same tag, new content)
+- Points to the `dev` overlay in the Kustomize configuration
+- Uses the `main` branch image tag
+
+### Production Environment (Controlled Updates)
+
+The production ArgoCD application is configured for controlled updates:
+
+```yaml title="argo/omega/prod-application.yaml"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-service-prod
+spec:
+  project: MyProject
+  destination:
+    namespace: my-namespace-prod
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/intility/my-service.git
+    targetRevision: HEAD
+    path: k8s/overlays/production
+```
+
+Key features:
+
+- No automatic image updater annotations
+- Manual sync required
+- Points to the `production` overlay in the Kustomize configuration
+- When Release Please updates the image tag in the Kustomize config, ArgoCD shows "out of sync"
+
+## Deployment Workflow
+
+Here's how the entire process works:
+
+### Development Deployment
+
+1. Developer pushes changes to `main` branch
+2. GitHub Actions workflow builds and publishes a new image with the `main` tag
+3. ArgoCD Image Updater detects the new image digest
+4. ArgoCD automatically deploys the new image to the development environment
+
+### Production Deployment
+
+1. Developer pushes commits with conventional commit messages to `main` branch
+2. Release Please creates or updates a release PR
+3. Developer reviews and merges the release PR
+4. Release Please:
+   - Creates a new GitHub release and tag (e.g., `v1.2.3`)
+   - Updates the image tag in the production Kustomize configuration
+5. GitHub Actions workflow builds and publishes a new image with the version tag
+6. ArgoCD detects the configuration change (updated image tag)
+7. You review the changes and manually syncs the production ArgoCD application

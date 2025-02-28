@@ -3,6 +3,51 @@ title: Deploy with ArgoCD
 sidebar_position: 2
 ---
 
-:::info
-This page isn't finished yet. If you are comfortable with this subject, feel free to contribute.
-:::
+## Development Bootstrapper
+
+Create a new application in ArgoCD to manage all your existing applications. We call this the bootstrapper. This application will reference each of your development argo resources located in the `argo/aa`.
+
+The development bootstrapper can be set to automatic sync, this will make sure that your argo resources in `argo/aa` is synced automatically when they are edited.
+
+![Create new argo app for apps](/img/4-argo-bootstrapper-auto.png)
+![Set correct config for bootstrapper aa ](/img/4-argo-aa-config.png)
+
+```
+Application Name: **app-name**-bootstrap
+Project Name: **argo-project** (Example: pux)
+
+Repository URL: **REPOSITORY_URL**
+Path: argo/aa
+
+Cluster URL: https://kubernetes.default.svc
+Namespace: gitops-aa
+```
+
+## Syncing
+
+- The boostrapper syncs your applications in `argo/aa` to ArgoCD.
+- The applications in argo/aa syncs your helm chart to your openshift namespace.
+
+When everything is created, ensure ArgoCD recognizes the existing deployment, and doesn't try to create new resources. When Argo has taken over, you can uncomment the `syncPolicy: automated: {}` section in the `argo/aa` resources, to automatically sync changes.
+
+The `argocd-image-updater.argoproj.io` annotations in your Application, connects ArgoCD Image Updater to docker images pushed with the `main` tag. This ensures you don't have to manually update image versions for dev environments, and new images are deployed once pushed.
+
+## Production Bootstrapper
+
+Create a new application in the omega ArgoCD to manage all your existing qa and prod applications. This application will reference each of your qa and production argo resources located in the `argo/omega`.
+
+The omega bootstrapper should be set to manual sync.
+
+![Create new argo app for apps](/img/4-argo-bootstrapper-manual.png)
+![Set correct config for bootstrapper aa ](/img/4-argo-omega-config.png)
+
+```
+Application Name: **app-name**-bootstrap
+Project Name: **argo-project** (Example: pux)
+
+Repository URL: **REPOSITORY_URL**
+Path: argo/omega
+
+Cluster URL: https://kubernetes.default.svc
+Namespace: openshift-gitops
+```
