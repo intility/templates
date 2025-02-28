@@ -31,10 +31,16 @@
           "condition": "(projectOnly)",
           "exclude": [
             "Company.WebApplication1.sln",
-            ".gitignore",
+            "Company.WebApplication1.Tests/**",
             ".release-please-manifest.json",
             "release-please-config.json",
-            "Company.WebApplication1.Tests/**"
+            ".github/**",
+            "argo/**",
+            "k8s/**",
+            ".editorconfig",
+            ".gitattributes",
+            ".gitignore",
+            "README.md"
           ],
           "rename": {
             "Company.WebApplication1/": "./"

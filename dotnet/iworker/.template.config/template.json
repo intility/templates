@@ -30,9 +30,15 @@
           "condition": "(projectOnly)",
           "exclude": [
             "Company.Worker1.sln",
-            ".gitignore",
             ".release-please-manifest.json",
-            "release-please-config.json"
+            "release-please-config.json",
+            ".github/**",
+            "argo/**",
+            "k8s/**",
+            ".editorconfig",
+            ".gitattributes",
+            ".gitignore",
+            "README.md"
           ],
           "rename": {
             "Company.Worker1/": "./"
