@@ -1,0 +1,24 @@
+---
+title: GitHub Repository
+sidebar_position: 1
+---
+
+Go to [New Project in GitHub](https://github.com/new).
+
+Select a fitting name, it should be as globally unique and descriptive for your project as possible.  
+![New Project in GitHub photo](/img/github-new.png)
+
+## Pushing your application
+
+Creating a dotnet project from a template does not automatically create a git repository for you,
+so we have to make one ourselves.
+Follow the "Push an existing folder" example,
+which should look something like this:
+
+```bash
+git init
+git remote add origin git@github.com:intility/intility-app.git
+git add .
+git commit -m "feat: add intility-app base"
+git push -u origin main
+```

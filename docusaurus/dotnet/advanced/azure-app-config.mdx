@@ -65,41 +65,23 @@ Then, give it Get and List permissions for Key and Secrets.
 You also need a client secret for your App Registration,
 create one in Azure AD -> App Registrations -> Your App Registration -> Certificates & secrets.
 
-Set up the following variables in GitLab CI/CD under the `Development` environment scope
+Set up the following variables in your ConfigMap and Secret in openshift.
 
 - `AppConfig`: The App Configuration endpoint
 - `AZURE_CLIENT_ID`: The App Registration client id
 - `AZURE_CLIENT_SECRET`: The client secret you just made
 - `AZURE_TENANT_ID`: The tenant id of your App Registration (check in your App Registrations Overview)
 
-Lastly, we need to configure the development deployment to use these variables.
-We do this by passing the variables we just set up to Helm:
+```yaml title="configmap.yaml"
+data:
+  AppConfig: 'https://app-config.azure.com'
+  AZURE_CLIENT_ID: '11111111-1111-1111-1111-111111111111'
+  AZURE_TENANT_ID: '11111111-1111-1111-1111-111111111111'
+```
 
-```yaml title=".gitlab-ci.yml" {17-20}
-deploy:dev:
-  ...
-  script:
-    - oc login $OPENSHIFT_SERVER --token=$OPENSHIFT_TOKEN
-    - helm upgrade
-      --install $CI_ENVIRONMENT_SLUG ./Company.WebApplication1/chart
-      --set nameOverride=$CI_PROJECT_NAME
-      --set image.repository=$CI_REGISTRY_IMAGE
-      --set image.tag=$IMAGE_TAG
-      --set registry.url=$CI_REGISTRY
-      --set registry.user=$CI_DEPLOY_USER
-      --set registry.password=$CI_DEPLOY_PASSWORD
-      --set route=$ROUTE
-      --set replicaCount=2
-      --set secrets.Sentry__Dsn=$SENTRY_DSN
-      --set config.ASPNETCORE_ENVIRONMENT=$CI_ENVIRONMENT_NAME
-      --set config.AppConfig=$AppConfig
-      --set config.AZURE_CLIENT_ID=$AZURE_CLIENT_ID
-      --set config.AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET
-      --set config.AZURE_TENANT_ID=$AZURE_TENANT_ID
+```yaml title="secret.yaml"
+data:
+  AZURE_CLIENT_SECRET: <your-client-secret>
 ```
 
 The development environment will now be able to connect and use the configuration from the App Registration and Key vault.
-
-:::note
-Don't worry, even though the `deploy:prod` job extends the `deploy:dev` job, the variables won't be set, since we only scoped them to the `Development` environment.
-:::

@@ -3,30 +3,32 @@ title: Features
 sidebar_position: 3
 ---
 
-The template is packed with already made decisions, so you don't have to make them. These solutions are a culmination of many 
+The template is packed with already made decisions, so you don't have to make them. These solutions are a culmination of many
 years of managing services in production and aims to target established in-house infrastructure.
 
 :::note
 The templates are updated as the technology and infrastructure changes over time.
 :::
 
-export const SideBySide = ({children, imageSrc, imgWidth}) => (
-    <div style={{display: 'flex'}}>
-        <img src={imageSrc} width={imgWidth} />
-        {children}
-    </div>
-)
+export const SideBySide = ({ children, imageSrc, imgWidth }) => (
+  <div style={{ display: 'flex' }}>
+    <img src={imageSrc} width={imgWidth} />
+    {children}
+  </div>
+);
 
 <SideBySide imageSrc="/img/vscode-tree.png" imgWidth="200px">
 
-* Helm chart
-* Project debug settings
-* Swagger configuration
-* Dockerfiles
-* README template
-* GitLab CI/CD pipeline
-* API Versioning
-* Logging configuration
-* Telemetry instrumentation
+- Kustomize configuration
+- Project debug settings
+- Swagger configuration
+- [Built-in container support](https://learn.microsoft.com/en-us/dotnet/core/containers/sdk-publish?pivots=dotnet-8-0)
+- README template
+- GitHub Actions CI/CD with [reusable workflow](https://github.com/intility/reusable-workflows)
+- ArgoCD application configuration
+- [Release please](https://github.com/googleapis/release-please) configuration
+- API Versioning
+- Logging configuration
+- Telemetry instrumentation
 
 </SideBySide>

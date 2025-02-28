@@ -3,11 +3,11 @@ title: Installation
 sidebar_position: 2
 ---
 
-First and foremost make sure you have installed the [official dotnet SDK](https://dotnet.microsoft.com/download) version 5 or above.
+First and foremost make sure you have installed the [official dotnet SDK](https://dotnet.microsoft.com/download) version 9.
 
 ```shell
 #install intility templates
-dotnet new --install Intility.Templates
+dotnet new install Intility.Templates
 ```
 
 :::info
@@ -15,7 +15,7 @@ It's recommended to run this command every time you want to use the template,
 to ensure you're using the newest version.
 :::
 
-New templates should now be available to bootstrap new projects from. Use `dotnet new --list` to see available templates
+New templates should now be available to bootstrap new projects from. Use `dotnet new list` to see available templates
 
 ```
   Templates                                                   Short Name           Language    Tags
@@ -24,11 +24,39 @@ New templates should now be available to bootstrap new projects from. Use `dotne
   Class library                                      classlib             [C#],F#,VB  Common/Library
   Worker Service                                     worker               [C#],F#     Common/Worker/Web
 > Intility Api                                       iwebapi              [C#]        Intility/Web/WebAPI
+> Intility Worker                                    iworker              [C#]        Intility/Worker
   xUnit Test Project                                 xunit                [C#],F#,VB  Test/xUnit
   Razor Component                                    razorcomponent       [C#]        Web/ASP.NET
   Razor Page                                         page                 [C#]        Web/ASP.NET
   #...
 ```
+
+##
+
+## Available Templates
+
+Intility.Templates provides two main templates to help you quickly bootstrap new .NET projects following Intility's best practices and architectural patterns:
+
+### Intility Api (`iwebapi`)
+
+The Intility Api template is designed for creating HTTP-based API services. Use this template when you need to:
+
+- Build RESTful APIs that other services or applications will consume
+- Create endpoints for frontend applications
+- Develop microservices with HTTP communication
+- Expose functionality through a web-based interface
+
+### Intility Worker (`iworker`)
+
+The Intility Worker template is designed for background processing services. Use this template when you need to:
+
+- Process work asynchronously
+- Create scheduled jobs or recurring tasks
+- Implement message queue consumers
+- Build services that don't require HTTP endpoints
+- Develop data processing pipelines
+
+Select the appropriate template based on your service's primary responsibility and communication patterns.
 
 ## Bootstrap new project using the template
 
@@ -95,17 +123,17 @@ This will not update already bootstrapped projects.
 Check for updates by running
 
 ```shell
-dotnet new --update-check
+dotnet new update --check-only
 ```
 
 If there are any updates available, update with
 
 ```shell
-dotnet new --update-apply
+dotnet new update
 ```
 
 or
 
 ```shell
-dotnet new --install Intility.Templates
+dotnet new install Intility.Templates
 ```
