@@ -119,7 +119,7 @@ The template is configured with two separate ArgoCD configurations, one for deve
 
 The development ArgoCD application is configured with automatic image updates:
 
-```yaml title="argo/aa/dev-application.yaml"
+```yaml title="argo/zone2/dev-application.yaml"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -150,7 +150,7 @@ Key features:
 
 The production ArgoCD application is configured for controlled updates:
 
-```yaml title="argo/omega/prod-application.yaml"
+```yaml title="argo/zone1/prod-application.yaml"
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
