@@ -5,19 +5,19 @@ sidebar_position: 2
 
 ## Development Bootstrapper
 
-Create a new application in ArgoCD to manage all your existing applications. We call this the bootstrapper. This application will reference each of your development argo resources located in the `argo/aa`.
+Create a new application in ArgoCD to manage all your existing applications. We call this the bootstrapper. This application will reference each of your development argo resources located in the `argo/zone2`.
 
-The development bootstrapper can be set to automatic sync, this will make sure that your argo resources in `argo/aa` is synced automatically when they are edited.
+The development bootstrapper can be set to automatic sync, this will make sure that your argo resources in `argo/zone2` is synced automatically when they are edited.
 
 ![Create new argo app for apps](/img/4-argo-bootstrapper-auto.png)
-![Set correct config for bootstrapper aa ](/img/4-argo-aa-config.png)
+![Set correct config for bootstrapper zone2 ](/img/4-argo-aa-config.png)
 
 ```
 Application Name: **app-name**-bootstrap
 Project Name: **argo-project** (Example: pux)
 
 Repository URL: **REPOSITORY_URL**
-Path: argo/aa
+Path: argo/zone2
 
 Cluster URL: https://kubernetes.default.svc
 Namespace: gitops-aa
@@ -25,28 +25,28 @@ Namespace: gitops-aa
 
 ## Syncing
 
-- The boostrapper syncs your applications in `argo/aa` to ArgoCD.
-- The applications in argo/aa syncs your helm chart to your openshift namespace.
+- The boostrapper syncs your applications in `argo/zone2` to ArgoCD.
+- The applications in argo/zone2 syncs your helm chart to your openshift namespace.
 
-When everything is created, ensure ArgoCD recognizes the existing deployment, and doesn't try to create new resources. When Argo has taken over, you can uncomment the `syncPolicy: automated: {}` section in the `argo/aa` resources, to automatically sync changes.
+When everything is created, ensure ArgoCD recognizes the existing deployment, and doesn't try to create new resources. When Argo has taken over, you can uncomment the `syncPolicy: automated: {}` section in the `argo/zone2` resources, to automatically sync changes.
 
 The `argocd-image-updater.argoproj.io` annotations in your Application, connects ArgoCD Image Updater to docker images pushed with the `main` tag. This ensures you don't have to manually update image versions for dev environments, and new images are deployed once pushed.
 
 ## Production Bootstrapper
 
-Create a new application in the omega ArgoCD to manage all your existing qa and prod applications. This application will reference each of your qa and production argo resources located in the `argo/omega`.
+Create a new application in zone 1 ArgoCD to manage all your existing qa and prod applications. This application will reference each of your qa and production argo resources located in the `argo/zone1`.
 
-The omega bootstrapper should be set to manual sync.
+The zone 1 bootstrapper should be set to manual sync.
 
 ![Create new argo app for apps](/img/4-argo-bootstrapper-manual.png)
-![Set correct config for bootstrapper aa ](/img/4-argo-omega-config.png)
+![Set correct config for bootstrapper zone2 ](/img/4-argo-omega-config.png)
 
 ```
 Application Name: **app-name**-bootstrap
 Project Name: **argo-project** (Example: pux)
 
 Repository URL: **REPOSITORY_URL**
-Path: argo/omega
+Path: argo/zone1
 
 Cluster URL: https://kubernetes.default.svc
 Namespace: openshift-gitops
