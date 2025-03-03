@@ -1,0 +1,231 @@
+---
+title: Create new project
+sidebar_position: 4
+---
+
+# Creating a new project
+
+Choose which template type you'd like to use to bootstrap your new project:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="template-type"
+  defaultValue="api"
+  values={[
+    { label: "Intility Api", value: "api" },
+    { label: "Intility Worker", value: "worker" }
+  ]}
+>
+<TabItem value="api">
+
+## Creating an API Service
+
+The Intility Api template provides a robust foundation for building RESTful API services with all the necessary configurations and best practices already set up for you.
+
+<Tabs
+  groupId="creation-method"
+  defaultValue="cli"
+  values={[
+    { label: "dotnet CLI", value: "cli" },
+    { label: "Visual Studio", value: "vs" }
+  ]}
+>
+<TabItem value="cli">
+
+### Using dotnet CLI
+
+Create a new API project with a solution file. For the best experience, use the `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` parameters.
+
+```shell
+# Create project with solution
+dotnet new iwebapi -o MyApiService \
+    --ArgoProject "AppServices" \
+    --OpenShiftNamespace "aa-appservices-dev" \
+    --GitHubRepoUrl "https://github.com/Intility/MyApiService.git"
+
+# Navigate to project directory
+cd MyApiService
+
+# Run the project
+dotnet run --project MyApiService/MyApiService.csproj
+```
+
+**Advanced options:**
+
+If you only want to create a project (without a solution), use the `--project` argument.  
+:::info
+The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` will be ignored.
+:::
+
+```shell
+dotnet new iwebapi -o MyApiService --project
+```
+
+You can configure specific parameters during creation:
+
+```shell
+# Create with custom client ID, tenant ID, and swagger client ID
+dotnet new iwebapi -o MyApiService \
+    --ClientId "00000000-0000-0000-0000-000000000000" \
+    --TenantId "11111111-1111-1111-1111-111111111111" \
+    --SwaggerClientId "22222222-2222-2222-2222-222222222222"
+```
+
+To see all available parameters:
+
+```shell
+dotnet new iwebapi --help
+```
+
+</TabItem>
+<TabItem value="vs">
+
+### Using Visual Studio
+
+1. Open Visual Studio and select **Create a new project**
+
+2. In the project template search, type "Intility" to find the templates
+
+3. Select the **Intility Api** template and click **Next**
+
+![Visual Studio Select Intility Template](/img/vs-select-template.png)
+
+4. Configure your new project:
+
+![Visual Studio Configure Your Project](/img/vs-create-api-project.png)
+
+5. Configure template-specific options.
+
+:::info
+For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `GitHub Repoository Url` parameters. Argo Project is found in ArgoCD, OpenShift Namespace is found in the OpenShift cluster and GitHub Repoository Url is found in GitHub.
+:::
+
+![Visual Studio Configure Template-Specific Options](/img/vs-configure-api.png)
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="worker">
+
+## Creating a Worker Service
+
+The Intility Worker template helps you build background processing services with all the infrastructure code already set up.
+
+<Tabs
+  groupId="creation-method"
+  defaultValue="cli"
+  values={[
+    { label: "dotnet CLI", value: "cli" },
+    { label: "Visual Studio", value: "vs" }
+  ]}
+>
+<TabItem value="cli">
+
+### Using dotnet CLI
+
+Create a new Worker Service project with a solution file. For the best experience, use the `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` parameters.
+
+```shell
+# Create project with solution
+dotnet new iworker -o MyWorkerService \
+    --ArgoProject "AppServices" \
+    --OpenShiftNamespace "aa-appservices-dev" \
+    --GitHubRepoUrl "https://github.com/Intility/MyWorkerService.git"
+
+# Navigate to project directory
+cd MyWorkerService
+
+# Run the project
+dotnet run --project MyWorkerService/MyWorkerService.csproj
+```
+
+**Advanced options:**
+
+:::info
+The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` will be ignored.
+:::
+
+```shell
+dotnet new iworker -o MyWorkerService --project
+```
+
+For scheduled tasks, you can create a Kubernetes CronJob instead of a Deployment:
+
+```shell
+# Create a worker service configured as a scheduled job
+dotnet new iworker -o MyScheduledWorker --cronJob true
+```
+
+To see all available parameters:
+
+```shell
+dotnet new iworker --help
+```
+
+</TabItem>
+<TabItem value="vs">
+
+### Using Visual Studio
+
+1. Open Visual Studio and select **Create a new project**
+
+2. In the project template search, type "Intility" to find the templates
+
+3. Select the **Intility Worker** template and click **Next**
+
+![Visual Studio Select Intility Template](/img/vs-select-template.png)
+
+4. Configure your new project:
+
+![Visual Studio Configure Your Project](/img/vs-create-worker-project.png)
+
+5. Configure template-specific options.
+
+:::info
+For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `GitHub Repoository Url` parameters. Argo Project is found in ArgoCD, OpenShift Namespace is found in the OpenShift cluster and GitHub Repoository Url is found in GitHub.
+:::
+
+![Visual Studio Configure Template-Specific Options](/img/vs-configure-worker.png)
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+## Template parameters
+
+### Common parameters
+
+These parameters are available for both templates:
+
+| Parameter              | Description                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------- |
+| `-o, --output`         | Output directory for the generated project                                                  |
+| `--projectOnly`        | Creates only the project without a solution file, ArgoCD, k8s deployment and release-please |
+| `--Framework`          | Target framework version (defaults to net9.0)                                               |
+| `--ArgoProject`        | Argo Project Name (e.g. AppServices). This is the "folder" for your applications in ArgoCD  |
+| `--OpenShiftNamespace` | OpenShift Namespace (e.g. aa-appservices-dev)                                               |
+| `--GitHubRepoUrl`      | GitHub Repository URL                                                                       |
+
+### API template parameters
+
+The following parameters are specific to the `iwebapi` template:
+
+| Parameter           | Description                                            |
+| ------------------- | ------------------------------------------------------ |
+| `--ClientId`        | Azure AD application (client) ID                       |
+| `--TenantId`        | Azure AD directory (tenant) ID                         |
+| `--SwaggerClientId` | Azure AD client ID for Swagger UI authentication       |
+| `--DefaultScope`    | Default OAuth scope (defaults to "user_impersonation") |
+
+### Worker template parameters
+
+The following parameters are specific to the `iworker` template:
+
+| Parameter   | Description                                                          |
+| ----------- | -------------------------------------------------------------------- |
+| `--cronJob` | Set to `true` to create a Kubernetes CronJob instead of a Deployment |

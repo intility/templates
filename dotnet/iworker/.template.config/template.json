@@ -6,9 +6,11 @@
   "description": "A solution template for creating Intility Worker Services.",
   "identity": "Intility.Templates.WorkerSolution.CSharp",
   "shortName": "iworker",
+  "icon": "icon.png",
   "tags": {
     "language": "C#",
-    "type": "solution"
+    "type": "solution",
+    "vs_showParametersByDefault": "true"
   },
   "sourceName": "Company.Worker1",
   "preferNameDirectory": true,
@@ -25,25 +27,36 @@
           "exclude": ["Company.Worker1/Properties/launchSettings.json"]
         },
         {
-          "condition": "(HostIdentifier != 'dotnetcli' && !projectOnly)",
-          "rename": {
-            "Company.Worker1.sln": "Company.Worker1.generated.sln"
-          }
-        },
-        {
           "condition": "(projectOnly)",
-          "exclude": ["Company.Worker1.sln", ".gitignore"],
+          "exclude": [
+            "Company.Worker1.sln",
+            ".release-please-manifest.json",
+            "release-please-config.json",
+            ".github/**",
+            "argo/**",
+            "k8s/**",
+            ".editorconfig",
+            ".gitattributes",
+            ".gitignore",
+            "README.md"
+          ],
           "rename": {
             "Company.Worker1/": "./"
           }
         },
         {
           "condition": "(cronJob)",
-          "exclude": ["Company.Worker1/chart/templates/deployment.yaml"]
+          "exclude": [
+            "Company.Worker1/k8s/base/deployment.yaml",
+            "Company.Worker1/k8s/overlays/production/deployment-patch.yaml"
+          ]
         },
         {
           "condition": "(!cronJob)",
-          "exclude": ["Company.Worker1/chart/templates/cronjob.yaml"]
+          "exclude": [
+            "Company.Worker1/k8s/base/cronjob.yaml",
+            "Company.Worker1/k8s/overlays/production/cronjob-patch.yaml"
+          ]
         }
       ]
     }
@@ -51,34 +64,117 @@
   "symbols": {
     "Framework": {
       "type": "parameter",
-      "description": "The target framework for the project.",
+      "description": "The target framework version for the project.",
       "datatype": "choice",
       "choices": [
         {
-          "choice": "net8.0",
-          "description": "Target .NET 8"
+          "choice": "net9.0",
+          "description": "Target .NET 9"
         }
       ],
-      "replaces": "net8.0",
-      "defaultValue": "net8.0"
+      "replaces": "net9.0",
+      "defaultValue": "net9.0"
+    },
+    "ContainerRepository": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "kebabCase",
+      "replaces": "ContainerRepositoryPlaceholder",
+      "description": "The container repository name, derived from project name and made safe for container registry."
+    },
+    "cronJob": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Creates a Kubernetes cron job instead of a continuous deployment. Use for scheduled, periodic tasks."
+    },
+    "ArgoProject": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "",
+      "description": "Argo Project Name (e.g. AppServices)"
+    },
+    "OpenShiftNamespace": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "",
+      "description": "OpenShift Namespace (e.g. aa-appservices-dev)"
+    },
+    "GitHubRepoUrl": {
+      "type": "parameter",
+      "datatype": "string",
+      "forms": {
+        "global": ["url"]
+      },
+      "defaultValue": "",
+      "description": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
+    },
+    "FormattedOpenShiftNamespace": {
+      "type": "derived",
+      "valueSource": "ContainerRepository",
+      "valueTransform": "openShiftFormat"
+    },
+    "FormattedGitHubRepoUrl": {
+      "type": "derived",
+      "valueSource": "ContainerRepository",
+      "valueTransform": "githubUrlFormat"
+    },
+    "ArgoProjectCoalesced": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "ArgoProject",
+        "fallbackVariableName": "ContainerRepository"
+      },
+      "replaces": "ArgoProjectPlaceholder",
+      "description": "Uses ArgoProject if provided, otherwise ContainerRepository"
+    },
+    "OpenShiftNamespaceCoalesced": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "OpenShiftNamespace",
+        "fallbackVariableName": "FormattedOpenShiftNamespace"
+      },
+      "replaces": "OpenShiftNamespacePlaceholder",
+      "description": "Uses OpenShiftNamespace if provided, otherwise generates from ContainerRepository"
+    },
+    "GitHubRepoUrlCoalesced": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "GitHubRepoUrl",
+        "fallbackVariableName": "FormattedGitHubRepoUrl"
+      },
+      "replaces": "GitHubRepoUrlPlaceholder",
+      "description": "Uses GitHubRepoUrl if provided, otherwise generates from ContainerRepository"
     },
     "skipRestore": {
       "type": "parameter",
       "datatype": "bool",
-      "description": "If specified, skips the automatic restore of the project on create.",
+      "description": "Skips the automatic restore of NuGet packages after project creation.",
       "defaultValue": "false"
     },
     "projectOnly": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Only sets it up as a project."
+      "description": "Creates a standalone project without a solution file. Use this when adding to an existing solution."
+    }
+  },
+  "forms": {
+    "kebabCase": {
+      "identifier": "kebabCase"
     },
-    "cronJob": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Cron job instead of a continuous job"
+    "openShiftFormat": {
+      "identifier": "replace",
+      "pattern": "^(.*)$",
+      "replacement": "aa-$1-dev"
+    },
+    "githubUrlFormat": {
+      "identifier": "replace",
+      "pattern": "^(.*)$",
+      "replacement": "https://github.com/intility/$1.git"
     }
   },
   "defaultName": "IntilityWorkerService",

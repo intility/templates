@@ -1,25 +1,25 @@
 {
   "$schema": "http://json.schemastore.org/dotnetcli.host",
   "symbolInfo": {
-    "AADInstance": {
-      "longName": "aad-instance",
-      "shortName": ""
+    "Framework": {
+      "longName": "framework",
+      "shortName": "f"
     },
     "ClientId": {
       "longName": "client-id",
-      "shortName": ""
-    },
-    "Domain": {
-      "longName": "domain",
-      "shortName": ""
+      "shortName": "cid"
     },
     "TenantId": {
       "longName": "tenant-id",
-      "shortName": ""
+      "shortName": "tid"
     },
     "DefaultScope": {
-      "longName": "default-scope",
-      "shortName": ""
+      "longName": "scope",
+      "shortName": "s"
+    },
+    "SwaggerClientId": {
+      "longName": "swagger-client-id",
+      "shortName": "swid"
     },
     "skipRestore": {
       "longName": "no-restore",
@@ -27,11 +27,26 @@
     },
     "projectOnly": {
       "longName": "project",
-      "shortName": ""
+      "shortName": "p"
     },
     "UserSecretsId": {
       "isHidden": true
+    },
+    "ArgoProject": {
+      "longName": "argo-project",
+      "shortName": "ap"
+    },
+    "OpenShiftNamespace": {
+      "longName": "openshift-namespace",
+      "shortName": "on"
+    },
+    "GitHubRepoUrl": {
+      "longName": "github-repo-url",
+      "shortName": "gru"
     }
   },
-  "usageExamples": [""]
+  "usageExamples": [
+    "--client-id \"11111111-1111-1111-11111111111111111\" --tenant-id \"9b5ff18e-53c0-45a2-8bc2-9c0c8f60b2c6\"",
+    "-p --no-restore"
+  ]
 }

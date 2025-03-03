@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+nameSuffix: -prod
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-prod
+
+patches:
+  #if (cronJob)
+  - path: cronjob-patch.yaml
+  #else
+  - path: deployment-patch.yaml
+  #endif
+
+configMapGenerator:
+  - name: ContainerRepositoryPlaceholder-config
+    literals:
+      - DOTNET_ENVIRONMENT=Production
+
+# x-release-please-start-version
+images:
+  - name: ContainerRepositoryPlaceholder
+    newName: ghcr.io/intility/ContainerRepositoryPlaceholder
+    newTag: 1.0.0
+# x-release-please-end
