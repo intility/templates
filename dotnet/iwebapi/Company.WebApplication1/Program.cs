@@ -63,7 +63,7 @@ builder.Services.AddCors(options =>
 );
 
 builder.Services.AddHealthChecks();
-
+builder.Services.AddProblemDetails();
 builder.Services.AddControllers();
 
 builder.Services.AddApiVersioning(options =>
@@ -102,6 +102,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 app.UseCors();
+
+app.UseStatusCodePages();
+app.UseExceptionHandler();
 
 app.UseAuthentication();
 app.UseAuthorization();
