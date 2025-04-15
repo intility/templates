@@ -58,56 +58,9 @@ The Intility Worker template is designed for background processing services. Use
 
 Select the appropriate template based on your service's primary responsibility and communication patterns.
 
-## Bootstrap new project using the template
-
-You can either use the `dotnet new` command or Visual Studio -> New Project wizard to create a new project based on the templates.
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs
-  groupId="host"
-  defaultValue="cli"
-  values={[
-    { label: "dotnet CLI", value: "cli" },
-    { label: "Visual Studio", value: "vs" }
-  ]}
->
-<TabItem value="cli">
-
-:::note
-If you only want to create a project, and skip creating a solution, use the `--project` argument.
+:::warning
+While not required, we highly recommend creating your GitHub repository, Azure App Registrations, OpenShift namespace, and Argo project beforehand. This allows the template to utilize inputs for ClientId, OpenShift namespace, Argo project, and GitHub repo URL, facilitating the pre-configuration of the project. If you follow the guide, these sections will also come before creating a project locally.
 :::
-
-```shell
-# create project with solution
-dotnet new iwebapi -o MyService
-
-# create project only
-dotnet new iwebapi -o MyService --project
-
-# run project
-cd MyService
-dotnet run --project MyService/MyService.csproj
-```
-
-</TabItem>
-<TabItem value="vs">
-
-:::note
-You need to be on Visual Studio 16.10.0 or higher for the solution template to work properly.
-:::
-
-Find the template named `Intility Api`.
-
-![Visual Studio new](/img/visual-studio-new.png)
-
-Name your project, and ensure `Place solution and project in the same directory` is checked.
-
-![Visual Studio new solution](/img/visual-studio-new-solution.png)
-
-</TabItem>
-</Tabs>
 
 ## Updating the template
 
