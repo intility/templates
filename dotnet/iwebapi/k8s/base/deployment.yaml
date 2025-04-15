@@ -53,6 +53,6 @@ spec:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
-              matchLabels:
-                app: ContainerRepositoryPlaceholder
+                matchLabels:
+                  app: ContainerRepositoryPlaceholder
               topologyKey: "kubernetes.io/hostname"

@@ -6,20 +6,11 @@ using System.Reflection;
 
 namespace Company.WebApplication1.Swagger;
 
-public class SwaggerGenConfigurator : IConfigureOptions<SwaggerGenOptions>
+public class SwaggerGenConfigurator(IApiVersionDescriptionProvider apiVersionDescriptionProvider, IConfiguration config) : IConfigureOptions<SwaggerGenOptions>
 {
-    private readonly IApiVersionDescriptionProvider _apiVersionProvider;
-    private readonly IConfiguration _config;
-
-    public SwaggerGenConfigurator(IApiVersionDescriptionProvider apiVersionDescriptionProvider, IConfiguration config)
-    {
-        _apiVersionProvider = apiVersionDescriptionProvider;
-        _config = config;
-    }
-
     public void Configure(SwaggerGenOptions c)
     {
-        foreach (var description in _apiVersionProvider.ApiVersionDescriptions) 
+        foreach (var description in apiVersionProvider.ApiVersionDescriptions) 
         {
             c.SwaggerDoc(description.GroupName, new OpenApiInfo
             {
@@ -39,7 +30,7 @@ public class SwaggerGenConfigurator : IConfigureOptions<SwaggerGenOptions>
                     TokenUrl = new Uri("https://login.microsoftonline.com/organizations/oauth2/v2.0/token"),
                     Scopes = new Dictionary<string, string>
                     {
-                        { $"api://{_config["AzureAd:ClientId"]}/api-scope", "Access Company.WebApplication1" }
+                        { $"api://{config["AzureAd:ClientId"]}/api-scope", "Access Company.WebApplication1" }
                     }
                 }
             },
@@ -53,7 +44,7 @@ public class SwaggerGenConfigurator : IConfigureOptions<SwaggerGenOptions>
                 {
                     Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Azure AD" }
                 },
-                new[] { $"api://{_config["AzureAd:ClientId"]}/api-scope" }
+                new[] { $"api://{config["AzureAd:ClientId"]}/api-scope" }
             }
         });
 
