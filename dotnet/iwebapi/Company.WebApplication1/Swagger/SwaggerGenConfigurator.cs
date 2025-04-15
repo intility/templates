@@ -10,7 +10,7 @@ public class SwaggerGenConfigurator(IApiVersionDescriptionProvider apiVersionDes
 {
     public void Configure(SwaggerGenOptions c)
     {
-        foreach (var description in apiVersionProvider.ApiVersionDescriptions) 
+        foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions) 
         {
             c.SwaggerDoc(description.GroupName, new OpenApiInfo
             {
