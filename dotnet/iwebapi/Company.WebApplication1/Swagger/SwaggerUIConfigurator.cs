@@ -4,29 +4,20 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Company.WebApplication1.Swagger;
 
-public class SwaggerUIConfigurator : IConfigureOptions<SwaggerUIOptions>
+public class SwaggerUIConfigurator(IApiVersionDescriptionProvider apiVersionProvider, IConfiguration config) : IConfigureOptions<SwaggerUIOptions>
 {
-    private readonly IApiVersionDescriptionProvider _apiVersionProvider;
-    private readonly IConfiguration _config;
-
-    public SwaggerUIConfigurator(IApiVersionDescriptionProvider apiVersionProvider, IConfiguration config)
-    {
-        _apiVersionProvider = apiVersionProvider;
-        _config = config;
-    }
-
     public void Configure(SwaggerUIOptions options)
     {
-        foreach (var description in _apiVersionProvider.ApiVersionDescriptions)
+        foreach (var description in apiVersionProvider.ApiVersionDescriptions)
         {
             options.SwaggerEndpoint(
                 $"/swagger/{description.GroupName}/swagger.json",
                 $"Company.WebApplication1 {description.ApiVersion}"
             );
         }
-        options.OAuthAppName(_config["Swagger:AppName"]);
-        options.OAuthClientId(_config["Swagger:ClientId"]);
-        options.OAuthScopes($"api://{_config["AzureAd:ClientId"]}/api-scope");
+        options.OAuthAppName(config["Swagger:AppName"]);
+        options.OAuthClientId(config["Swagger:ClientId"]);
+        options.OAuthScopes($"api://{config["AzureAd:ClientId"]}/api-scope");
         options.OAuthUsePkce();
         options.RoutePrefix = string.Empty;
     }

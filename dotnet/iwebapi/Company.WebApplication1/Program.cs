@@ -46,13 +46,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
 builder.Services.AddDenyGuestsAuthorization();
-builder.Services.AddAuthorization(options =>
-{
-    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+builder.Services.AddAuthorizationBuilder()
+    .SetDefaultPolicy(new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .DenyGuests()
-        .Build();
-});
+        .Build());
 
 builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder =>
@@ -113,3 +111,6 @@ app.MapControllers().RequireAuthorization();
 app.MapHealthChecks("/health");
 
 app.Run();
+
+// Used for integration tests, https://github.com/dotnet/AspNetCore.Docs/issues/26670
+public partial class Program { }
