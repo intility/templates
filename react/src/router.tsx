@@ -1,10 +1,10 @@
-import { wrapCreateBrowserRouter } from "@sentry/react";
+import { wrapCreateBrowserRouterV7 } from "@sentry/react";
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
   Outlet,
   Route,
-} from "react-router-dom";
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router";
 import About from "./components/About";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
@@ -15,7 +15,8 @@ import Profile from "./components/Profile";
  * Sentry integration
  * @see https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/
  */
-const sentryCreateBrowserRouter = wrapCreateBrowserRouter(createBrowserRouter);
+const sentryCreateBrowserRouter =
+  wrapCreateBrowserRouterV7(createBrowserRouter);
 
 /**
  * The applications router, using react-router data APIs

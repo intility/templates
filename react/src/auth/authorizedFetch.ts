@@ -14,23 +14,25 @@ async function authorizedFetch(
   init?: RequestInit,
 ): Promise<Response> {
   const scopes: string[] = [];
-  if (url?.toLowerCase().startsWith("https://graph.microsoft.com")) {
+  if (url?.toLowerCase().startsWith("https://graph.microsoft.com/")) {
     scopes.push("User.Read");
   }
+
+  let requestInit = init;
 
   if (scopes.length > 0) {
     const token = await instance.acquireTokenSilent({ scopes });
 
-    init = {
+    requestInit = {
       ...init,
       headers: {
         ...init?.headers,
-        Authorization: "Bearer " + token.accessToken,
+        Authorization: `Bearer ${token.accessToken}`,
       },
     };
   }
 
-  return await fetch(url, init);
+  return await fetch(url, requestInit);
 }
 
 export { authorizedFetch };

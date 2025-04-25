@@ -1,15 +1,23 @@
-import { Checkbox, Nav, Theme, useApplyTheme } from "@intility/bifrost-react";
 import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import {
+  Checkbox,
+  type ColorMode,
+  Nav,
+  useApplyColorMode,
+} from "@intility/bifrost-react";
 import useLocalStorageState from "use-local-storage-state";
 
-export function ThemePicker() {
+export function ColorModePicker() {
   // persist theme state in local storage.
   // you might want to use a cookie or a database instead?
-  const [theme, setTheme] = useLocalStorageState<Theme>("bfTheme", {
-    defaultValue: "system",
-  });
+  const [colorMode, setColorMode] = useLocalStorageState<ColorMode>(
+    "bfColorMode",
+    {
+      defaultValue: "system",
+    },
+  );
   // keep document theme in sync with state
-  useApplyTheme(theme);
+  useApplyColorMode(colorMode);
 
   return (
     <Nav.Group icon={faCircleHalfStroke} aria-label="Theme picker">
@@ -19,22 +27,22 @@ export function ThemePicker() {
           type="radio"
           label="Dark"
           name="color-theme"
-          checked={theme === "dark"}
-          onChange={() => setTheme("dark")}
+          checked={colorMode === "dark"}
+          onChange={() => setColorMode("dark")}
         />
         <Checkbox
           type="radio"
           label="Light"
           name="color-theme"
-          checked={theme === "light"}
-          onChange={() => setTheme("light")}
+          checked={colorMode === "light"}
+          onChange={() => setColorMode("light")}
         />
         <Checkbox
           type="radio"
           label="System"
           name="color-theme"
-          checked={theme === "system"}
-          onChange={() => setTheme("system")}
+          checked={colorMode === "system"}
+          onChange={() => setColorMode("system")}
         />
       </section>
     </Nav.Group>

@@ -1,5 +1,5 @@
 import {
-  AuthenticationResult,
+  type AuthenticationResult,
   EventType,
   PublicClientApplication,
 } from "@azure/msal-browser";

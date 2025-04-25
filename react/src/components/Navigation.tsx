@@ -1,12 +1,12 @@
-import { Nav } from "@intility/bifrost-react";
-import { NavLink } from "react-router-dom";
 import {
   faHome,
   faInfoCircle,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { ThemePicker } from "./ThemePicker";
+import { Nav } from "@intility/bifrost-react";
+import { NavLink } from "react-router";
 import reactLogo from "~/assets/react.svg";
+import { ColorModePicker } from "./ColorModePicker";
 
 export default function Navigation({ children }: React.PropsWithChildren) {
   return (
@@ -21,7 +21,7 @@ export default function Navigation({ children }: React.PropsWithChildren) {
           <NavLink to="/profile">
             <Nav.Item icon={faUser}>Profile</Nav.Item>
           </NavLink>
-          <ThemePicker />
+          <ColorModePicker />
         </>
       }
       side={
