@@ -28,7 +28,7 @@ Namespace: gitops-aa
 - The boostrapper syncs your applications in `argo/zone2` to ArgoCD.
 - The applications in argo/zone2 syncs your helm chart to your openshift namespace.
 
-When everything is created, ensure ArgoCD recognizes the existing deployment, and doesn't try to create new resources. When Argo has taken over, you can uncomment the `syncPolicy: automated: {}` section in the `argo/zone2` resources, to automatically sync changes.
+When everything is created, ArgoCD will create new deployments in OpenShift. If ArgoCD finds any existing resources with the same names as you have specified, they will be overwritten. You can uncomment the syncPolicy: automated: {} section in the argo/zone2 resources to automatically sync changes when everything looks okay.
 
 The `argocd-image-updater.argoproj.io` annotations in your Application, connects ArgoCD Image Updater to docker images pushed with the `main` tag. This ensures you don't have to manually update image versions for dev environments, and new images are deployed once pushed.
 
