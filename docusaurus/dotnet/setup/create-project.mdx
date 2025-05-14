@@ -36,14 +36,17 @@ The Intility Api template provides a robust foundation for building RESTful API 
 
 ### Using dotnet CLI
 
-Create a new API project with a solution file. For the best experience, use the `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` parameters.
+Create a new API project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace`, `--github-repo-url`, `--client-id`, `--tenant-id` and `--swagger-client-id` parameters. This will ensure that the dotnet project is connected with your newly created OpenShift namespace, ArgoCD Project and uses your App Registrations for authentication and authorization.
 
 ```shell
 # Create project with solution
 dotnet new iwebapi -o MyApiService \
-    --ArgoProject "AppServices" \
-    --OpenShiftNamespace "aa-appservices-dev" \
-    --GitHubRepoUrl "https://github.com/Intility/MyApiService.git"
+    -ap "AppServices" \
+    -on "aa-appservices-dev" \
+    -gru "https://github.com/Intility/MyApiService.git" \
+    -cid "<CLIENT_ID you saved earlier>" \
+    -tid "<TENANT_ID from appreg, or common if multitenant>"
+    -swid "<SWAGGER_CLIENT_ID you saved earlier>"
 
 # Navigate to project directory
 cd MyApiService
@@ -56,21 +59,11 @@ dotnet run --project MyApiService/MyApiService.csproj
 
 If you only want to create a project (without a solution), use the `--project` argument.  
 :::info
-The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` will be ignored.
+The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
 :::
 
 ```shell
 dotnet new iwebapi -o MyApiService --project
-```
-
-You can configure specific parameters during creation:
-
-```shell
-# Create with custom client ID, tenant ID, and swagger client ID
-dotnet new iwebapi -o MyApiService \
-    --ClientId "00000000-0000-0000-0000-000000000000" \
-    --TenantId "11111111-1111-1111-1111-111111111111" \
-    --SwaggerClientId "22222222-2222-2222-2222-222222222222"
 ```
 
 To see all available parameters:
@@ -131,9 +124,9 @@ Create a new Worker Service project with a solution file. For the best experienc
 ```shell
 # Create project with solution
 dotnet new iworker -o MyWorkerService \
-    --ArgoProject "AppServices" \
-    --OpenShiftNamespace "aa-appservices-dev" \
-    --GitHubRepoUrl "https://github.com/Intility/MyWorkerService.git"
+    -ap "AppServices" \
+    -on "aa-appservices-dev" \
+    -gru "https://github.com/Intility/MyWorkerService.git"
 
 # Navigate to project directory
 cd MyWorkerService
@@ -202,30 +195,60 @@ For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `Git
 
 These parameters are available for both templates:
 
-| Parameter              | Description                                                                                 |
-| ---------------------- | ------------------------------------------------------------------------------------------- |
-| `-o, --output`         | Output directory for the generated project                                                  |
-| `--projectOnly`        | Creates only the project without a solution file, ArgoCD, k8s deployment and release-please |
-| `--Framework`          | Target framework version (defaults to net9.0)                                               |
-| `--ArgoProject`        | Argo Project Name (e.g. AppServices). This is the "folder" for your applications in ArgoCD  |
-| `--OpenShiftNamespace` | OpenShift Namespace (e.g. aa-appservices-dev)                                               |
-| `--GitHubRepoUrl`      | GitHub Repository URL                                                                       |
+| Parameter                    | Description                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------- |
+| `-o, --output`               | Output directory for the generated project                                                  |
+| `-p, --project`              | Creates only the project without a solution file, ArgoCD, k8s deployment and release-please |
+| `-f, --framework`            | Target framework version (defaults to net9.0)                                               |
+| `-ap, --argo-project`        | Argo Project Name (e.g. AppServices). This is the "folder" for your applications in ArgoCD  |
+| `-on, --openshift-namespace` | OpenShift Namespace (e.g. aa-appservices-dev)                                               |
+| `-gru, --github-repo-url`    | GitHub Repository URL                                                                       |
 
 ### API template parameters
 
 The following parameters are specific to the `iwebapi` template:
 
-| Parameter           | Description                                            |
-| ------------------- | ------------------------------------------------------ |
-| `--ClientId`        | Azure AD application (client) ID                       |
-| `--TenantId`        | Azure AD directory (tenant) ID                         |
-| `--SwaggerClientId` | Azure AD client ID for Swagger UI authentication       |
-| `--DefaultScope`    | Default OAuth scope (defaults to "user_impersonation") |
+| Parameter                    | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| `-cid, --client-id`          | Azure AD application (client) ID                       |
+| `-tid, --tenant-id`          | Azure AD directory (tenant) ID                         |
+| `-swid, --swagger-client-id` | Azure AD client ID for Swagger UI authentication       |
+| `-s, --scope`                | Default OAuth scope (defaults to "user_impersonation") |
 
 ### Worker template parameters
 
 The following parameters are specific to the `iworker` template:
 
-| Parameter   | Description                                                          |
-| ----------- | -------------------------------------------------------------------- |
-| `--cronJob` | Set to `true` to create a Kubernetes CronJob instead of a Deployment |
+| Parameter    | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| `-c, --cron` | Set to `true` to create a Kubernetes CronJob instead of a Deployment |
+
+### Validate Authorization in the WEB API
+
+Ensure that the correct ClientId values have been set in the generated project. These should correspond to the two Azure App Registrations you created in the [AAD Authorization](authorization) step:
+
+- One for the Web API (AzureAd:ClientId)
+
+- One for Swagger UI (Swagger:ClientId)
+
+If these values were not correctly provided during project generation, you must manually update the `appsettings.json` file:
+
+```jsx title="appsettings.json"
+{
+  "AzureAd": {
+    "ClientId": "YOUR_CLIENT_ID",
+    ...
+  },
+  ...
+}
+```
+
+```jsx title="appsettings.json"
+{
+  "Swagger": {
+    "ClientId": "YOUR_SWAGGER_CLIENT_ID",
+    ...
+  },
+  ...
+}
+```
