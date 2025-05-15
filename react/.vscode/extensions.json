@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "pflannery.vscode-versionlens",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "esbenp.prettier-vscode",
+    "biomejs.biome",
+    "intility.vscode-backstage",
+    "redhat.vscode-yaml"
+  ]
+}
