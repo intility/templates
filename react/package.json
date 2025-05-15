@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react-swc": "^3.9.0",
-    "globals": "^16.0.0",
+    "globals": "^16.1.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
     "vite-plugin-checker": "^0.9.3",
