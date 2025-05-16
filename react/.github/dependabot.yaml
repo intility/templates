@@ -1,0 +1,45 @@
+version: 2
+
+# https://github.com/orgs/intility/discussions/13
+registries:
+  npm-intility-com:
+    type: npm-registry
+    url: https://npm.intility.com
+    token: ${{ secrets.NPM_INTILITY_COM_TOKEN }}
+
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    registries:
+      - npm-intility-com
+    schedule:
+      interval: "weekly"
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      msal:
+        patterns:
+          - "@azure/msal-*"
+      fontawesome:
+        patterns:
+          - "@fortawesome/*"
+      patch-and-minor:
+        patterns:
+          - "*"
+        update-types:
+          - patch
+          - minor
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
