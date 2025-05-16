@@ -1,10 +1,10 @@
-import { Configuration } from "@azure/msal-browser";
+import type { Configuration } from "@azure/msal-browser";
 
 /**
  * MSAL config for the PublicClientApplication
  * @see https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md
  */
-const config: Configuration = {
+export const msalConfig: Configuration = {
   auth: {
     clientId: "YOUR_CLIENT_ID",
     // if multi-tenant, use https://login.microsoftonline.com/common
@@ -13,5 +13,3 @@ const config: Configuration = {
     redirectUri: window.location.origin,
   },
 };
-
-export { config };

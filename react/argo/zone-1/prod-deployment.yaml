@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: react-app-prod
+spec:
+  project: _ARGO_PROJECT_
+  destination:
+    namespace: react-app-prod
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/intility/repo.git
+    targetRevision: HEAD
+    path: k8s/overlays/prod

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+  annotations:
+    app.openshift.io/vcs-uri: https://github.com/intility/repo-url
+  labels:
+    app.openshift.io/runtime: nginx
+spec:
+  replicas: 1
+  # rollbacks managed by ArgoCD
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+        - name: react-app
+          image: ghcr.io/intility/<project-name>/react-app
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          ports:
+            - containerPort: 8080
