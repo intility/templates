@@ -6,6 +6,7 @@ import App from "./App";
 const sentryCreateBrowserRouter =
   Sentry.wrapCreateBrowserRouterV7(createBrowserRouter);
 
+// https://reactrouter.com/start/data/routing
 export const router = sentryCreateBrowserRouter([
   {
     path: "/",
