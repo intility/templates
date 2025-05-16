@@ -1,0 +1,32 @@
+# https://github.com/intility/reusable-workflows/blob/main/examples/react/README.md
+
+name: "Build, test and push React SPA"
+
+on:
+  push:
+    tags:
+      - "*"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  react:
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    uses: intility/reusable-workflows/.github/workflows/react.yaml@main
+    with:
+      # image will be pushed to ghcr.io/intility/<project-name>/react-app
+      image-name: "<project-name>/react-app"
+      # don't push the image on pull requests
+      push: ${{ github.event_name != 'pull_request' }}
+      # build environment variables
+      # build-env: |
+      #   VITE_EXAMPLE_VAR=${{ vars.EXAMPLE_VAR }}
+      #   VITE_ANOTHER_VAR=${{ vars.ANOTHER_VAR }}
+    secrets: inherit
