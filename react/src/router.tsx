@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/react";
 import { createBrowserRouter } from "react-router";
-import App from "./App";
+import Home from "./routes/Home";
 
 // https://docs.sentry.io/platforms/javascript/guides/react/features/react-router/v7/#usage-with-createbrowserrouter-or-creatememoryrouter
 const sentryCreateBrowserRouter =
@@ -10,6 +10,6 @@ const sentryCreateBrowserRouter =
 export const router = sentryCreateBrowserRouter([
   {
     path: "/",
-    Component: App,
+    Component: Home,
   },
 ]);
