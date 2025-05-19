@@ -2,6 +2,10 @@ import * as Sentry from "@sentry/react";
 import { useEffect } from "react";
 import { useRouteError } from "react-router";
 
+/**
+ * Error page for the app.
+ * Used as a react-router error boundary
+ */
 export default function ErrorPage() {
   const error = useRouteError();
 
@@ -11,8 +15,9 @@ export default function ErrorPage() {
   }, [error]);
 
   return (
-    <div>
-      <h1>Ouch!</h1>
-    </div>
+    <>
+      <h1 className="bf-h1">An error has occured</h1>
+      <p className="bf-p">Our developers have been notified</p>
+    </>
   );
 }

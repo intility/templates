@@ -21,7 +21,8 @@
     "@sentry/react": "^9.19.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.6.0"
+    "react-router": "^7.6.0",
+    "use-local-storage-state": "^19.5.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
