@@ -1,4 +1,4 @@
-import { instance } from "./instance";
+import { msalInstance } from "./instance";
 
 /**
  * A wrapper for the global fetch function, which acquires and injects a token if the resource requires it.
@@ -21,7 +21,7 @@ export async function authorizedFetch(
   let requestInit = init;
 
   if (scopes.length > 0) {
-    const token = await instance.acquireTokenSilent({ scopes });
+    const token = await msalInstance.acquireTokenSilent({ scopes });
 
     requestInit = {
       ...init,
