@@ -1,54 +1,91 @@
-# React + TypeScript + Vite
+<!-- template available at https://gitlab.intility.no/Intility/readme-template -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- Badges -->
+<!-- While not required, badges are recommended; and in particular pipeline status -->
+<!-- Uncomment the below line and replace `project` with the path to your project (e.g. -->
+<!-- `group[s]/project`). If you want the status for a different branch than `master`, change -->
+<!-- the branch too.-->
+<!-- [![pipeline status](https://gitlab.intility.no/<project>/master/pipeline.svg)](https://gitlab.intility.no/<project>/pipelines)   -->
 
-Currently, two official plugins are available:
+<!------------------------------------------------------------------------------------>
+<!-- REQUIRED -->
+<!------------------------------------------------------------------------------------>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# [Project Title]
 
-## Expanding the ESLint configuration
+<!-- Describe the project briefly here. -->
+<!-- Also, unless it's clear: specify what type of project it is; API, library, application, collection of scripts, etc -->
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project was bootstrapped with the [Intility React Template](https://github.com/Intility/templates/).
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Purpose
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+<!-- What does the application do and why? What problem does it solve? -->
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Intended consumers
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+<!--  Who is the application intended for, and who can utilize its features? -->
+
+## Main technologies
+
+React
+
+<!-- What are the main languages and frameworks are used in the project -->
+
+## Available at
+
+<!-- If the application is live, mention where it can be 'viewed' and where it is deployed, e.g. OpenShift, Azure etc. -->
+<!-- For libraries, this might also include what package repository it's available at -->
+<!-- If the project is an API or a library, where can I find documentation for it? -->
+
+<!------------------------------------------------------------------------------------>
+<!-- OPTIONAL -->
+<!------------------------------------------------------------------------------------>
+
+## Getting Started
+
+### First-time setup
+
+<!--
+Provide step by step instructions that will allow a new contributor to get a copy of the project up and running on their local machine.
+Installation of common development tools such as `git`, `docker` and IDEs can be covered here, but is not necessary.
+
+The granularity and extent of these instructions will depend on the size and type of the project,
+but may extend to things such as platform specific steps, etc.
+-->
+
+Clone the repository, then install dependencies with `npm install`
+
+### Running the project
+
+<!-- Provide examples of how to run the project locally here, if applicable. -->
+<!-- If the project can be run in multiple ways (Docker, Minishift, command line, etc), -->
+<!-- it might be appropriate to have a section for each of them-->
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+## Deployment
+
+<!-- Provide step by step instructions that explain the process of deploying the application in QA or Prod environments -->
+
+<!-- If the project uses a CI/CD pipeline describe the high level concepts of the pipeline strategy here. -->
