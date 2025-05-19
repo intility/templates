@@ -13,7 +13,13 @@ export default function App() {
     <StrictMode>
       <ColorModeApplier>
         <MsalProvider instance={msalInstance}>
+          {/* Uncomment this to require login for the whole app */}
+          {/* <MsalAuthenticationTemplate
+            interactionType={InteractionType.Redirect}
+            authenticationRequest={loginRequest}
+          > */}
           <RouterProvider router={router} />
+          {/* </MsalAuthenticationTemplate> */}
         </MsalProvider>
       </ColorModeApplier>
     </StrictMode>
