@@ -1,14 +1,10 @@
 import "./utils/instrument.ts";
-import { MsalProvider } from "@azure/msal-react";
 import * as Sentry from "@sentry/react";
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router";
-import { msalInstance } from "./auth/instance.ts";
-import { router } from "./router.tsx";
 // bifrost-app.css needs to be the first CSS file to make sure font files will be loaded properly.
 import "@intility/bifrost-react/bifrost-app.css";
 import "./index.css";
+import App from "./App.tsx";
 
 const rootElement = document.getElementById("root");
 
@@ -27,10 +23,4 @@ const root = createRoot(rootElement, {
   onRecoverableError: Sentry.reactErrorHandler(),
 });
 
-root.render(
-  <StrictMode>
-    <MsalProvider instance={msalInstance}>
-      <RouterProvider router={router} />
-    </MsalProvider>
-  </StrictMode>,
-);
+root.render(<App />);
