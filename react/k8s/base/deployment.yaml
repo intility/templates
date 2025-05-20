@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app
+  name: __APP_NAME__
   annotations:
-    app.openshift.io/vcs-uri: https://github.com/intility/repo-url
+    app.openshift.io/vcs-uri: https://github.com/intility/__REPO_NAME__
   labels:
     app.openshift.io/runtime: nginx
 spec:
@@ -12,15 +12,15 @@ spec:
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: react-app
+      app: __APP_NAME__
   template:
     metadata:
       labels:
-        app: react-app
+        app: __APP_NAME__
     spec:
       containers:
-        - name: react-app
-          image: ghcr.io/intility/<project-name>/react-app
+        - name: __APP_NAME__
+          image: ghcr.io/intility/__DOCKER_IMAGE_NAME__
           resources:
             requests:
               cpu: 10m

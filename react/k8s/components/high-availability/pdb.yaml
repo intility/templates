@@ -1,9 +1,9 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: react-app
+  name: __APP_NAME__
 spec:
   minAvailable: 2
   selector:
     matchLabels:
-      app: react-app
+      app: __APP_NAME__

@@ -8,5 +8,5 @@ patches:
   - path: deployment-patch.yaml
 
 replicas:
-  - name: react-app
+  - name: __APP_NAME__
     count: 3
