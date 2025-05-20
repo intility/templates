@@ -7,11 +7,9 @@ resources:
 components:
   - ../../components/high-availability
 
-namespace: react-app-prod
-
 labels:
   - pairs:
-      app.kubernetes.io/part-of: react-app-prod
+      app.kubernetes.io/part-of: __APP_NAME__-prod
   - includeSelectors: true
     pairs:
       environment: prod
@@ -19,17 +17,17 @@ labels:
 patches:
   - target:
       kind: Ingress
-      name: react-app
+      name: __APP_NAME__
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: react-app.intility.com
+        value: __APP_NAME__.intility.com
       - op: replace
         path: /metadata/labels/ingress-tenant
         value: default
 
 # x-release-please-start-version
 images:
-  - name: ghcr.io/intility/<project-name>/react-app
+  - name: ghcr.io/intility/__DOCKER_IMAGE_NAME__
     newTag: 0.0.0
 # x-release-please-end

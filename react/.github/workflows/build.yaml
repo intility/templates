@@ -22,7 +22,7 @@ jobs:
     uses: intility/reusable-workflows/.github/workflows/react.yaml@main
     with:
       # image will be pushed to ghcr.io/intility/<project-name>/react-app
-      image-name: "<project-name>/react-app"
+      image-name: __DOCKER_IMAGE_NAME__
       # don't push the image on pull requests
       push: ${{ github.event_name != 'pull_request' }}
       # build environment variables

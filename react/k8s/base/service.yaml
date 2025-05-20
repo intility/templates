@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: react-app
+  name: __APP_NAME__
   labels:
-    app: react-app
+    app: __APP_NAME__
 spec:
   type: ClusterIP
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: react-app
+    app: __APP_NAME__

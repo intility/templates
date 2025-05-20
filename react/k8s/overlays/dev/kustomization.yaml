@@ -5,15 +5,13 @@ kind: Kustomization
 resources:
   - ../../base
 
-namespace: aa-react-app-dev
-
 labels:
   - pairs:
-      app.kubernetes.io/part-of: react-app-dev
+      app.kubernetes.io/part-of: __APP_NAME__-dev
   - includeSelectors: true
     pairs:
       environment: dev
 
 replicas:
-  - name: react-app
+  - name: __APP_NAME__
     count: 2

@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: react-app
+  name: __APP_NAME__
   annotations:
     route.openshift.io/termination: edge
   labels:
     ingress-tenant: aa
 spec:
   rules:
-    - host: react-app-dev.apps.int.intility.no
+    - host: __APP_NAME__-dev.apps.int.intility.no
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: react-app
+                name: __APP_NAME__
                 port:
                   number: 8080

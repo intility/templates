@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: react-app
+  name: __APP_NAME__
 
 spec:
   strategy:
@@ -17,5 +17,5 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  app: react-app
+                  app: __APP_NAME__
               topologyKey: kubernetes.io/hostname
