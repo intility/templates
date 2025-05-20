@@ -16,6 +16,9 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  build: {
+    sourcemap: true,
+  },
   test: {
     // https://testing-library.com/docs/react-testing-library/setup#auto-cleanup-in-vitest
     globals: true,
