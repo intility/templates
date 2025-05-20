@@ -92,7 +92,7 @@ export default function Home() {
       <h2 className="bf-h2">Read the docs</h2>
       <Grid cols={1} small={3}>
         {docs.map((doc) => (
-          <Box shadow radius key={doc.name}>
+          <Box className={styles.card} shadow radius key={doc.name}>
             <a
               className="bf-neutral-link"
               href={doc.link}
