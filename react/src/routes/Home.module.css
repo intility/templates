@@ -4,19 +4,3 @@
   padding: 2rem;
   text-align: center;
 }
-
-.logo {
-  display: grid;
-  place-content: center;
-  padding-block: 48px;
-  width: 100%;
-  background-color: var(--bfc-base-2);
-}
-
-.logo img {
-  height: 100px;
-}
-
-.card {
-  text-align: left;
-}
