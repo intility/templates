@@ -3,6 +3,7 @@ import {
   EventType,
   PublicClientApplication,
 } from "@azure/msal-browser";
+import * as Sentry from "@sentry/react";
 import { msalConfig } from "./config";
 
 /**
@@ -22,6 +23,14 @@ msalInstance.addEventCallback((message) => {
     message.eventType === EventType.SSO_SILENT_SUCCESS
   ) {
     const result = message.payload as AuthenticationResult;
+
+    if (!result.account) return;
+
     msalInstance.setActiveAccount(result.account);
+
+    Sentry.setUser({
+      id: result.account.homeAccountId,
+      username: result.account.username,
+    });
   }
 });
