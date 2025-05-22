@@ -1,11 +1,12 @@
 import { Grid } from "@intility/bifrost-react";
 import Docs from "~/components/Docs";
+import Setup from "~/components/Setup";
 import styles from "./Home.module.css";
 
 export default function Home() {
   return (
     <Grid className={styles.home} gap={32}>
-      <h2 className="bf-h2">Intility App</h2>
+      <h2 className="bf-h2">Set up app</h2>
       <p>
         This application was bootstrapped using{" "}
         <a
@@ -16,8 +17,9 @@ export default function Home() {
         >
           Create Intility App
         </a>
-        . Follow the steps in the docs to finish setting up your application.
+        . Continue to set up your app by following the steps below.
       </p>
+      <Setup />
       <h2 className="bf-h2">Read the docs</h2>
       <Docs />
     </Grid>
