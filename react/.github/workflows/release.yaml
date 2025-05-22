@@ -1,0 +1,31 @@
+# https://github.com/intility/reusable-workflows/blob/main/examples/react/README.md
+
+name: "Build, test and push release"
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  react:
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    uses: intility/reusable-react/.github/workflows/react.yaml@v0.2.2
+    with:
+      # image will be pushed to ghcr.io/intility/<project-name>/react-app
+      image-name: __DOCKER_IMAGE_NAME__
+      push: true
+      sentry: true
+      sentry-dsn: ${{ vars.SENTRY_DSN }}
+      sentry-release: ${{ github.ref_name }}
+      sentry-environment: production
+      # build environment variables
+      build-env: |
+        VITE_SENTRY_DSN=${{ vars.SENTRY_DSN }}
+        VITE_SENTRY_RELEASE=${{ github.ref_name }}
+        VITE_SENTRY_ENVIRONMENT=production
+    secrets: inherit
