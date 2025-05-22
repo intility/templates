@@ -20,7 +20,7 @@ jobs:
       image-name: __DOCKER_IMAGE_NAME__
       push: true
       sentry: true
-      sentry-dsn: ${{ vars.SENTRY_DSN }}
+      sentry-project: __SENTRY_PROJECT_NAME__
       sentry-release: ${{ github.sha }}
       sentry-environment: production
       # build environment variables
