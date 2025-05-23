@@ -67,7 +67,7 @@ const steps: Array<{
 
 export default function Setup() {
   return (
-    <Grid cols={1} small={4}>
+    <Grid cols={1} small={2}>
       {steps.map((step) => (
         <a
           key={step.name}
@@ -76,7 +76,7 @@ export default function Setup() {
           target="_blank"
           rel="noreferrer"
         >
-          <Box background="base-3" border radius shadow padding>
+          <Box background="base-3" radius shadow padding>
             <Grid gap={16}>
               <h3 className="bf-h5 bf-neutral-link-text">{step.name}</h3>
               {step.variables.map((variable) => (
