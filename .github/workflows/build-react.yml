@@ -1,0 +1,33 @@
+name: Build React
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "react/**"
+      - ".github/workflows/build-react.yml"
+
+jobs:
+  build:
+    name: Build React
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: react
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          registry-url: https://npm.intility.com/
+
+      - name: Install dependencies
+        run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_INTILITY_COM_TOKEN }}
+
+      - name: Build
+        run: npm run build
