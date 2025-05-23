@@ -1,4 +1,3 @@
-import { faX } from "@fortawesome/pro-solid-svg-icons";
 import { Box, Ellipsis, Grid, Message } from "@intility/bifrost-react";
 
 const steps: Array<{
