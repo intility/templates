@@ -1,0 +1,61 @@
+---
+title: Getting Started
+sidebar_position: 2
+---
+
+## Prerequisites
+
+- [node.js](https://nodejs.org/)
+- [Intility NPM Setup](https://github.com/orgs/intility/discussions/13)
+- [Visual Studio Code](https://code.visualstudio.com/)
+  - When setting up the template, you'll be prompted to install recommended extensions.
+
+## Create App
+
+Run these commands in your terminal.
+
+```bash
+npx degit intility/templates/react my-app
+cd my-app
+
+npm install
+```
+
+Open the project folder in Visual Studio Code with the following command.
+
+```bash
+code .
+```
+
+You can now start coding by running the start script.
+
+```bash
+npm start
+```
+
+:::info
+The template includes a `.npmrc` config which sets up a custom registry.
+
+For alternative package registry setup, see the [NPM docs in Backstage](https://backstage.apps.aa.intility.com/docs/default/component/package-registry/npm/).
+:::
+
+## Setting up
+
+The template includes some `__X__` variables throughout the codebase..
+
+- `__REPO_NAME__`: Name of the GitHub repository
+- `__DOCKER_IMAGE_NAME__`: Name of Docker image to push in action
+- `__ENTRA_CLIENT_ID__`: Client ID for the app registration
+- `__SENTRY_PROJECT_NAME__`: Name of the Sentry project
+- `__APP_NAME__`: Kubernetes-friendly name of the app
+- `__ARGO_PROJECT__`: Name of the Argo project
+
+## Available Scripts
+
+There are some scripts included by default, click on each one for more information.
+
+- [`npm start` & `npm run dev`](https://vitejs.dev/guide/cli.html#dev-server)
+- [`npm test`](https://vitest.dev/guide/cli.html#vitest)
+- [`npm run build`](https://vitejs.dev/guide/cli.html#build)
+- [`npm run preview`](https://vitejs.dev/guide/cli.html#vite-preview)
+- [`npm run lint`](https://biomejs.dev/reference/cli/#biome-check)

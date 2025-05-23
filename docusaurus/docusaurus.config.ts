@@ -88,8 +88,8 @@ const config: Config = {
           title: 'Intility Services',
           items: [
             {
-              label: 'GitLab',
-              href: 'https://gitlab.intility.com/',
+              label: 'GitHub',
+              href: 'https://github.com/intility',
             },
             {
               label: 'Sentry',

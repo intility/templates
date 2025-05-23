@@ -1,0 +1,27 @@
+# https://github.com/intility/reusable-workflows/blob/main/examples/react/README.md
+
+name: "Build and test Pull Requests"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  react:
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    uses: intility/reusable-react/.github/workflows/react.yaml@v0.2.2
+    with:
+      # image will be pushed to ghcr.io/intility/<project-name>/react-app
+      image-name: __DOCKER_IMAGE_NAME__
+      # don't push the image on pull requests
+      push: false
+      # build environment variables
+      # build-env: |
+      #   VITE_EXAMPLE_VAR=${{ vars.EXAMPLE_VAR }}
+      #   VITE_ANOTHER_VAR=${{ vars.ANOTHER_VAR }}
+    secrets: inherit

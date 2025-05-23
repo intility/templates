@@ -10,13 +10,15 @@ updates:
       timezone: "Europe/Oslo"
     commit-message:
       prefix: "ci:"
-    groups:
-      dependencies:
-        patterns:
-          - "*"
-        update-types:
-          - minor
-          - patch
+
+  - package-ecosystem: "github-actions"
+    directory: "/react"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Europe/Oslo"
+    commit-message:
+      prefix: "chore(react):"
 
   - package-ecosystem: "npm"
     directory: "/react"
@@ -25,7 +27,7 @@ updates:
       time: "09:00"
       timezone: "Europe/Oslo"
     commit-message:
-      prefix: "build(react):"
+      prefix: "chore(react):"
     groups:
       dependencies:
         patterns:

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: __APP_NAME__-dev
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/intility/__DOCKER_IMAGE_NAME__:main
+    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/force-update: "true"
+spec:
+  project: __ARGO_PROJECT__
+  destination:
+    namespace: aa-__APP_NAME__-dev
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/intility/__REPO_NAME__.git
+    targetRevision: HEAD
+    path: k8s/overlays/dev

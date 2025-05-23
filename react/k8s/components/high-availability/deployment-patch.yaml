@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: __APP_NAME__
+
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  template:
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: __APP_NAME__
+              topologyKey: kubernetes.io/hostname

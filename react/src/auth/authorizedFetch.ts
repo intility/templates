@@ -1,4 +1,4 @@
-import { instance } from "./instance";
+import { msalInstance } from "./instance";
 
 /**
  * A wrapper for the global fetch function, which acquires and injects a token if the resource requires it.
@@ -9,28 +9,28 @@ import { instance } from "./instance";
  * @see https://developer.mozilla.org/en-US/docs/Web/API/fetch
  * @see https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/acquire-token.md
  */
-async function authorizedFetch(
+export async function authorizedFetch(
   url: string,
   init?: RequestInit,
 ): Promise<Response> {
   const scopes: string[] = [];
-  if (url?.toLowerCase().startsWith("https://graph.microsoft.com")) {
+  if (url?.toLowerCase().startsWith("https://graph.microsoft.com/")) {
     scopes.push("User.Read");
   }
 
-  if (scopes.length > 0) {
-    const token = await instance.acquireTokenSilent({ scopes });
+  let requestInit = init;
 
-    init = {
+  if (scopes.length > 0) {
+    const token = await msalInstance.acquireTokenSilent({ scopes });
+
+    requestInit = {
       ...init,
       headers: {
         ...init?.headers,
-        Authorization: "Bearer " + token.accessToken,
+        Authorization: `Bearer ${token.accessToken}`,
       },
     };
   }
 
-  return await fetch(url, init);
+  return await fetch(url, requestInit);
 }
-
-export { authorizedFetch };

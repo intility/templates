@@ -1,0 +1,40 @@
+---
+title: GitHub
+sidebar_position: 1
+---
+
+:::tip Find and Replace
+Find and replace `__REPO_NAME__` in the codebase with the selected repository name.
+:::
+
+:::tip Find and Replace
+Find and replace `__DOCKER_IMAGE_NAME__` in the codebase with a unique name to push the docker image to.
+We recommend namespacing the name, e.g. `my-project/frontend` or `department/application`
+:::
+
+Go to [New Project in GitHub](https://github.com/organizations/intility/repositories/new).
+
+Select a fitting name, it should be as globally unique and descriptive for your project as possible.
+
+![New Project in GitHub photo](/img/github-new.png)
+
+:::warning
+For this setup, ensure that all optional initialization settings—including README file, license, and .gitignore—are left unselected.
+:::
+
+![Empty initialization](/img/initializerepo.png)
+
+## Pushing your application
+
+Creating a project from a template does not automatically create a git repository for you,
+so we have to make one ourselves.
+Follow the "Push an existing folder" example,
+which should look something like this:
+
+```bash
+git init
+git remote add origin git@github.com:intility/intility-app.git
+git add .
+git commit -m "feat: initialize application"
+git push -u origin main
+```
