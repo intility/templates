@@ -1,8 +1,22 @@
-import { Box, Ellipsis, Grid, Message } from "@intility/bifrost-react";
+import {
+  faGithub,
+  faMicrosoft,
+  faRedhat,
+} from "@fortawesome/free-brands-svg-icons";
+import { faBug } from "@fortawesome/pro-solid-svg-icons";
+import {
+  Ellipsis,
+  Grid,
+  Icon,
+  Message,
+  Section,
+} from "@intility/bifrost-react";
+import type { IconProps } from "@intility/bifrost-react/Icon";
 
 const steps: Array<{
   name: string;
   docs: string;
+  icon: IconProps["icon"];
   variables: Array<{
     name: string;
     description: string;
@@ -12,6 +26,7 @@ const steps: Array<{
   {
     name: "GitHub",
     docs: "https://create.intility.app/react/setup/github",
+    icon: faGithub,
     variables: [
       {
         name: "Repository Name",
@@ -28,6 +43,7 @@ const steps: Array<{
   {
     name: "Entra ID",
     docs: "https://create.intility.app/react/setup/entra-id",
+    icon: faMicrosoft,
     variables: [
       {
         name: "Client ID",
@@ -39,17 +55,19 @@ const steps: Array<{
   {
     name: "Sentry",
     docs: "https://create.intility.app/react/setup/sentry",
+    icon: faBug,
     variables: [
       {
         name: "Project Name",
         description: "Name of the Sentry project",
-        value: "__PROJECT_NAME__",
+        value: "__SENTRY_PROJECT_NAME__",
       },
     ],
   },
   {
     name: "Deployment",
     docs: "https://create.intility.app/react/setup/deploy",
+    icon: faRedhat,
     variables: [
       {
         name: "App Name",
@@ -65,38 +83,60 @@ const steps: Array<{
   },
 ];
 
+function SetupStep({ step }: { step: (typeof steps)[number] }) {
+  return (
+    <Section>
+      <a
+        key={step.name}
+        className="bf-neutral-link"
+        href={step.docs}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Section.Header arrow style={{ borderBottom: "none" }}>
+          <Icon icon={step.icon} fixedWidth marginRight />
+          <span className="bf-neutral-link-text">{step.name}</span>
+        </Section.Header>
+      </a>
+      <Section.Content background="base-2" borderTop={false}>
+        <Grid gap={16}>
+          {step.variables.map((variable) => (
+            <Message
+              state={variable.value.startsWith("__") ? "alert" : "success"}
+              key={variable.name}
+              header={variable.name}
+            >
+              <p>
+                <i>
+                  <Ellipsis>{variable.value}</Ellipsis>
+                </i>
+              </p>
+              {variable.description}
+            </Message>
+          ))}
+        </Grid>
+      </Section.Content>
+    </Section>
+  );
+}
+
 export default function Setup() {
   return (
-    <Grid cols={1} small={2}>
-      {steps.map((step) => (
-        <a
-          key={step.name}
-          className="bf-neutral-link"
-          href={step.docs}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Box background="base-3" radius shadow padding>
-            <Grid gap={16}>
-              <h3 className="bf-h5 bf-neutral-link-text">{step.name}</h3>
-              {step.variables.map((variable) => (
-                <Message
-                  state={variable.value.startsWith("__") ? "alert" : "success"}
-                  key={variable.name}
-                  header={variable.name}
-                >
-                  <p>
-                    <i>
-                      <Ellipsis>{variable.value}</Ellipsis>
-                    </i>
-                  </p>
-                  {variable.description}
-                </Message>
-              ))}
-            </Grid>
-          </Box>
-        </a>
-      ))}
+    <Grid cols={2}>
+      <Grid cols={1}>
+        {steps
+          .filter((_, i) => i % 2 === 0)
+          .map((step) => (
+            <SetupStep key={step.name} step={step} />
+          ))}
+      </Grid>
+      <Grid cols={1}>
+        {steps
+          .filter((_, i) => i % 2 !== 0)
+          .map((step) => (
+            <SetupStep key={step.name} step={step} />
+          ))}
+      </Grid>
     </Grid>
   );
 }
