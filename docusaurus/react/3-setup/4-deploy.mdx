@@ -1,0 +1,70 @@
+---
+title: Deploy
+sidebar_position: 4
+---
+
+:::tip Find and Replace
+Find and replace `__APP_NAME__` in the codebase with a [kubernetes-friendly name](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/).
+E.g. `intility-app` or `app-frontend`
+:::
+
+:::tip Find and Replace
+Find and replace `__ARGO_PROJECT__` in the codebase with your project in Argo.
+Usually your department's project.
+:::
+
+Let's set up a development environment for your project.
+
+:::info
+To create a production environment, follow the same steps, but in Zone 1 or another cluster. The OpenShift name should be `<APP_NAME>-prod`.
+:::
+
+## Create OpenShift Project
+
+Go to [our OpenShift instance](https://console.apps.openshift.intility.com/) and log in as Intility Developer.
+
+Create a project, the name should be `aa-__APP_NAME__-dev`, e.g. `aa-intility-app-dev`.  
+Add a fitting display name and description if you feel like it.
+
+## ArgoCD
+
+Navigate to [ArgoCD](https://argo.apps.int.intility.no/) and log in using Single Sign-On (SSO).
+
+### Add OpenShift Destination
+
+Go to **Settings → Projects → Your Project**, and configure the following destinations:
+
+```
+https://kubernetes.default.svc
+in-cluster
+aa-<APP_NAME>-dev
+```
+
+![Destinations](/img/argo-destination-dark.png)
+
+:::warning  
+You may not have the necessary permissions to make these changes to your ArgoCD project.  
+If that's the case, please reach out in the **Developer Infrastructure** channel for assistance.  
+:::
+
+### Create ArgoCD Bootstrap Application
+
+Create a new application in ArgoCD that deploys the resources in `argo/zone-2` to Argo itself.
+This is called the [App Of Apps pattern](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern),
+which lets us manage our ArgoCD applications as code.
+
+The development bootstrapper can be set to automatic sync, this will make sure that your argo resources in `argo/zone2` is synced automatically when they are edited.
+
+![Create new argo app for apps](/img/argo-bootstrapper-new.png)
+![Set correct config for bootstrapper zone2 ](/img/argo-bootstrapper-new-2.png)
+
+```
+Application Name: <APP_NAME>-bootstrap
+Project Name: <ARGO_PROJECT> (Example: pux)
+
+Repository URL: https://github.com/intility/<REPO_NAME>.git
+Path: argo/zone-2
+
+Cluster URL: https://kubernetes.default.svc
+Namespace: gitops-aa
+```

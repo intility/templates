@@ -11,7 +11,7 @@ const steps: Array<{
 }> = [
   {
     name: "GitHub",
-    docs: "https://create.intility.app/react/configuration/gitlab",
+    docs: "https://create.intility.app/react/setup/github",
     variables: [
       {
         name: "Repository Name",
@@ -27,23 +27,18 @@ const steps: Array<{
   },
   {
     name: "Entra ID",
-    docs: "https://create.intility.app/react/configuration/authentication",
+    docs: "https://create.intility.app/react/setup/entra-id",
     variables: [
       {
         name: "Client ID",
         description: "Client ID for the app registration",
         value: import.meta.env.VITE_ENTRA_CLIENT_ID,
       },
-      {
-        name: "Authority",
-        description: "Authority for the app registration",
-        value: import.meta.env.VITE_ENTRA_AUTHORITY,
-      },
     ],
   },
   {
     name: "Sentry",
-    docs: "https://create.intility.app/react/configuration/sentry",
+    docs: "https://create.intility.app/react/setup/sentry",
     variables: [
       {
         name: "Project Name",
@@ -54,7 +49,7 @@ const steps: Array<{
   },
   {
     name: "Deployment",
-    docs: "https://create.intility.app/react/configuration/deployment",
+    docs: "https://create.intility.app/react/setup/deploy",
     variables: [
       {
         name: "App Name",
