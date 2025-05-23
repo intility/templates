@@ -1,6 +1,6 @@
 ---
-title: Installation
-sidebar_position: 1
+title: Getting Started
+sidebar_position: 2
 ---
 
 ## Prerequisites
@@ -35,17 +35,28 @@ npm start
 ```
 
 :::info
-The template includes a `.npmrc` config which sets up a custom registry for `@intility/*` and `@fortawesome/*` packages.
+The template includes a `.npmrc` config which sets up a custom registry.
 
 For alternative package registry setup, see the [NPM docs in Backstage](https://backstage.apps.aa.intility.com/docs/default/component/package-registry/npm/).
 :::
 
+## Setting up
+
+The template includes some `__X__` variables throughout the codebase..
+
+- `__REPO_NAME__`: Name of the GitHub repository
+- `__DOCKER_IMAGE_NAME__`: Name of Docker image to push in action
+- `__ENTRA_CLIENT_ID__`: Client ID for the app registration
+- `__SENTRY_PROJECT_NAME__`: Name of the Sentry project
+- `__APP_NAME__`: Kubernetes-friendly name of the app
+- `__ARGO_PROJECT__`: Name of the Argo project
+
 ## Available Scripts
 
-There are 5 scripts included by default, click on each one for more information.
+There are some scripts included by default, click on each one for more information.
 
-- [`npm start`](https://vitejs.dev/guide/cli.html#dev-server)
+- [`npm start` & `npm run dev`](https://vitejs.dev/guide/cli.html#dev-server)
 - [`npm test`](https://vitest.dev/guide/cli.html#vitest)
 - [`npm run build`](https://vitejs.dev/guide/cli.html#build)
 - [`npm run preview`](https://vitejs.dev/guide/cli.html#vite-preview)
-- [`npm run analyze`](https://github.com/danvk/source-map-explorer/blob/master/README.md)
+- [`npm run lint`](https://biomejs.dev/reference/cli/#biome-check)

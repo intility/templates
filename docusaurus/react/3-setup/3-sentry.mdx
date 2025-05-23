@@ -1,0 +1,27 @@
+---
+title: Sentry
+sidebar_position: 3
+---
+
+:::tip Find and Replace
+Find and replace `__SENTRY_PROJECT_NAME__` in the codebase with the chosen project name.
+:::
+
+The project comes included with error reporting to Sentry, and a workflow that uploads sourcemaps and creates releases.
+To set this up, we'll need to create a project in Sentry, the project DSN and an auth token.
+
+### Create Project
+
+Head over to the [Create a new Project page in Sentry](https://sentry.intility.no/organizations/intility/projects/new/).
+
+![Sentry Platform Select](/img/sentry-new-platform.png)
+
+Under platform, select React.
+
+![Sentry New Project Name](/img/sentry-new-name.png)
+
+Choose a fitting project name, preferably the same as your GitHub repository name.  
+Select a fitting team, or create a new one, and hit Create.
+
+You'll be taken to a Configure React page.
+In the code example under Connecting the SDK to Sentry, copy the `dsn` value, and [add it to GitHub Action variables](/react/setup/github#adding-action-variables) with the key `SENTRY_DSN`.

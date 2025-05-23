@@ -1,13 +1,17 @@
 ---
-title: AAD Authentication
+title: Entra ID
 sidebar_position: 2
 ---
+
+:::tip Find and Replace
+Find and replace `__ENTRA_CLIENT_ID__` in the codebase with the `Application (Client) ID` GUID.
+:::
 
 The example code is set up to use authentication. For this to work, an App Registration has to be set up in Azure AD.
 
 ### Create App Registration
 
-Head over to [Azure -> Azure Active Directory -> App registrations](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps)
+Head over to [Azure -> Entra ID -> App registrations](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps)
 with your Intility Account, and create a new registration.
 
 ![New Registration in Azure](/img/azure-new.png)  
@@ -20,18 +24,7 @@ Under `Redirect URI`, select `Single-page application (SPA)` from the dropdown, 
 
 Hit the register button, and you will be taken to an overview of your newly created registration.
 
-![Finding Client ID](/img/azure-clientid.png)  
-Copy the `Application (Client) ID` GUID, and paste it into the `clientId` field in your `auth/config.ts` file.
-
-```tsx title="src/auth/config.ts"
-const msal = {
-  auth: {
-    clientId: "YOUR_CLIENT_ID",
-    ...
-  },
-  ...
-}
-```
+![Finding Client ID](/img/azure-clientid.png)
 
 Check out [Enabling authentication in your app](#enabling-authentication-in-your-app) to enable authentication in your app.
 
@@ -56,19 +49,28 @@ Depending on what your applications scope is, there are different ways of enabli
 
 This is the simplest way, and can be enabled by wrapping your application in `MsalAuthenticationTemplate` from `@azure/msal-react`.
 
-```tsx title="src/index.tsx"
-root.render(
-  <React.StrictMode>
-    <MsalProvider instance={instance}>
-      <MsalAuthenticationTemplate
-        interactionType={InteractionType.Redirect}
-        authenticationRequest={{ scopes: ['User.Read'] }}
-      >
-        <RouterProvider router={router} />
-      </MsalAuthenticationTemplate>
-    </MsalProvider>
-  </React.StrictMode>,
-);
+```tsx title="src/App.tsx"
+import { MsalAuthenticationTemplate, MsalProvider } from '@azure/msal-react';
+import { loginRequest } from './auth/config';
+import { InteractionType } from '@azure/msal-browser';
+
+export default function App() {
+  return (
+    <StrictMode>
+      <ColorModeApplier>
+        <MsalProvider instance={msalInstance}>
+          {/* Adding this component will force authentication, needs to be between the MsalProvider and RouterProvider */}
+          <MsalAuthenticationTemplate
+            interactionType={InteractionType.Redirect}
+            authenticationRequest={loginRequest}
+          >
+            <RouterProvider router={router} />
+          </MsalAuthenticationTemplate>
+        </MsalProvider>
+      </ColorModeApplier>
+    </StrictMode>
+  );
+}
 ```
 
 This will force user authentication, and your app won't render unless the user is authenticated.
@@ -81,7 +83,7 @@ Read the [`@azure/msal-react` docs](https://github.com/AzureAD/microsoft-authent
 
 ## Consuming an authenticated API
 
-To consume an authenticated API you will need to add permission. You can do this by going to your frontends application registration in Azure, under API Permissions.
+To consume an authenticated API you will need to add permission. You can do this by going to your frontend application registration in Azure, under API Permissions.
 Click "Add a permission" and follow the steps to add the api scope you need.
 
 The permission you add will have a scope looking something like `api://application-guid/scopename`, which you will use as the `'API_SCOPE'` variable in the next steps below.
@@ -90,19 +92,13 @@ The permission you add will have a scope looking something like `api://applicati
 
 If the API you want to consume requires user consent you'll need to add the api scope to the `authenticationRequest` scopes.
 
-```tsx title="src/index.tsx"
-root.render(
-  <React.StrictMode>
-    <MsalProvider instance={instance}>
-      <MsalAuthenticationTemplate
-        interactionType={InteractionType.Redirect}
-        authenticationRequest={{ scopes: ['User.Read', 'API_SCOPE'] }}
-      >
-        <RouterProvider router={router} />
-      </MsalAuthenticationTemplate>
-    </MsalProvider>
-  </React.StrictMode>,
-);
+```tsx title="src/auth/config.ts"
+/**
+ * Default login request for the app
+ */
+export const loginRequest: RedirectRequest = {
+  scopes: ['User.Read', 'API_SCOPE'],
+};
 ```
 
 You'll also need to modify the `authorizedFetch` method, and acquire the correct scopes for the URL you're trying to call.
@@ -110,9 +106,9 @@ You'll also need to modify the `authorizedFetch` method, and acquire the correct
 ```tsx title="src/auth/authorizedFetch.ts"
 async function authorizedFetch() {
   ...
-  if (url?.toLowerCase().startsWith('https://graph.microsoft.com')) {
+  if (url?.toLowerCase().startsWith('https://graph.microsoft.com/')) {
     scopes.push('User.Read');
-  } else if (url?.toLowerCase().startsWith('http://localhost:5000')) {
+  } else if (url?.toLowerCase().startsWith('http://localhost:5000/')) {
     scopes.push('API_SCOPE');
   }
   ...
@@ -124,7 +120,7 @@ The API base URL can also be dynamically applied from an [Environment Variables]
 ```tsx title="src/auth/authorizedFetch.ts"
 async function authorizedFetch() {
   ...
-  if (url?.toLowerCase().startsWith('https://graph.microsoft.com')) {
+  if (url?.toLowerCase().startsWith('https://graph.microsoft.com/')) {
     scopes.push('User.Read');
   } else if (url?.toLowerCase().startsWith(import.meta.env.VITE_API_URL)) {
     scopes.push('API_SCOPE');
@@ -134,34 +130,6 @@ async function authorizedFetch() {
 ```
 
 You can now consume an API with `authorizedFetch`, which uses the `endpoints` config to detect which token to use in a request.
-
-```tsx
-import { useState, useEffect } from 'react';
-import { authorizedFetch } from '~/auth';
-
-// This is a simplified example of data fetching in react
-// Please don't use in production
-
-const DataComponent = () => {
-  const [data, setData] = useState();
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    authorizedFetch('my-api/resource')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => setError(error));
-  }, []);
-
-  return (
-    <>
-      {!data && !error && <p>Loading data...</p>}
-      {data && <div>Here is the data: {data}</div>}
-      {error && <p className="error">Oh No!!! {error.toString()}</p>}
-    </>
-  );
-};
-```
 
 ### SWR / React Query
 
