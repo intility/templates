@@ -29,3 +29,11 @@ Select a fitting team, or create a new one, and hit Create.
 
 You'll be taken to a Configure React page.
 In the code example under Connecting the SDK to Sentry, copy the `dsn` value, and add it to [GitHub Action variables](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#creating-configuration-variables-for-a-repository) with the name `SENTRY_DSN`.
+
+:::tip Find and Replace
+Find and replace `__SENTRY_PROJECT_NAME__` in the codebase with the chosen project name.
+:::
+
+:::important Sentry DSN
+Remember to add the Sentry DSN to your GitHub repository **action variables** as `SENTRY_DSN`.
+:::
