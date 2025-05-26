@@ -15,10 +15,6 @@ Usually your department's project.
 
 Let's set up a development environment for your project.
 
-:::info
-To create a production environment, follow the same steps, but in Zone 1 or another cluster. The OpenShift name should be `<APP_NAME>-prod`.
-:::
-
 ## Create OpenShift Project
 
 Go to [our OpenShift instance](https://console.apps.openshift.intility.com/) and log in as Intility Developer.
@@ -30,7 +26,11 @@ Add a fitting display name and description if you feel like it.
 
 Navigate to [ArgoCD](https://argo.apps.int.intility.no/) and log in using Single Sign-On (SSO).
 
-### Add OpenShift Destination
+### Add OpenShift Destination to Argo Project
+
+:::info
+The project name in ArgoCD is usually your department name.
+:::
 
 Go to **Settings → Projects → Your Project**, and configure the following destinations:
 
@@ -48,6 +48,20 @@ If that's the case, please reach out in the **Developer Infrastructure** channel
 :::
 
 ### Create ArgoCD Bootstrap Application
+
+:::warning Find and Replace
+Find and replace the variables and push the changes, before you create the application.
+:::
+
+:::tip Find and Replace
+Find and replace `__APP_NAME__` in the codebase with a [kubernetes-friendly name](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/).
+E.g. `intility-app` or `app-frontend`
+:::
+
+:::tip Find and Replace
+Find and replace `__ARGO_PROJECT__` in the codebase with your project in Argo.
+Usually your department's project.
+:::
 
 Create a new application in ArgoCD that deploys the resources in `argo/zone-2` to Argo itself.
 This is called the [App Of Apps pattern](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern),
@@ -68,3 +82,11 @@ Path: argo/zone-2
 Cluster URL: https://kubernetes.default.svc
 Namespace: gitops-aa
 ```
+
+### Production
+
+For a production in Zone 1, you can follow the same steps as above, with some changes:
+
+- The openshift project should be named `<APP_NAME>-prod`
+- The Argo bootstrap source path should be `argo/zone-1`.
+- The Argo bootstrap destination namespace should be `openshift-gitops`.
