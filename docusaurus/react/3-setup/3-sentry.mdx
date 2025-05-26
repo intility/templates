@@ -7,6 +7,10 @@ sidebar_position: 3
 Find and replace `__SENTRY_PROJECT_NAME__` in the codebase with the chosen project name.
 :::
 
+:::important Sentry DSN
+Remember to add the Sentry DSN to your GitHub repository **action variables** as `SENTRY_DSN`.
+:::
+
 The project comes included with error reporting to Sentry, and a workflow that uploads sourcemaps and creates releases.
 To set this up, we'll need to create a project in Sentry, the project DSN and an auth token.
 
