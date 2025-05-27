@@ -40,18 +40,6 @@ yarn-error.log*
 test-output
 my_project
 
-# PyCharm
-.idea
-
-# Python
-.venv
-*.pyc
-fastapi/build/
-fastapi/dist/
-*.egg-info/
-poetry.lock
-pyproject.toml
-
 # Node.JS
 nodejs/generators/app/templates/coverage
 nodejs/generators/app/templates/build
