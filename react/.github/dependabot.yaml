@@ -30,6 +30,13 @@ updates:
       patch-and-minor:
         patterns:
           - "*"
+        exclude-patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+          - "@azure/msal-*"
+          - "@fortawesome/*"
         update-types:
           - patch
           - minor
