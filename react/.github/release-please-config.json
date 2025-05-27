@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "include-component-in-tag": false,
+      "release-type": "node",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "k8s/overlays/prod/kustomization.yaml"
+        }
+      ]
+    }
+  }
+}
