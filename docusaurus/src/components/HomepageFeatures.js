@@ -18,22 +18,11 @@ const FeatureList = [
     Svg: '/img/dotnet-logo.svg',
     description: <>Start developing APIs using our templates for .NET.</>,
   },
-  {
-    title: 'NestJS API',
-    href: 'https://backstage.apps.aa.intility.com/create/templates/default/nest-api-template',
-    Svg: '/img/nestjs.svg',
-    description: (
-      <>
-        Start developing using TypeScript and build APIs using our template for
-        NestJS.
-      </>
-    ),
-  },
 ];
 
 function Feature({ id, Svg = 'div', title, href, description }) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--6')}>
       <Link to={href}>
         <div className="text--center">
           <img src={Svg} className={styles.featureSvg} alt={title} />
