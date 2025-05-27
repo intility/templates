@@ -26,7 +26,7 @@ docs: add Google auth guide to all frameworks
 ```
 
 ```
-docs(contributing): add fastapi to example scopes
+docs(contributing): add react to example scopes
 ```
 
 ### Types
@@ -50,7 +50,6 @@ Current frameworks:
 
 - **react**
 - **dotnet**
-- **fastapi**
 
 For the **docs** type, the scope might additionally be the name of a markdown file in the root of the repository (in lowercase).
 

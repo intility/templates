@@ -36,11 +36,6 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: '/fastapi',
-          label: 'FastAPI',
-          position: 'left',
-        },
-        {
           href: 'https://github.com/Intility/templates',
           label: 'GitHub',
           position: 'right',
@@ -163,18 +158,6 @@ const config: Config = {
             (c) => !c.label || !c.label.startsWith('_'),
           );
         },
-        // ... other options
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'fastapi',
-        path: 'fastapi',
-        routeBasePath: 'fastapi',
-        sidebarPath: undefined,
-        editUrl: 'https://github.com/Intility/templates/tree/main/docusaurus',
-        sidebarCollapsible: false,
         // ... other options
       },
     ],

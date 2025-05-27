@@ -19,12 +19,6 @@ const FeatureList = [
     description: <>Start developing APIs using our templates for .NET.</>,
   },
   {
-    title: 'FastAPI',
-    href: '/fastapi',
-    Svg: '/img/python-logo.svg',
-    description: <>Create a FastAPI app with batteries included.</>,
-  },
-  {
     title: 'NestJS API',
     href: 'https://backstage.apps.aa.intility.com/create/templates/default/nest-api-template',
     Svg: '/img/nestjs.svg',
