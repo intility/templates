@@ -1,0 +1,247 @@
+---
+title: Data Fetching
+sidebar_position: 6
+---
+
+We highly recommend using a data fetching library to handle your API calls. Popular libraries include:
+
+- [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [SWR](https://swr.vercel.app/docs/getting-started)
+
+In this guide we'll show you how to integrate it with the `authorizedFetch` function from the authentication guide.
+
+## Setting up a fetching library
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="fetchinglib"
+  defaultValue="react-query"
+  values={[
+    { label: "TanStack Query", value: "react-query" },
+    { label: "SWR", value: "swr" }
+  ]}
+>
+<TabItem value="react-query">
+
+Integrating `authorizedFetch` with TanStack Query is very simple. All you need to do is specify a query function.
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+import { authorizedFetch } from '~/auth/authorizedFetch';
+
+const authFetcher = (url: string) =>
+  authorizedFetch(url).then((result) => result.json());
+
+const QueryComponent = () => {
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ['my-api/resource'],
+    queryFn: () => authFetcher('my-api/resource'),
+  });
+
+  return (
+    <>
+      {isLoading && <p>Loading data...</p>}
+      {data && <div>Here is the data: {JSON.stringify(data)}</div>}
+      {isError && <p className="error">Oh No!!! {error.message}</p>}
+    </>
+  );
+};
+```
+
+We could take this one step further, and assign a global default query function using `QueryClient` and `QueryClientProvider`.
+
+```tsx title="src/components/QueryProvider.tsx"
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { PropsWithChildren } from 'react';
+import { authorizedFetch } from '~/auth/authorizedFetch';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: async ({ queryKey }) => {
+        // Note that we apply a base url to every request
+        // If you use multiple APIs, you might want to adjust this
+        const response = await authorizedFetch(
+          (import.meta.env.VITE_API_URL as string) + queryKey[0],
+        );
+        return await response.json();
+      },
+    },
+  },
+});
+
+export default function QueryProvider({ children }: PropsWithChildren) {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+}
+```
+
+And then wrap your app with the `QueryProvider` in `App.tsx`.
+
+```tsx title="src/App.tsx"
+export default function App() {
+  return (
+    <StrictMode>
+      <ColorModeApplier>
+        <MsalProvider instance={msalInstance}>
+          <QueryProvider>
+            <RouterProvider router={router} />
+          </QueryProvider>
+        </MsalProvider>
+      </ColorModeApplier>
+    </StrictMode>
+  );
+}
+```
+
+We can now call `useQuery` somewhere in our app, and it will use the authorized fetcher by default.
+
+```tsx
+import { useQuery } from 'react-query';
+import { authorizedFetch } from '~/auth';
+
+const QueryComponent = () => {
+  // Note that only the resource is requested here
+  // that's because the API base URL is prepended in our fetcher
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ['resource'],
+  });
+
+  return (
+    <>
+      {isLoading && <p>Loading data...</p>}
+      {data && <div>Here is the data: {data}</div>}
+      {isError && <p className="error">Oh No!!! {error.message}</p>}
+    </>
+  );
+};
+```
+
+One great thing about React Query is request deduping and caching.  
+In the following example, there will be three instances of our `QueryComponent`, but only one request will be made.
+That would not be the case if we were to use the `DataComponent` from earlier, where we manually fetched the data.
+
+```tsx
+const SomeExample = () => (
+  <>
+    <QueryComponent />
+    <QueryComponent />
+    <QueryComponent />
+  </>
+);
+```
+
+To read more about React Query, check out the [React Query Docs](https://tanstack.com/query/latest/docs/framework/react/overview).
+
+</TabItem>
+<TabItem value="swr">
+
+Before continuing this step, read about and install [SWR](https://swr.vercel.app/).
+
+Integrating `authorizedFetch` with SWR is very simple. All you need to do is specify a fetcher for SWR.
+
+```tsx
+import useSWR from 'swr';
+import { authorizedFetch } from '~/auth';
+
+const authFetcher = (url: string) =>
+  authorizedFetch(url).then((result) => result.json());
+
+const SwrComponent = () => {
+  const { data, error } = useSWR('my-api/resource', { fetcher: authFetcher });
+
+  return (
+    <>
+      {!data && !error && <p>Loading data...</p>}
+      {data && <div>Here is the data: {data}</div>}
+      {error && <p className="error">Oh No!!! {error.toString()}</p>}
+    </>
+  );
+};
+```
+
+We could take this one step further, and assign the fetcher globally using `SWRConfig`.
+
+```tsx title="src/components/SWRProvider.tsx"
+import { SWRConfig, type SWRConfiguration } from 'swr';
+import { authorizedFetch } from '~/auth/authorizedFetch';
+
+const swr: SWRConfiguration = {
+  fetcher: async (path) => {
+    // Note that we apply a base url to every request
+    // If you use multiple APIs, you might want to adjust this
+    const response = await authorizedFetch(import.meta.env.VITE_API_URL + path);
+
+    return await response.json();
+  },
+};
+
+export default function SWRProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <SWRConfig value={swr}>{children}</SWRConfig>;
+}
+```
+
+And then wrap your app with the `SWRProvider` in `App.tsx`.
+
+```tsx title="src/App.tsx"
+export default function App() {
+  return (
+    <StrictMode>
+      <ColorModeApplier>
+        <MsalProvider instance={msalInstance}>
+          <SWRProvider>
+            <RouterProvider router={router} />
+          </SWRProvider>
+        </MsalProvider>
+      </ColorModeApplier>
+    </StrictMode>
+  );
+}
+```
+
+We can now call `useSWR` somewhere in our app, and it will use the authorized fetcher by default.
+
+```tsx
+import useSWR from 'swr';
+import { authorizedFetch } from '~/auth';
+
+const SwrComponent = () => {
+  // Note that only the resource is requested here
+  // that's because the API base URL is prepended in our fetcher
+  const { data, error } = useSWR('resource');
+
+  return (
+    <>
+      {!data && !error && <p>Loading data...</p>}
+      {data && <div>Here is the data: {data}</div>}
+      {error && <p className="error">Oh No!!! {error.toString()}</p>}
+    </>
+  );
+};
+```
+
+One great thing about SWR is request deduping and caching.  
+In the following example, there will be three instances of our `SwrComponent`, but only one request will be made.
+That would not be the case if we were to use the `DataComponent` from earlier, where we manually fetched the data.
+
+```tsx
+const SomeExample = () => (
+  <>
+    <SwrComponent />
+    <SwrComponent />
+    <SwrComponent />
+  </>
+);
+```
+
+To read more about SWR, check out the [SWR Docs](https://swr.vercel.app/).
+
+</TabItem>
+</Tabs>
