@@ -7,7 +7,7 @@ sidebar_position: 2
 Find and replace `__ENTRA_CLIENT_ID__` in the codebase with the `Application (Client) ID` GUID.
 :::
 
-The example code is set up to use authentication. For this to work, an App Registration has to be set up in Azure AD.
+The example code is set up to use authentication. For this to work, an App Registration has to be set up in Entra ID.
 
 ### Create App Registration
 
@@ -17,7 +17,7 @@ with your Intility Account, and create a new registration.
 ![New Registration in Azure](/img/azure-new.png)  
 Select a fitting name for your project, this name will be presented to the user during consent.
 
-Under `Supported account types`, choose either `Intility AS only - Single tenant` or `Any Azure AD directory - Multitenant`.
+Under `Supported account types`, choose either `Intility AS only - Single tenant` or `Any Microsoft Entra ID directory - Multitenant`.
 This can be changed later, so if you're unsure what to choose, select single tenant.
 
 Under `Redirect URI`, select `Single-page application (SPA)` from the dropdown, and enter `http://localhost:3000`.
