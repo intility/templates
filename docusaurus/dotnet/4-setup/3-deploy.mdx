@@ -1,0 +1,34 @@
+---
+title: Deploy
+sidebar_position: 3
+---
+
+### Create ArgoCD Bootstrap Application
+
+Create a new application in ArgoCD that deploys the resources in `argo/zone-2` to Argo itself.
+This is called the [App Of Apps pattern](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern),
+which lets us manage our ArgoCD applications as code.
+
+The development bootstrapper can be set to automatic sync, this will make sure that your argo resources in `argo/zone2` is synced automatically when they are edited.
+
+![Create new argo app for apps](/img/argo-bootstrapper-new.png)
+![Set correct config for bootstrapper zone2 ](/img/argo-bootstrapper-new-2.png)
+
+```
+Application Name: <APP_NAME>-bootstrap
+Project Name: <ARGO_PROJECT> (Example: pux)
+
+Repository URL: https://github.com/intility/<REPO_NAME>.git
+Path: argo/zone-2
+
+Cluster URL: https://kubernetes.default.svc
+Namespace: gitops-aa
+```
+
+### Production
+
+For a production in Zone 1, you can follow the same steps as above, with some changes:
+
+- The openshift project should be named `<APP_NAME>-prod`
+- The Argo bootstrap source path should be `argo/zone-1`.
+- The Argo bootstrap destination namespace should be `openshift-gitops`.

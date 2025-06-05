@@ -1,0 +1,36 @@
+---
+title: OpenShift
+sidebar_position: 3
+---
+
+## Create OpenShift Project
+
+Go to [our OpenShift instance](https://console.apps.openshift.intility.com/) and log in as Intility Developer.
+
+Create a project, the name should be `aa-__APP_NAME__-dev`, e.g. `aa-intility-app-dev`.  
+Add a fitting display name and description if you feel like it.
+
+## ArgoCD
+
+Navigate to [ArgoCD](https://argo.apps.int.intility.no/) and log in using Single Sign-On (SSO).
+
+### Add OpenShift Destination to Argo Project
+
+:::info
+The project name in ArgoCD is usually your department name.
+:::
+
+Go to **Settings → Projects → Your Project**, and configure the following destinations:
+
+```
+https://kubernetes.default.svc
+in-cluster
+aa-<APP_NAME>-dev
+```
+
+![Destinations](/img/argo-destination-dark.png)
+
+:::warning  
+You may not have the necessary permissions to make these changes to your ArgoCD project.  
+If that's the case, request the ArgoCD "Developer" role in [My Intility](https://my.intility.com/en-us/apps?term=argo).
+:::

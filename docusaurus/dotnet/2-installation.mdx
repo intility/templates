@@ -31,37 +31,6 @@ New templates should now be available to bootstrap new projects from. Use `dotne
   #...
 ```
 
-##
-
-## Available Templates
-
-Intility.Templates provides two main templates to help you quickly bootstrap new .NET projects following Intility's best practices and architectural patterns:
-
-### Intility Api (`iwebapi`)
-
-The Intility Api template is designed for creating HTTP-based API services. Use this template when you need to:
-
-- Build RESTful APIs that other services or applications will consume
-- Create endpoints for frontend applications
-- Develop microservices with HTTP communication
-- Expose functionality through a web-based interface
-
-### Intility Worker (`iworker`)
-
-The Intility Worker template is designed for background processing services. Use this template when you need to:
-
-- Process work asynchronously
-- Create scheduled jobs or recurring tasks
-- Implement message queue consumers
-- Build services that don't require HTTP endpoints
-- Develop data processing pipelines
-
-Select the appropriate template based on your service's primary responsibility and communication patterns.
-
-:::warning
-While not required, we highly recommend creating your GitHub repository, Azure App Registrations, OpenShift namespace, and Argo project beforehand. This allows the template to utilize inputs for ClientId, OpenShift namespace, Argo project, and GitHub repo URL, facilitating the pre-configuration of the project. If you follow the guide, these sections will also come before creating a project locally.
-:::
-
 ## Updating the template
 
 :::warning
