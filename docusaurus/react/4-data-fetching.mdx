@@ -100,8 +100,8 @@ export default function App() {
 We can now call `useQuery` somewhere in our app, and it will use the authorized fetcher by default.
 
 ```tsx
-import { useQuery } from 'react-query';
-import { authorizedFetch } from '~/auth';
+import { useQuery } from '@tanstack/react-query';
+import { authorizedFetch } from '~/auth/authorizedFetch';
 
 const QueryComponent = () => {
   // Note that only the resource is requested here
@@ -145,7 +145,7 @@ Integrating `authorizedFetch` with SWR is very simple. All you need to do is spe
 
 ```tsx
 import useSWR from 'swr';
-import { authorizedFetch } from '~/auth';
+import { authorizedFetch } from '~/auth/authorizedFetch';
 
 const authFetcher = (url: string) =>
   authorizedFetch(url).then((result) => result.json());
@@ -210,7 +210,7 @@ We can now call `useSWR` somewhere in our app, and it will use the authorized fe
 
 ```tsx
 import useSWR from 'swr';
-import { authorizedFetch } from '~/auth';
+import { authorizedFetch } from '~/auth/authorizedFetch';
 
 const SwrComponent = () => {
   // Note that only the resource is requested here
