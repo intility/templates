@@ -1,14 +1,14 @@
 ---
-title: Create new project
-sidebar_position: 4
+title: Create Project
+sidebar_position: 1
 ---
-
-# Creating a new project
-
-Choose which template type you'd like to use to bootstrap your new project:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+## Choose Template
+
+Choose which template type you'd like to use to bootstrap your new project:
 
 <Tabs
   groupId="template-type"
@@ -20,9 +20,9 @@ import TabItem from '@theme/TabItem';
 >
 <TabItem value="api">
 
-## Creating an API Service
-
 The Intility Api template provides a robust foundation for building RESTful API services with all the necessary configurations and best practices already set up for you.
+
+### Create API Project
 
 <Tabs
   groupId="creation-method"
@@ -33,8 +33,6 @@ The Intility Api template provides a robust foundation for building RESTful API 
   ]}
 >
 <TabItem value="cli">
-
-### Using dotnet CLI
 
 Create a new API project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace`, `--github-repo-url`, `--client-id`, `--tenant-id` and `--swagger-client-id` parameters. This will ensure that the dotnet project is connected with your newly created OpenShift namespace, ArgoCD Project and uses your App Registrations for authentication and authorization.
 
@@ -75,8 +73,6 @@ dotnet new iwebapi --help
 </TabItem>
 <TabItem value="vs">
 
-### Using Visual Studio
-
 1. Open Visual Studio and select **Create a new project**
 
 2. In the project template search, type "Intility" to find the templates
@@ -103,9 +99,9 @@ For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `Git
 </TabItem>
 <TabItem value="worker">
 
-## Creating a Worker Service
-
 The Intility Worker template helps you build background processing services with all the infrastructure code already set up.
+
+### Create Worker Project
 
 <Tabs
   groupId="creation-method"
@@ -117,9 +113,7 @@ The Intility Worker template helps you build background processing services with
 >
 <TabItem value="cli">
 
-### Using dotnet CLI
-
-Create a new Worker Service project with a solution file. For the best experience, use the `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` parameters.
+Create a new Worker Service project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace` and `--github-repo-url` parameters.
 
 ```shell
 # Create project with solution
@@ -138,7 +132,7 @@ dotnet run --project MyWorkerService/MyWorkerService.csproj
 **Advanced options:**
 
 :::info
-The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` will be ignored.
+The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
 :::
 
 ```shell
@@ -160,8 +154,6 @@ dotnet new iworker --help
 
 </TabItem>
 <TabItem value="vs">
-
-### Using Visual Studio
 
 1. Open Visual Studio and select **Create a new project**
 
@@ -191,7 +183,8 @@ For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `Git
 
 ## Template parameters
 
-### Common parameters
+<details>
+<summary><strong>Common parameters</strong></summary>
 
 These parameters are available for both templates:
 
@@ -204,7 +197,10 @@ These parameters are available for both templates:
 | `-on, --openshift-namespace` | OpenShift Namespace (e.g. aa-appservices-dev)                                               |
 | `-gru, --github-repo-url`    | GitHub Repository URL                                                                       |
 
-### API template parameters
+</details>
+
+<details>
+<summary><strong>API template parameters</strong></summary>
 
 The following parameters are specific to the `iwebapi` template:
 
@@ -215,7 +211,10 @@ The following parameters are specific to the `iwebapi` template:
 | `-swid, --swagger-client-id` | Azure AD client ID for Swagger UI authentication       |
 | `-s, --scope`                | Default OAuth scope (defaults to "user_impersonation") |
 
-### Worker template parameters
+</details>
+
+<details>
+<summary><strong>Worker template parameters</strong></summary>
 
 The following parameters are specific to the `iworker` template:
 
@@ -223,32 +222,19 @@ The following parameters are specific to the `iworker` template:
 | ------------ | -------------------------------------------------------------------- |
 | `-c, --cron` | Set to `true` to create a Kubernetes CronJob instead of a Deployment |
 
-### Validate Authorization in the WEB API
+</details>
 
-Ensure that the correct ClientId values have been set in the generated project. These should correspond to the two Azure App Registrations you created in the [AAD Authorization](authorization) step:
+## Pushing your application
 
-- One for the Web API (AzureAd:ClientId)
+Creating a dotnet project from a template does not automatically create a git repository for you,
+so we have to make one ourselves.
+Follow the "Push an existing folder" example,
+which should look something like this:
 
-- One for Swagger UI (Swagger:ClientId)
-
-If these values were not correctly provided during project generation, you must manually update the `appsettings.json` file:
-
-```jsx title="appsettings.json"
-{
-  "AzureAd": {
-    "ClientId": "YOUR_CLIENT_ID",
-    ...
-  },
-  ...
-}
-```
-
-```jsx title="appsettings.json"
-{
-  "Swagger": {
-    "ClientId": "YOUR_SWAGGER_CLIENT_ID",
-    ...
-  },
-  ...
-}
+```bash
+git init
+git remote add origin git@github.com:intility/intility-app.git
+git add .
+git commit -m "feat: add intility-app base"
+git push -u origin main
 ```
