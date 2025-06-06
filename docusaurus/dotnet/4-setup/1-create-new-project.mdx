@@ -1,14 +1,14 @@
 ---
-title: Create new project
+title: Create project
 sidebar_position: 1
 ---
 
-# Creating a new project
-
-Choose which template type you'd like to use to bootstrap your new project:
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+## Choose Template
+
+Choose which template type you'd like to use to bootstrap your new project:
 
 <Tabs
   groupId="template-type"
@@ -20,9 +20,9 @@ import TabItem from '@theme/TabItem';
 >
 <TabItem value="api">
 
-## Creating an API Service
-
 The Intility Api template provides a robust foundation for building RESTful API services with all the necessary configurations and best practices already set up for you.
+
+### Create API Project
 
 <Tabs
   groupId="creation-method"
@@ -33,8 +33,6 @@ The Intility Api template provides a robust foundation for building RESTful API 
   ]}
 >
 <TabItem value="cli">
-
-### Using dotnet CLI
 
 Create a new API project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace`, `--github-repo-url`, `--client-id`, `--tenant-id` and `--swagger-client-id` parameters. This will ensure that the dotnet project is connected with your newly created OpenShift namespace, ArgoCD Project and uses your App Registrations for authentication and authorization.
 
@@ -75,8 +73,6 @@ dotnet new iwebapi --help
 </TabItem>
 <TabItem value="vs">
 
-### Using Visual Studio
-
 1. Open Visual Studio and select **Create a new project**
 
 2. In the project template search, type "Intility" to find the templates
@@ -103,9 +99,9 @@ For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `Git
 </TabItem>
 <TabItem value="worker">
 
-## Creating a Worker Service
-
 The Intility Worker template helps you build background processing services with all the infrastructure code already set up.
+
+### Create Worker Project
 
 <Tabs
   groupId="creation-method"
@@ -116,8 +112,6 @@ The Intility Worker template helps you build background processing services with
   ]}
 >
 <TabItem value="cli">
-
-### Using dotnet CLI
 
 Create a new Worker Service project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace` and `--github-repo-url` parameters.
 
@@ -160,8 +154,6 @@ dotnet new iworker --help
 
 </TabItem>
 <TabItem value="vs">
-
-### Using Visual Studio
 
 1. Open Visual Studio and select **Create a new project**
 
