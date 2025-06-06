@@ -119,7 +119,7 @@ The Intility Worker template helps you build background processing services with
 
 ### Using dotnet CLI
 
-Create a new Worker Service project with a solution file. For the best experience, use the `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` parameters.
+Create a new Worker Service project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace` and `--github-repo-url` parameters.
 
 ```shell
 # Create project with solution
@@ -138,7 +138,7 @@ dotnet run --project MyWorkerService/MyWorkerService.csproj
 **Advanced options:**
 
 :::info
-The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--ArgoProject`, `--OpenShiftNamespace` and `--GitHubRepoUrl` will be ignored.
+The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
 :::
 
 ```shell
@@ -191,7 +191,8 @@ For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `Git
 
 ## Template parameters
 
-### Common parameters
+<details>
+<summary><strong>Common parameters</strong></summary>
 
 These parameters are available for both templates:
 
@@ -204,7 +205,10 @@ These parameters are available for both templates:
 | `-on, --openshift-namespace` | OpenShift Namespace (e.g. aa-appservices-dev)                                               |
 | `-gru, --github-repo-url`    | GitHub Repository URL                                                                       |
 
-### API template parameters
+</details>
+
+<details>
+<summary><strong>API template parameters</strong></summary>
 
 The following parameters are specific to the `iwebapi` template:
 
@@ -215,7 +219,10 @@ The following parameters are specific to the `iwebapi` template:
 | `-swid, --swagger-client-id` | Azure AD client ID for Swagger UI authentication       |
 | `-s, --scope`                | Default OAuth scope (defaults to "user_impersonation") |
 
-### Worker template parameters
+</details>
+
+<details>
+<summary><strong>Worker template parameters</strong></summary>
 
 The following parameters are specific to the `iworker` template:
 
@@ -223,35 +230,7 @@ The following parameters are specific to the `iworker` template:
 | ------------ | -------------------------------------------------------------------- |
 | `-c, --cron` | Set to `true` to create a Kubernetes CronJob instead of a Deployment |
 
-### Validate Authorization in the WEB API
-
-Ensure that the correct ClientId values have been set in the generated project. These should correspond to the two Azure App Registrations you created in the [AAD Authorization](authorization) step:
-
-- One for the Web API (AzureAd:ClientId)
-
-- One for Swagger UI (Swagger:ClientId)
-
-If these values were not correctly provided during project generation, you must manually update the `appsettings.json` file:
-
-```jsx title="appsettings.json"
-{
-  "AzureAd": {
-    "ClientId": "YOUR_CLIENT_ID",
-    ...
-  },
-  ...
-}
-```
-
-```jsx title="appsettings.json"
-{
-  "Swagger": {
-    "ClientId": "YOUR_SWAGGER_CLIENT_ID",
-    ...
-  },
-  ...
-}
-```
+</details>
 
 ## Pushing your application
 
