@@ -18,9 +18,12 @@ For the project name, use the project slug from GitLab.
 Select a fitting team, or create a new one, and hit Create.
 
 You'll be taken to a Configure .NET page.
-In the code examples, copy the DSN value passed to `Sentry.Init`, and add it to your ConfigMap in Openshift.
+In the code examples, copy the DSN value passed to `Sentry.Init`, and add it to the configMapGenerator in `k8s/overlays/development/kustomization.yaml` and `k8s/overlays/production/kustomization.yaml`.
 
-```yaml title="ConfigMap"
-data:
-  SENTRY_DSN: 'https://<long-random-string>@sentry.intility.no/<int>'
+```yaml title="kustomization.yaml"
+configMapGenerator:
+  - name: my-app-config
+    literals:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - SENTRY__DSN=<INSERT DSN HERE>
 ```
