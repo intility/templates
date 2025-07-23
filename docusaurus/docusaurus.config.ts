@@ -93,7 +93,7 @@ const config: Config = {
             },
             {
               label: 'OpenShift',
-              href: 'https://console.apps.openshift.intility.com/',
+              href: 'https://console-openshift-console.apps.openshift.intility.com/',
             },
             {
               label: 'Azure Portal',
