@@ -7,6 +7,11 @@ registries:
     type: npm-registry
     url: https://npm.intility.com
     token: ${{ secrets.NPM_INTILITY_COM_TOKEN }}
+  reusable-workflows:
+    type: git
+    url: https://github.com
+    username: x-access-token
+    password: ${{ secrets.REUSABLE_WORKFLOWS_READ_TOKEN }}
 
 updates:
   - package-ecosystem: "github-actions"
@@ -20,6 +25,8 @@ updates:
 
   - package-ecosystem: "github-actions"
     directory: "/react/.github/workflows"
+    registries:
+      - reusable-workflows
     schedule:
       interval: "monthly"
       time: "09:00"
