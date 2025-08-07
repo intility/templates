@@ -38,12 +38,31 @@ updates:
     commit-message:
       prefix: "chore(react):"
     groups:
-      dependencies:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      msal:
+        patterns:
+          - "@azure/msal-*"
+      fontawesome:
+        patterns:
+          - "@fortawesome/*"
+      patch-and-minor:
         patterns:
           - "*"
+        exclude-patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+          - "@azure/msal-*"
+          - "@fortawesome/*"
         update-types:
-          - minor
           - patch
+          - minor
 
   - package-ecosystem: "npm"
     directory: "/docusaurus"
