@@ -37,6 +37,7 @@ updates:
       timezone: "Europe/Oslo"
     commit-message:
       prefix: "chore(react):"
+    versioning-strategy: "increase"
     groups:
       react:
         patterns:
