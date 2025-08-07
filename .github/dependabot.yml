@@ -12,7 +12,7 @@ updates:
       prefix: "ci:"
 
   - package-ecosystem: "github-actions"
-    directory: "/react"
+    directory: "/react/.github/workflows"
     schedule:
       interval: "monthly"
       time: "09:00"
