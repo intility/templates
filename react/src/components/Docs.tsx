@@ -2,9 +2,9 @@ import { Box, Grid } from "@intility/bifrost-react";
 import bifrostLogo from "~/assets/bifrost.svg";
 import entraIdLogo from "~/assets/entra-id.svg";
 import intilityLogo from "~/assets/intility.svg";
+import reactLogo from "~/assets/react.svg";
 import reactRouterDarkLogo from "~/assets/react-router-dark.svg";
 import reactRouterLightLogo from "~/assets/react-router-light.svg";
-import reactLogo from "~/assets/react.svg";
 import viteLogo from "~/assets/vite.svg";
 import styles from "./Docs.module.css";
 
@@ -58,7 +58,9 @@ const docs: Array<{
  */
 function DocLogo({
   logo,
-}: { logo: string | [lightLogo: string, darkLogo: string] }) {
+}: {
+  logo: string | [lightLogo: string, darkLogo: string];
+}) {
   if (typeof logo === "string") {
     return <img src={logo} alt="" />;
   }
