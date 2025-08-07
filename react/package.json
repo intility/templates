@@ -20,7 +20,7 @@
     "@fortawesome/pro-regular-svg-icons": "^6.7.2",
     "@fortawesome/pro-solid-svg-icons": "^6.7.2",
     "@intility/bifrost-react": "^5.4.0",
-    "@sentry/react": "^9.22.0",
+    "@sentry/react": "^10.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.0",
