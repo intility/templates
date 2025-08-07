@@ -1,6 +1,13 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+
+registries:
+  npm-intility-com:
+    type: npm-registry
+    url: https://npm.intility.com
+    token: ${{ secrets.NPM_INTILITY_COM_TOKEN }}
+
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -22,6 +29,8 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/react"
+    registries:
+      - npm-intility-com
     schedule:
       interval: "monthly"
       time: "09:00"
