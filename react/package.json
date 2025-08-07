@@ -36,7 +36,7 @@
     "@vitejs/plugin-react-swc": "^3.10.0",
     "globals": "^16.1.0",
     "happy-dom": "^17.4.7",
-    "typescript": "~5.8.3",
+    "typescript": "~5.9.2",
     "vite": "^6.3.5",
     "vite-plugin-checker": "^0.9.3",
     "vite-tsconfig-paths": "^5.1.4",
