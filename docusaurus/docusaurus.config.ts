@@ -107,11 +107,11 @@ const config: Config = {
             },
             {
               label: "React",
-              href: "https://reactjs.org/",
+              href: "https://react.dev/",
             },
             {
               label: "Vite",
-              href: "https://vitejs.dev/",
+              href: "https://vite.dev/",
             },
           ],
         },
