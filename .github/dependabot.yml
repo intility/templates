@@ -3,10 +3,6 @@
 version: 2
 
 registries:
-  npm-intility-com:
-    type: npm-registry
-    url: https://npm.intility.com
-    token: ${{ secrets.NPM_INTILITY_COM_TOKEN }}
   reusable-workflows:
     type: git
     url: https://github.com
@@ -36,8 +32,6 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/react"
-    registries:
-      - npm-intility-com
     schedule:
       interval: "monthly"
       time: "09:00"

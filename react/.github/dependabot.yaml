@@ -1,17 +1,8 @@
 version: 2
 
-# https://github.com/orgs/intility/discussions/13
-registries:
-  npm-intility-com:
-    type: npm-registry
-    url: https://npm.intility.com
-    token: ${{ secrets.NPM_INTILITY_COM_TOKEN }}
-
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    registries:
-      - npm-intility-com
     schedule:
       interval: "weekly"
     groups:
