@@ -38,7 +38,7 @@
     "happy-dom": "^18.0.1",
     "typescript": "~5.9.2",
     "vite": "^7.1.4",
-    "vite-plugin-checker": "^0.10.3",
+    "vite-plugin-checker": "^0.11.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   }
