@@ -25,7 +25,7 @@
 		<PackageReference Include="Intility.Logging.AspNetCore" Version="3.0.5" />
 		<PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.0.5" />
 		<PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.0.5" />
-	<PackageReference Include="Microsoft.Identity.Abstractions" Version="9.3.0" />
+	<PackageReference Include="Microsoft.Identity.Abstractions" Version="9.4.0" />
 	<PackageReference Include="Microsoft.Identity.Web" Version="3.14.1" />
 	</ItemGroup>
 
