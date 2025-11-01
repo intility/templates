@@ -19,14 +19,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Azure.Identity" Version="1.16.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+		<PackageReference Include="Azure.Identity" Version="1.17.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.10" />
 		<PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.4.0" />
 		<PackageReference Include="Intility.Logging.AspNetCore" Version="3.0.5" />
 		<PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.0.5" />
 		<PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.0.5" />
-	<PackageReference Include="Microsoft.Identity.Abstractions" Version="9.4.0" />
-	<PackageReference Include="Microsoft.Identity.Web" Version="3.14.1" />
+	<PackageReference Include="Microsoft.Identity.Abstractions" Version="9.5.0" />
+	<PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
 	</ItemGroup>
 
 	<Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
