@@ -1,6 +1,6 @@
 using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -37,14 +37,11 @@ public class SwaggerGenConfigurator(IApiVersionDescriptionProvider apiVersionDes
             Description = "`Leave client_secret blank`",
         });
 
-        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        c.AddSecurityRequirement((document) => new OpenApiSecurityRequirement
         {
             {
-                new OpenApiSecurityScheme
-                {
-                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Azure AD" }
-                },
-                new[] { $"api://{config["AzureAd:ClientId"]}/api-scope" }
+                new OpenApiSecuritySchemeReference("Azure AD", document),
+                [ $"api://{config["AzureAd:ClientId"]}/api-scope" ]
             }
         });
 
