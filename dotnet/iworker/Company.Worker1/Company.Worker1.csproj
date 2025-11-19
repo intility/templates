@@ -25,8 +25,8 @@
 		<PackageReference Include="Intility.Logging.AspNetCore" Version="3.1.0" />
 		<PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.1.0" />
 		<PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.1.0" />
-	<PackageReference Include="Microsoft.Identity.Abstractions" Version="9.6.0" />
-	<PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
+		<PackageReference Include="Microsoft.Identity.Abstractions" Version="9.6.0" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
 	</ItemGroup>
 
 	<Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
