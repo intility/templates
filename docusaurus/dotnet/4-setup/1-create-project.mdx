@@ -53,13 +53,13 @@ dotnet run --project MyApiService/MyApiService.csproj
 
 **Advanced options:**
 
-If you only want to create a project (without a solution), use the `--project` argument.  
+If you only want to create a project (without a solution), use the `--projectOnly` argument.
 :::info
-The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
+The `--projectOnly` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
 :::
 
 ```shell
-dotnet new iwebapi -o MyApiService --project
+dotnet new iwebapi -o MyApiService --projectOnly
 ```
 
 To see all available parameters:
@@ -128,18 +128,18 @@ dotnet run --project MyWorkerService/MyWorkerService.csproj
 **Advanced options:**
 
 :::info
-The `--project` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
+The `--projectOnly` parameter will skip the creation of ArgoCD, k8s deployment and release-please. The parameters `--argo-project`, `--openshift-namespace` and `--github-repo-url` will be ignored.
 :::
 
 ```shell
-dotnet new iworker -o MyWorkerService --project
+dotnet new iworker -o MyWorkerService --projectOnly
 ```
 
 For scheduled tasks, you can create a Kubernetes CronJob instead of a Deployment:
 
 ```shell
 # Create a worker service configured as a scheduled job
-dotnet new iworker -o MyScheduledWorker --cronJob true
+dotnet new iworker -o MyScheduledWorker --cronJob
 ```
 
 To see all available parameters:
@@ -187,8 +187,8 @@ These parameters are available for both templates:
 | Parameter                    | Description                                                                                 |
 | ---------------------------- | ------------------------------------------------------------------------------------------- |
 | `-o, --output`               | Output directory for the generated project                                                  |
-| `-p, --project`              | Creates only the project without a solution file, ArgoCD, k8s deployment and release-please |
-| `-f, --framework`            | Target framework version (defaults to net9.0)                                               |
+| `-p, --projectOnly`          | Creates only the project without a solution file, ArgoCD, k8s deployment and release-please |
+| `-f, --framework`            | Target framework version (defaults to net10.0)                                              |
 | `-ap, --argo-project`        | Argo Project Name (e.g. AppServices). This is the "folder" for your applications in ArgoCD  |
 | `-on, --openshift-namespace` | OpenShift Namespace (e.g. aa-appservices-dev)                                               |
 | `-gru, --github-repo-url`    | GitHub Repository URL                                                                       |
@@ -214,9 +214,9 @@ The following parameters are specific to the `iwebapi` template:
 
 The following parameters are specific to the `iworker` template:
 
-| Parameter    | Description                                                          |
-| ------------ | -------------------------------------------------------------------- |
-| `-c, --cron` | Set to `true` to create a Kubernetes CronJob instead of a Deployment |
+| Parameter       | Description                                                       |
+| --------------- | ----------------------------------------------------------------- |
+| `-c, --cronJob` | Creates a Kubernetes CronJob instead of a continuous Deployment   |
 
 </details>
 

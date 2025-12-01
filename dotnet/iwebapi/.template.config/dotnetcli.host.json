@@ -26,7 +26,7 @@
       "shortName": ""
     },
     "projectOnly": {
-      "longName": "project",
+      "longName": "projectOnly",
       "shortName": "p"
     },
     "UserSecretsId": {
@@ -47,6 +47,6 @@
   },
   "usageExamples": [
     "--client-id \"11111111-1111-1111-11111111111111111\" --tenant-id \"9b5ff18e-53c0-45a2-8bc2-9c0c8f60b2c6\"",
-    "-p --no-restore"
+    "--projectOnly --no-restore"
   ]
 }
