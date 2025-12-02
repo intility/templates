@@ -10,11 +10,11 @@
       "shortName": ""
     },
     "projectOnly": {
-      "longName": "project",
+      "longName": "projectOnly",
       "shortName": "p"
     },
     "cronJob": {
-      "longName": "cron",
+      "longName": "cronJob",
       "shortName": "c"
     },
     "ArgoProject": {
@@ -30,5 +30,5 @@
       "shortName": "gru"
     }
   },
-  "usageExamples": ["--cron", "-p --no-restore"]
+  "usageExamples": ["--cronJob", "--projectOnly --no-restore"]
 }
