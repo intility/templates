@@ -9,6 +9,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# action uses an app-token
+# the built-in token don't need any permissions
+permissions: {}
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
