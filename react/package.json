@@ -12,8 +12,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@azure/msal-browser": "^4.26.2",
-    "@azure/msal-react": "^3.0.22",
+    "@azure/msal-browser": "^4.27.0",
+    "@azure/msal-react": "^3.0.23",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/pro-duotone-svg-icons": "^7.1.0",
     "@fortawesome/pro-light-svg-icons": "^7.1.0",
