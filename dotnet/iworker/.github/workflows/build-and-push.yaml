@@ -17,7 +17,7 @@ jobs:
       id-token: write
       packages: write
       attestations: write
-    uses: intility/reusable-dotnet/.github/workflows/dotnet.yaml@8af9348bcc7bc58e62f7e2fe4b1a46c932347ecc # v1.2.0
+    uses: intility/reusable-dotnet/.github/workflows/dotnet.yaml@v1.2.0
     with:
       directory: ./
       docker: ${{ github.event_name != 'pull_request' }}

@@ -82,6 +82,28 @@ updates:
           - minor
           - patch
 
+  - package-ecosystem: "github-actions"
+    directory: "/dotnet/iwebapi/.github/workflows"
+    registries:
+      - reusable-workflows
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Europe/Oslo"
+    commit-message:
+      prefix: "chore(dotnet):"
+
+  - package-ecosystem: "github-actions"
+    directory: "/dotnet/iworker/.github/workflows"
+    registries:
+      - reusable-workflows
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Europe/Oslo"
+    commit-message:
+      prefix: "chore(dotnet):"
+
   - package-ecosystem: "nuget"
     directory: "/dotnet/iwebapi/Company.WebApplication1"
     schedule:
