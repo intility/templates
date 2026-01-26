@@ -13,9 +13,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       prefix: "ci:"
 
@@ -24,18 +23,16 @@ updates:
     registries:
       - reusable-workflows
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       prefix: "chore(react):"
 
   - package-ecosystem: "npm"
     directory: "/react"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       prefix: "chore(react):"
     versioning-strategy: "increase"
@@ -69,9 +66,8 @@ updates:
   - package-ecosystem: "npm"
     directory: "/docusaurus"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       prefix: "build(docs):"
     groups:
@@ -87,9 +83,8 @@ updates:
     registries:
       - reusable-workflows
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       prefix: "chore(dotnet):"
 
@@ -98,18 +93,16 @@ updates:
     registries:
       - reusable-workflows
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       prefix: "chore(dotnet):"
 
   - package-ecosystem: "nuget"
     directory: "/dotnet/iwebapi/Company.WebApplication1"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       # considered fix because it affects the template itself, not the template package
       prefix: "fix(dotnet):"
@@ -124,9 +117,8 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/dotnet/iworker/Company.Worker1"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 9 * * MON#1 Europe/Oslo'
     commit-message:
       # considered fix because it affects the template itself, not the template package
       prefix: "fix(dotnet):"
