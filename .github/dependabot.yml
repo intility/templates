@@ -14,7 +14,8 @@ updates:
     directory: "/"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       prefix: "ci:"
 
@@ -24,7 +25,8 @@ updates:
       - reusable-workflows
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(react):"
 
@@ -32,7 +34,8 @@ updates:
     directory: "/react"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(react):"
     versioning-strategy: "increase"
@@ -67,7 +70,8 @@ updates:
     directory: "/docusaurus"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       prefix: "build(docs):"
     groups:
@@ -84,7 +88,8 @@ updates:
       - reusable-workflows
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(dotnet):"
 
@@ -94,7 +99,8 @@ updates:
       - reusable-workflows
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(dotnet):"
 
@@ -102,7 +108,8 @@ updates:
     directory: "/dotnet/iwebapi/Company.WebApplication1"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       # considered fix because it affects the template itself, not the template package
       prefix: "fix(dotnet):"
@@ -118,7 +125,8 @@ updates:
     directory: "/dotnet/iworker/Company.Worker1"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1 Europe/Oslo'
+      cronjob: '0 9 * * MON#1'
+      timezone: 'Europe/Oslo'
     commit-message:
       # considered fix because it affects the template itself, not the template package
       prefix: "fix(dotnet):"
