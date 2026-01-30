@@ -14,7 +14,7 @@ updates:
     directory: "/"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       prefix: "ci:"
@@ -25,7 +25,7 @@ updates:
       - reusable-workflows
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(react):"
@@ -34,7 +34,7 @@ updates:
     directory: "/react"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(react):"
@@ -70,7 +70,7 @@ updates:
     directory: "/docusaurus"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       prefix: "build(docs):"
@@ -88,7 +88,7 @@ updates:
       - reusable-workflows
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(dotnet):"
@@ -99,7 +99,7 @@ updates:
       - reusable-workflows
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       prefix: "chore(dotnet):"
@@ -108,7 +108,7 @@ updates:
     directory: "/dotnet/iwebapi/Company.WebApplication1"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       # considered fix because it affects the template itself, not the template package
@@ -125,7 +125,7 @@ updates:
     directory: "/dotnet/iworker/Company.Worker1"
     schedule:
       interval: 'cron'
-      cronjob: '0 9 * * MON#1'
+      cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     commit-message:
       # considered fix because it affects the template itself, not the template package
