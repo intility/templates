@@ -4,9 +4,9 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
     labels:
       - "dependencies"
       - "nuget"
@@ -25,9 +25,9 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
-      time: "09:00"
-      timezone: "Europe/Oslo"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
     labels:
       - "dependencies"
       - "github-actions"
