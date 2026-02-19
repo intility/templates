@@ -4,7 +4,9 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
     groups:
       react:
         patterns:
@@ -35,9 +37,13 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
