@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "bifrost": {
+      "type": "http",
+      "url": "https://bifrost.intility.com/api/mcp"
+    }
+  }
+}
