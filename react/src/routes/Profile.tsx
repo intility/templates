@@ -15,7 +15,7 @@ export default function Profile() {
     <div className="bf-content bfl-page-padding">
       <AuthenticatedTemplate>
         <p>Hello, {account?.name}!</p>
-        <Button onClick={() => instance.logout()}>Logout</Button>
+        <Button onClick={() => instance.logoutRedirect()}>Logout</Button>
       </AuthenticatedTemplate>
       <UnauthenticatedTemplate>
         <p>You are not logged in.</p>
