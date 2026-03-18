@@ -1,17 +1,19 @@
 /// <reference types="vitest/config" />
-import react from "@vitejs/plugin-react";
+
+import msal from "@intility/vite-plugin-msal";
+import babel from "@rolldown/plugin-babel";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: ["babel-plugin-react-compiler"],
-      },
+    react(),
+    babel({
+      presets: [reactCompilerPreset()],
     }),
+    msal(),
     checker({
       typescript: true,
       biome: {
@@ -22,8 +24,10 @@ export default defineConfig({
         useFlatConfig: true,
       },
     }),
-    tsconfigPaths(),
   ],
+  resolve: {
+    tsconfigPaths: true,
+  },
   server: {
     port: 3000,
     open: true,

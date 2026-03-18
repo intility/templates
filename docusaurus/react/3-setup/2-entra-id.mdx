@@ -20,7 +20,13 @@ Select a fitting name for your project, this name will be presented to the user 
 Under `Supported account types`, choose either `Intility AS only - Single tenant` or `Any Microsoft Entra ID directory - Multitenant`.
 This can be changed later, so if you're unsure what to choose, select single tenant.
 
-Under `Redirect URI`, select `Single-page application (SPA)` from the dropdown, and enter `http://localhost:3000`.
+:::note Redirect Bridge
+MSAL requires a separate redirect bridge page from version 5.
+`@intility/vite-plugin-msal` will ensure you have the page in your application,
+but you must add `/redirect` to your Redirect URIs in Entra ID.
+:::
+
+Under `Redirect URI`, select `Single-page application (SPA)` from the dropdown, and enter `http://localhost:3000/redirect`.
 
 Hit the register button, and you will be taken to an overview of your newly created registration.
 
@@ -40,7 +46,7 @@ For each deployment of your app, you'll need to register it. You can do that by 
 The first we need to add is the URL the deploy step makes in OpenShift:
 
 ```
-https://{your-project-slug}-dev.apps.int.intility.no
+https://{your-project-slug}-dev.apps.int.intility.no/redirect
 ```
 
 You can also add more later if you create more environments.
