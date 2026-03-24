@@ -1,5 +1,5 @@
 # This Dockerfile requires running `npm run build` on the host first
-FROM ghcr.io/intility/nginx-unprivileged-react:2.5.1
+FROM ghcr.io/intility/nginx-unprivileged-react@sha256:0e071176f68f689bd8b7fbdc30062af2b20f935e85c5a7daadec156c0277ea04 # 2.5.1
 
 # Copy build files
 COPY dist/ /usr/share/nginx/html
