@@ -50,3 +50,4 @@ nodejs/generators/app/templates/reports
 
 # Claude Code local settings
 .claude/settings.local.json
+.worktrees
