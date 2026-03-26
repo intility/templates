@@ -10,8 +10,8 @@ Go to [our OpenShift instance](https://console-openshift-console.apps.openshift.
 Create a project, the name should be `aa-__APP_NAME__-dev`, e.g. `aa-intility-app-dev`.  
 Add a fitting display name and description if you feel like it.
 
-:::tip Copy your newly created name
-Copy your newly created name, and save it for later. We will use this name when we create our project.
+:::tip Replace the placeholder
+Replace `__OPENSHIFT_NAMESPACE__` in your `argo/**` files with this name.
 :::
 
 ## ArgoCD
@@ -20,8 +20,8 @@ Navigate to [ArgoCD](https://argo.apps.int.intility.no/) and log in using Single
 
 ### Add OpenShift Destination to Argo Project
 
-:::tip Copy your ArgoCD project name
-The project name in ArgoCD is usually your department name, copy this for later.
+:::tip Replace the placeholder
+The project name in ArgoCD is usually your department name. Replace `__ARGO_PROJECT__` in your `argo/**` files with this name.
 :::
 
 Go to **Settings → Projects → Your Project**, and configure the following destinations:
