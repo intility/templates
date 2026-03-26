@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ContainerRepositoryPlaceholder
+  name: __CONTAINER_REPOSITORY__
 spec:
   replicas: 3
   template:
     spec:
       containers:
-        - name: ContainerRepositoryPlaceholder
+        - name: __CONTAINER_REPOSITORY__
           resources:
             requests:
               memory: 256Mi

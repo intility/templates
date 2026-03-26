@@ -79,7 +79,7 @@
       "type": "derived",
       "valueSource": "name",
       "valueTransform": "kebabCase",
-      "replaces": "ContainerRepositoryPlaceholder",
+      "replaces": "__CONTAINER_REPOSITORY__",
       "description": "The container repository name, derived from project name and made safe for container registry."
     },
     "cronJob": {
@@ -91,63 +91,23 @@
     "ArgoProject": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "",
+      "defaultValue": "__ARGO_PROJECT__",
+      "replaces": "__ARGO_PROJECT__",
       "description": "Argo Project Name (e.g. AppServices)"
     },
     "OpenShiftNamespace": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "",
+      "defaultValue": "__OPENSHIFT_NAMESPACE__",
+      "replaces": "__OPENSHIFT_NAMESPACE__",
       "description": "OpenShift Namespace (e.g. aa-appservices-dev)"
     },
     "GitHubRepoUrl": {
       "type": "parameter",
       "datatype": "string",
-      "forms": {
-        "global": ["url"]
-      },
-      "defaultValue": "",
+      "defaultValue": "__GITHUB_REPO_URL__",
+      "replaces": "__GITHUB_REPO_URL__",
       "description": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
-    },
-    "FormattedOpenShiftNamespace": {
-      "type": "derived",
-      "valueSource": "ContainerRepository",
-      "valueTransform": "openShiftFormat"
-    },
-    "FormattedGitHubRepoUrl": {
-      "type": "derived",
-      "valueSource": "ContainerRepository",
-      "valueTransform": "githubUrlFormat"
-    },
-    "ArgoProjectCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "ArgoProject",
-        "fallbackVariableName": "ContainerRepository"
-      },
-      "replaces": "ArgoProjectPlaceholder",
-      "description": "Uses ArgoProject if provided, otherwise ContainerRepository"
-    },
-    "OpenShiftNamespaceCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "OpenShiftNamespace",
-        "fallbackVariableName": "FormattedOpenShiftNamespace"
-      },
-      "replaces": "OpenShiftNamespacePlaceholder",
-      "description": "Uses OpenShiftNamespace if provided, otherwise generates from ContainerRepository"
-    },
-    "GitHubRepoUrlCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "GitHubRepoUrl",
-        "fallbackVariableName": "FormattedGitHubRepoUrl"
-      },
-      "replaces": "GitHubRepoUrlPlaceholder",
-      "description": "Uses GitHubRepoUrl if provided, otherwise generates from ContainerRepository"
     },
     "skipRestore": {
       "type": "parameter",
@@ -165,16 +125,6 @@
   "forms": {
     "kebabCase": {
       "identifier": "kebabCase"
-    },
-    "openShiftFormat": {
-      "identifier": "replace",
-      "pattern": "^(.*)$",
-      "replacement": "aa-$1-dev"
-    },
-    "githubUrlFormat": {
-      "identifier": "replace",
-      "pattern": "^(.*)$",
-      "replacement": "https://github.com/intility/$1.git"
     }
   },
   "defaultName": "IntilityWorkerService",
