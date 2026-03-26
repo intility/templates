@@ -5,13 +5,8 @@ metadata:
   labels:
     app.openshift.io/runtime: dotnet
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 0
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
   selector:
     matchLabels:
       app: __CONTAINER_REPOSITORY__
@@ -49,10 +44,3 @@ spec:
                 name: __CONTAINER_REPOSITORY__-secrets
             - configMapRef:
                 name: __CONTAINER_REPOSITORY__-config
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: __CONTAINER_REPOSITORY__
-              topologyKey: "kubernetes.io/hostname"

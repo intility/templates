@@ -4,6 +4,11 @@ kind: Kustomization
 resources:
   - ../../base
 
+#if (!cronJob)
+components:
+  - ../../components/high-availability
+#endif
+
 nameSuffix: -prod
 
 labels:

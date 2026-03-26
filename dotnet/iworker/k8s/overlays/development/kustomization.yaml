@@ -11,6 +11,10 @@ labels:
     pairs:
       app.kubernetes.io/part-of: __CONTAINER_REPOSITORY__-dev
 
+replicas:
+  - name: __CONTAINER_REPOSITORY__
+    count: 2
+
 configMapGenerator:
   - name: __CONTAINER_REPOSITORY__-config
     literals:

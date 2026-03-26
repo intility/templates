@@ -4,6 +4,9 @@ kind: Kustomization
 resources:
   - ../../base
 
+components:
+  - ../../components/high-availability
+
 nameSuffix: -prod
 
 labels:
@@ -13,7 +16,6 @@ labels:
 
 patches:
   - path: deployment-patch.yaml
-  - path: pdb-patch.yaml
 
 configMapGenerator:
   - name: __CONTAINER_REPOSITORY__-config

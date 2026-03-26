@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: __CONTAINER_REPOSITORY__
 spec:
-  replicas: 3
   template:
     spec:
       containers:

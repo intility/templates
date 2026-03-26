@@ -2,5 +2,8 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: __CONTAINER_REPOSITORY__
-  spec:
-    minAvailable: 2
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: __CONTAINER_REPOSITORY__
