@@ -67,7 +67,7 @@
       "type": "derived",
       "valueSource": "name",
       "valueTransform": "kebabCase",
-      "replaces": "ContainerRepositoryPlaceholder",
+      "replaces": "__CONTAINER_REPOSITORY__",
       "description": "The container repository name, derived from project name and made safe for container registry."
     },
     "HostIdentifier": {
@@ -77,97 +77,44 @@
     "ClientId": {
       "type": "parameter",
       "datatype": "string",
-      "forms": {
-        "global": ["guid"]
-      },
-      "replaces": "11111111-1111-1111-11111111111111111",
+      "replaces": "__CLIENT_ID__",
+      "defaultValue": "__CLIENT_ID__",
       "description": "The Azure AD application (client) ID. Must be a valid GUID for the application registration."
-    },
-    "DefaultScope": {
-      "type": "parameter",
-      "datatype": "string",
-      "replaces": "api-scope",
-      "defaultValue": "user_impersonation",
-      "description": "The default OAuth 2.0 scope to request during authentication. Default is 'user_impersonation'."
     },
     "TenantId": {
       "type": "parameter",
       "datatype": "string",
-      "forms": {
-        "global": ["guid"]
-      },
-      "replaces": "9b5ff18e-53c0-45a2-8bc2-9c0c8f60b2c6",
+      "replaces": "__TENANT_ID__",
+      "defaultValue": "__TENANT_ID__",
       "description": "The Azure AD directory (tenant) ID. Must be a valid GUID for your Azure AD tenant."
     },
     "SwaggerClientId": {
       "type": "parameter",
       "datatype": "string",
-      "forms": {
-        "global": ["guid"]
-      },
-      "replaces": "22222222-2222-2222-22222222222222222",
+      "replaces": "__SWAGGER_CLIENT_ID__",
+      "defaultValue": "__SWAGGER_CLIENT_ID__",
       "description": "The Azure AD application (client) ID for Swagger UI authentication. Must be a valid GUID."
     },
     "ArgoProject": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "",
+      "defaultValue": "__ARGO_PROJECT__",
+      "replaces": "__ARGO_PROJECT__",
       "description": "Argo Project Name (e.g. AppServices)"
     },
     "OpenShiftNamespace": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "",
+      "defaultValue": "__OPENSHIFT_NAMESPACE__",
+      "replaces": "__OPENSHIFT_NAMESPACE__",
       "description": "OpenShift Namespace (e.g. aa-appservices-dev)"
     },
     "GitHubRepoUrl": {
       "type": "parameter",
       "datatype": "string",
-      "forms": {
-        "global": ["url"]
-      },
-      "defaultValue": "",
+      "defaultValue": "__GITHUB_REPO_URL__",
+      "replaces": "__GITHUB_REPO_URL__",
       "description": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
-    },
-    "FormattedOpenShiftNamespace": {
-      "type": "derived",
-      "valueSource": "ContainerRepository",
-      "valueTransform": "openShiftFormat"
-    },
-    "FormattedGitHubRepoUrl": {
-      "type": "derived",
-      "valueSource": "ContainerRepository",
-      "valueTransform": "githubUrlFormat"
-    },
-    "ArgoProjectCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "ArgoProject",
-        "fallbackVariableName": "ContainerRepository"
-      },
-      "replaces": "ArgoProjectPlaceholder",
-      "description": "Uses ArgoProject if provided, otherwise ContainerRepository"
-    },
-    "OpenShiftNamespaceCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "OpenShiftNamespace",
-        "fallbackVariableName": "FormattedOpenShiftNamespace"
-      },
-      "replaces": "OpenShiftNamespacePlaceholder",
-      "description": "Uses OpenShiftNamespace if provided, otherwise generates from ContainerRepository"
-    },
-    "GitHubRepoUrlCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "GitHubRepoUrl",
-        "fallbackVariableName": "FormattedGitHubRepoUrl"
-      },
-      "replaces": "GitHubRepoUrlPlaceholder",
-      "description": "Uses GitHubRepoUrl if provided, otherwise generates from ContainerRepository"
     },
     "UserSecretsId": {
       "type": "generated",
@@ -192,16 +139,6 @@
   "forms": {
     "kebabCase": {
       "identifier": "kebabCase"
-    },
-    "openShiftFormat": {
-      "identifier": "replace",
-      "pattern": "^(.*)$",
-      "replacement": "aa-$1-dev"
-    },
-    "githubUrlFormat": {
-      "identifier": "replace",
-      "pattern": "^(.*)$",
-      "replacement": "https://github.com/intility/$1.git"
     }
   },
   "defaultName": "IntilityApi",

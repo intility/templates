@@ -30,7 +30,7 @@ public class SwaggerGenConfigurator(IApiVersionDescriptionProvider apiVersionDes
                     TokenUrl = new Uri("https://login.microsoftonline.com/organizations/oauth2/v2.0/token"),
                     Scopes = new Dictionary<string, string>
                     {
-                        { $"api://{config["AzureAd:ClientId"]}/api-scope", "Access Company.WebApplication1" }
+                        { $"api://{config["AzureAd:ClientId"]}/user_impersonation", "Access Company.WebApplication1" }
                     }
                 }
             },
@@ -41,7 +41,7 @@ public class SwaggerGenConfigurator(IApiVersionDescriptionProvider apiVersionDes
         {
             {
                 new OpenApiSecuritySchemeReference("Azure AD", document),
-                [ $"api://{config["AzureAd:ClientId"]}/api-scope" ]
+                [ $"api://{config["AzureAd:ClientId"]}/user_impersonation" ]
             }
         });
 

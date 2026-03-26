@@ -17,7 +17,7 @@ public class SwaggerUIConfigurator(IApiVersionDescriptionProvider apiVersionProv
         }
         options.OAuthAppName(config["Swagger:AppName"]);
         options.OAuthClientId(config["Swagger:ClientId"]);
-        options.OAuthScopes($"api://{config["AzureAd:ClientId"]}/api-scope");
+        options.OAuthScopes($"api://{config["AzureAd:ClientId"]}/user_impersonation");
         options.OAuthUsePkce();
         options.RoutePrefix = string.Empty;
     }

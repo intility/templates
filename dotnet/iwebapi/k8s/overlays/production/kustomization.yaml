@@ -9,20 +9,20 @@ nameSuffix: -prod
 labels:
   - includeSelectors: true
     pairs:
-      app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-prod
+      app.kubernetes.io/part-of: __CONTAINER_REPOSITORY__-prod
 
 patches:
   - path: deployment-patch.yaml
   - path: pdb-patch.yaml
 
 configMapGenerator:
-  - name: ContainerRepositoryPlaceholder-config
+  - name: __CONTAINER_REPOSITORY__-config
     literals:
       - ASPNETCORE_ENVIRONMENT=Production
 
 # x-release-please-start-version
 images:
-  - name: ContainerRepositoryPlaceholder
-    newName: ghcr.io/intility/ContainerRepositoryPlaceholder
+  - name: __CONTAINER_REPOSITORY__
+    newName: ghcr.io/intility/__CONTAINER_REPOSITORY__
     newTag: 1.0.0
 # x-release-please-end

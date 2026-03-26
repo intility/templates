@@ -1,6 +1,6 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: ContainerRepositoryPlaceholder
+  name: __CONTAINER_REPOSITORY__
   spec:
     minAvailable: 2
