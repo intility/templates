@@ -38,7 +38,8 @@
             ".editorconfig",
             ".gitattributes",
             ".gitignore",
-            "README.md"
+            "README.md",
+            "CLAUDE.md"
           ],
           "rename": {
             "Company.WebApplication1/": "./"
