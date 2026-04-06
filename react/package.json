@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@biomejs/biome": "2.4.8",
+    "@biomejs/biome": "2.4.10",
     "@intility/eslint-config-react-compiler": "^1.0.0",
     "@intility/vite-plugin-msal": "^0.4.0",
     "@rolldown/plugin-babel": "^0.2.2",
