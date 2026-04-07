@@ -7,11 +7,12 @@
 	  	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<InvariantGlobalization>false</InvariantGlobalization>
 		<IsPublishable>true</IsPublishable>
+		<RuntimeIdentifiers>linux-musl-x64</RuntimeIdentifiers>
 		<EnableSdkContainerSupport>true</EnableSdkContainerSupport>
 		<ContainerRepository>intility/ContainerRepositoryPlaceholder</ContainerRepository>
 		<ContainerRegistry>ghcr.io</ContainerRegistry>
 		<ContainerBaseImage>mcr.microsoft.com/dotnet/runtime-deps:10.0-alpine-extra</ContainerBaseImage>
-		<SelfContained>true</SelfContained>
+		<SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>
 		<PublishProfile>DefaultContainer</PublishProfile>
 	</PropertyGroup>
 
