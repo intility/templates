@@ -220,6 +220,14 @@ The following parameters are specific to the `iworker` template:
 
 </details>
 
+## NuGet lock file
+
+The template includes a committed `packages.lock.json` for supply chain security. It is kept up to date automatically when you run `dotnet restore`. If it is ever deleted, recreate it with:
+
+```sh
+dotnet restore -r linux-musl-x64 -p:RestorePackagesWithLockFile=true -p:NuGetLockFilePath=packages.lock.json
+```
+
 ## Pushing your application
 
 Creating a dotnet project from a template does not automatically create a git repository for you,
