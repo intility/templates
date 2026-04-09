@@ -228,6 +228,8 @@ The template includes a committed `packages.lock.json` for supply chain security
 dotnet restore -r linux-musl-x64 -p:RestorePackagesWithLockFile=true -p:NuGetLockFilePath=packages.lock.json
 ```
 
+See [NuGet lock files](https://devblogs.microsoft.com/dotnet/enable-repeatable-package-restores-using-a-lock-file/) for more details.
+
 ## Pushing your application
 
 Creating a dotnet project from a template does not automatically create a git repository for you,
