@@ -93,9 +93,9 @@
       },
       "Microsoft.Identity.Abstractions": {
         "type": "Direct",
-        "requested": "[11.0.0, )",
-        "resolved": "11.0.0",
-        "contentHash": "Bz95w/wKDSxBIMhK8RlrOwodFBuzOdFVCA5EqbNR73kzFBVT8XrSNdu3d3N7mV8EZaIjqk1EdrwmNF+WYNmhVQ=="
+        "requested": "[12.0.0, )",
+        "resolved": "12.0.0",
+        "contentHash": "PW7ymSop61IsKJwOkPibZcCslW+mRL8uz+AmB9ixe9HBCQjV/duEIbjNzjRcD7tDn563TqTsg2hoFwo62RR6YA=="
       },
       "Microsoft.Identity.Web": {
         "type": "Direct",
