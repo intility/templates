@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ContainerRepositoryPlaceholder-prod
+  name: __CONTAINER_REPOSITORY__-prod
 spec:
-  project: ArgoProjectPlaceholder
+  project: __ARGO_PROJECT__
   destination:
-    namespace: OpenShiftNamespacePlaceholder
+    namespace: __OPENSHIFT_NAMESPACE__
     server: https://kubernetes.default.svc
   source:
-    repoURL: GitHubRepoUrlPlaceholder
+    repoURL: __GITHUB_REPO_URL__
     targetRevision: HEAD
     path: k8s/overlays/production

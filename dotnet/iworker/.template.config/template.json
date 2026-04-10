@@ -15,8 +15,6 @@
   "sourceName": "Company.Worker1",
   "preferNameDirectory": true,
   "guids": [
-    "0E62310C-D76A-4681-9926-B1BFFDC379FC",
-    "6B4D25B3-1CA5-49A7-BD85-EDC0FFF3AC14",
     "53bc9b9d-9d6a-45d4-8429-2a2761773502"
   ],
   "sources": [
@@ -29,7 +27,7 @@
         {
           "condition": "(projectOnly)",
           "exclude": [
-            "Company.Worker1.sln",
+            "Company.Worker1.slnx",
             ".release-please-manifest.json",
             "release-please-config.json",
             ".github/**",
@@ -38,7 +36,8 @@
             ".editorconfig",
             ".gitattributes",
             ".gitignore",
-            "README.md"
+            "README.md",
+            "CLAUDE.md"
           ],
           "rename": {
             "Company.Worker1/": "./"
@@ -47,15 +46,15 @@
         {
           "condition": "(cronJob)",
           "exclude": [
-            "Company.Worker1/k8s/base/deployment.yaml",
-            "Company.Worker1/k8s/overlays/production/deployment-patch.yaml"
+            "k8s/base/deployment.yaml",
+            "k8s/overlays/production/deployment-patch.yaml"
           ]
         },
         {
           "condition": "(!cronJob)",
           "exclude": [
-            "Company.Worker1/k8s/base/cronjob.yaml",
-            "Company.Worker1/k8s/overlays/production/cronjob-patch.yaml"
+            "k8s/base/cronjob.yaml",
+            "k8s/overlays/production/cronjob-patch.yaml"
           ]
         }
       ]
@@ -79,8 +78,15 @@
       "type": "derived",
       "valueSource": "name",
       "valueTransform": "kebabCase",
-      "replaces": "ContainerRepositoryPlaceholder",
+      "replaces": "__CONTAINER_REPOSITORY__",
       "description": "The container repository name, derived from project name and made safe for container registry."
+    },
+    "ProjectPath": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "identity",
+      "replaces": "__PROJECT_PATH__",
+      "description": "The project name with original casing preserved, for use in .slnx paths where hyphens must be kept."
     },
     "cronJob": {
       "type": "parameter",
@@ -91,63 +97,23 @@
     "ArgoProject": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "",
+      "defaultValue": "__ARGO_PROJECT__",
+      "replaces": "__ARGO_PROJECT__",
       "description": "Argo Project Name (e.g. AppServices)"
     },
     "OpenShiftNamespace": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "",
+      "defaultValue": "__OPENSHIFT_NAMESPACE__",
+      "replaces": "__OPENSHIFT_NAMESPACE__",
       "description": "OpenShift Namespace (e.g. aa-appservices-dev)"
     },
     "GitHubRepoUrl": {
       "type": "parameter",
       "datatype": "string",
-      "forms": {
-        "global": ["url"]
-      },
-      "defaultValue": "",
+      "defaultValue": "__GITHUB_REPO_URL__",
+      "replaces": "__GITHUB_REPO_URL__",
       "description": "GitHub Repository URL (e.g. https://github.com/intility/appservices.git)"
-    },
-    "FormattedOpenShiftNamespace": {
-      "type": "derived",
-      "valueSource": "ContainerRepository",
-      "valueTransform": "openShiftFormat"
-    },
-    "FormattedGitHubRepoUrl": {
-      "type": "derived",
-      "valueSource": "ContainerRepository",
-      "valueTransform": "githubUrlFormat"
-    },
-    "ArgoProjectCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "ArgoProject",
-        "fallbackVariableName": "ContainerRepository"
-      },
-      "replaces": "ArgoProjectPlaceholder",
-      "description": "Uses ArgoProject if provided, otherwise ContainerRepository"
-    },
-    "OpenShiftNamespaceCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "OpenShiftNamespace",
-        "fallbackVariableName": "FormattedOpenShiftNamespace"
-      },
-      "replaces": "OpenShiftNamespacePlaceholder",
-      "description": "Uses OpenShiftNamespace if provided, otherwise generates from ContainerRepository"
-    },
-    "GitHubRepoUrlCoalesced": {
-      "type": "generated",
-      "generator": "coalesce",
-      "parameters": {
-        "sourceVariableName": "GitHubRepoUrl",
-        "fallbackVariableName": "FormattedGitHubRepoUrl"
-      },
-      "replaces": "GitHubRepoUrlPlaceholder",
-      "description": "Uses GitHubRepoUrl if provided, otherwise generates from ContainerRepository"
     },
     "skipRestore": {
       "type": "parameter",
@@ -166,15 +132,8 @@
     "kebabCase": {
       "identifier": "kebabCase"
     },
-    "openShiftFormat": {
-      "identifier": "replace",
-      "pattern": "^(.*)$",
-      "replacement": "aa-$1-dev"
-    },
-    "githubUrlFormat": {
-      "identifier": "replace",
-      "pattern": "^(.*)$",
-      "replacement": "https://github.com/intility/$1.git"
+    "identity": {
+      "identifier": "identity"
     }
   },
   "defaultName": "IntilityWorkerService",
@@ -189,24 +148,12 @@
       ],
       "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
       "continueOnError": true
-    },
-    {
-      "description": "Add projects to solution",
-      "manualInstructions": [
-        { "text": "Add generated project to solution manually." }
-      ],
-      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
-      "continueOnError": true
     }
   ],
   "primaryOutputs": [
     {
-      "condition": "(!projectOnly && HostIdentifier == 'dotnetcli')",
-      "path": "Company.Worker1.sln"
-    },
-    {
-      "condition": "(!projectOnly && HostIdentifier != 'dotnetcli')",
-      "path": "Company.Worker1.generated.sln"
+      "condition": "(!projectOnly)",
+      "path": "Company.Worker1.slnx"
     },
     {
       "condition": "(projectOnly)",

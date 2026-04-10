@@ -9,9 +9,13 @@ nameSuffix: -dev
 labels:
   - includeSelectors: true
     pairs:
-      app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-dev
+      app.kubernetes.io/part-of: __CONTAINER_REPOSITORY__-dev
+
+replicas:
+  - name: __CONTAINER_REPOSITORY__
+    count: 2
 
 configMapGenerator:
-  - name: ContainerRepositoryPlaceholder-config
+  - name: __CONTAINER_REPOSITORY__-config
     literals:
       - ASPNETCORE_ENVIRONMENT=Development

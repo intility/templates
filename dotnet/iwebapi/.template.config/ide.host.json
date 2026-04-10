@@ -53,15 +53,6 @@
       "precedence": 240
     },
     {
-      "id": "DefaultScope",
-      "name": {
-        "text": "Default Scope"
-      },
-      "isVisible": true,
-      "group": "Authentication",
-      "precedence": 250
-    },
-    {
       "id": "SwaggerClientId",
       "name": {
         "text": "Swagger Client ID"

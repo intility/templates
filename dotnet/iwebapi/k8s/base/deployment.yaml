@@ -1,28 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ContainerRepositoryPlaceholder
+  name: __CONTAINER_REPOSITORY__
   labels:
     app.openshift.io/runtime: dotnet
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 0
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
   selector:
     matchLabels:
-      app: ContainerRepositoryPlaceholder
+      app: __CONTAINER_REPOSITORY__
   template:
     metadata:
       labels:
-        app: ContainerRepositoryPlaceholder
+        app: __CONTAINER_REPOSITORY__
     spec:
       containers:
-        - name: ContainerRepositoryPlaceholder
-          image: ghcr.io/intility/ContainerRepositoryPlaceholder
+        - name: __CONTAINER_REPOSITORY__
+          image: ghcr.io/intility/__CONTAINER_REPOSITORY__
           imagePullPolicy: Always
           ports:
             - name: http
@@ -46,13 +41,6 @@ spec:
               memory: 128Mi
           envFrom:
             - secretRef:
-                name: ContainerRepositoryPlaceholder-secrets
+                name: __CONTAINER_REPOSITORY__-secrets
             - configMapRef:
-                name: ContainerRepositoryPlaceholder-config
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: ContainerRepositoryPlaceholder
-              topologyKey: "kubernetes.io/hostname"
+                name: __CONTAINER_REPOSITORY__-config

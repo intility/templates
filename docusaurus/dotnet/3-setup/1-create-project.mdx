@@ -32,23 +32,40 @@ The Intility Api template provides a robust foundation for building RESTful API 
 >
 <TabItem value="cli">
 
-Create a new API project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace`, `--github-repo-url`, `--client-id`, `--tenant-id` and `--swagger-client-id` parameters. This will ensure that the dotnet project is connected with your newly created OpenShift namespace, ArgoCD Project and uses your App Registrations for authentication and authorization.
+Create a new API project with a solution file. The template works without any flags — placeholder tokens are left in the scaffolded output for you to fill in afterwards.
 
 ```shell
-# Create project with solution
-dotnet new iwebapi -o MyApiService \
-    -ap "AppServices" \
-    -on "aa-appservices-dev" \
-    -gru "https://github.com/Intility/MyApiService.git" \
-    -cid "<CLIENT_ID you saved earlier>" \
-    -tid "<TENANT_ID from appreg, or common if multitenant>"
-    -swid "<SWAGGER_CLIENT_ID you saved earlier>"
+# Create project — no flags required
+dotnet new iwebapi -o MyApiService
 
 # Navigate to project directory
 cd MyApiService
 
 # Run the project
 dotnet run --project MyApiService/MyApiService.csproj
+```
+
+The scaffolded project contains `__SCREAMING_SNAKE_CASE__` placeholder tokens throughout. Find and replace each one with your actual values:
+
+| Placeholder | Where | What to replace with |
+| --- | --- | --- |
+| `__CLIENT_ID__` | `appsettings.json` | Azure AD application (client) ID |
+| `__TENANT_ID__` | `appsettings.json` | Azure AD directory (tenant) ID |
+| `__SWAGGER_CLIENT_ID__` | `appsettings.json` | Azure AD client ID for Swagger UI |
+| `__ARGO_PROJECT__` | `argo/**` | Argo project name (e.g. `AppServices`) |
+| `__OPENSHIFT_NAMESPACE__` | `argo/**` | OpenShift namespace (e.g. `aa-appservices-dev`) |
+| `__GITHUB_REPO_URL__` | `argo/**` | GitHub repository URL |
+
+If you have all values ready at scaffold time, you can supply them as flags to skip the find-and-replace step:
+
+```shell
+dotnet new iwebapi -o MyApiService \
+    -ap "AppServices" \
+    -on "aa-appservices-dev" \
+    -gru "https://github.com/Intility/MyApiService.git" \
+    -cid "<YOUR_CLIENT_ID>" \
+    -tid "<YOUR_TENANT_ID>" \
+    -swid "<YOUR_SWAGGER_CLIENT_ID>"
 ```
 
 **Advanced options:**
@@ -85,8 +102,8 @@ dotnet new iwebapi --help
 
 5. Configure template-specific options.
 
-:::info
-For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `GitHub Repoository Url` parameters. Argo Project is found in ArgoCD, OpenShift Namespace is found in the OpenShift cluster and GitHub Repoository Url is found in GitHub.
+:::tip
+All parameters are optional. Leave them blank to use placeholder tokens in the scaffolded output, or fill them in to skip the find-and-replace step.
 :::
 
 ![Visual Studio Configure Template-Specific Options](/img/vs-configure-api.png)
@@ -109,20 +126,34 @@ The Intility Worker template helps you build background processing services with
 >
 <TabItem value="cli">
 
-Create a new Worker Service project with a solution file. For the best experience, use the `--argo-project`, `--openshift-namespace` and `--github-repo-url` parameters.
+Create a new Worker Service project with a solution file. The template works without any flags — placeholder tokens are left in the scaffolded output for you to fill in afterwards.
 
 ```shell
-# Create project with solution
-dotnet new iworker -o MyWorkerService \
-    -ap "AppServices" \
-    -on "aa-appservices-dev" \
-    -gru "https://github.com/Intility/MyWorkerService.git"
+# Create project — no flags required
+dotnet new iworker -o MyWorkerService
 
 # Navigate to project directory
 cd MyWorkerService
 
 # Run the project
 dotnet run --project MyWorkerService/MyWorkerService.csproj
+```
+
+The scaffolded project contains `__SCREAMING_SNAKE_CASE__` placeholder tokens throughout. Find and replace each one with your actual values:
+
+| Placeholder | Where | What to replace with |
+| --- | --- | --- |
+| `__ARGO_PROJECT__` | `argo/**` | Argo project name (e.g. `AppServices`) |
+| `__OPENSHIFT_NAMESPACE__` | `argo/**` | OpenShift namespace (e.g. `aa-appservices-dev`) |
+| `__GITHUB_REPO_URL__` | `argo/**` | GitHub repository URL |
+
+If you have all values ready at scaffold time, you can supply them as flags to skip the find-and-replace step:
+
+```shell
+dotnet new iworker -o MyWorkerService \
+    -ap "AppServices" \
+    -on "aa-appservices-dev" \
+    -gru "https://github.com/Intility/MyWorkerService.git"
 ```
 
 **Advanced options:**
@@ -165,8 +196,8 @@ dotnet new iworker --help
 
 5. Configure template-specific options.
 
-:::info
-For the best experience, fill the `Argo Project`, `OpenShift Namespace` and `GitHub Repoository Url` parameters. Argo Project is found in ArgoCD, OpenShift Namespace is found in the OpenShift cluster and GitHub Repoository Url is found in GitHub.
+:::tip
+All parameters are optional. Leave them blank to use placeholder tokens in the scaffolded output, or fill them in to skip the find-and-replace step.
 :::
 
 ![Visual Studio Configure Template-Specific Options](/img/vs-configure-worker.png)
@@ -205,7 +236,6 @@ The following parameters are specific to the `iwebapi` template:
 | `-cid, --client-id`          | Azure AD application (client) ID                       |
 | `-tid, --tenant-id`          | Azure AD directory (tenant) ID                         |
 | `-swid, --swagger-client-id` | Azure AD client ID for Swagger UI authentication       |
-| `-s, --scope`                | Default OAuth scope (defaults to "user_impersonation") |
 
 </details>
 
@@ -229,18 +259,3 @@ dotnet restore -r linux-musl-x64 -p:RestorePackagesWithLockFile=true -p:NuGetLoc
 ```
 
 See [NuGet lock files](https://devblogs.microsoft.com/dotnet/enable-repeatable-package-restores-using-a-lock-file/) for more details.
-
-## Pushing your application
-
-Creating a dotnet project from a template does not automatically create a git repository for you,
-so we have to make one ourselves.
-Follow the "Push an existing folder" example,
-which should look something like this:
-
-```bash
-git init
-git remote add origin git@github.com:intility/intility-app.git
-git add .
-git commit -m "feat: add intility-app base"
-git push -u origin main
-```

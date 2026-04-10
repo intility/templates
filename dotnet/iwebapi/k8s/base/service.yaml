@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ContainerRepositoryPlaceholder
+  name: __CONTAINER_REPOSITORY__
 spec:
   type: ClusterIP
   ports:

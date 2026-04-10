@@ -9,9 +9,15 @@ nameSuffix: -dev
 labels:
   - includeSelectors: true
     pairs:
-      app.kubernetes.io/part-of: ContainerRepositoryPlaceholder-dev
+      app.kubernetes.io/part-of: __CONTAINER_REPOSITORY__-dev
+
+#if (!cronJob)
+replicas:
+  - name: __CONTAINER_REPOSITORY__
+    count: 2
+#endif
 
 configMapGenerator:
-  - name: ContainerRepositoryPlaceholder-config
+  - name: __CONTAINER_REPOSITORY__-config
     literals:
       - DOTNET_ENVIRONMENT=Development

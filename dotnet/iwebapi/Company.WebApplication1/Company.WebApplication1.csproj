@@ -8,7 +8,7 @@
     <IsPublishable>true</IsPublishable>
     <RuntimeIdentifiers>linux-musl-x64</RuntimeIdentifiers>
     <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
-    <ContainerRepository>intility/ContainerRepositoryPlaceholder</ContainerRepository>
+    <ContainerRepository>intility/__CONTAINER_REPOSITORY__</ContainerRepository>
     <ContainerRegistry>ghcr.io</ContainerRegistry>
     <ContainerBaseImage>mcr.microsoft.com/dotnet/runtime-deps:10.0-alpine-extra</ContainerBaseImage>
     <SelfContained Condition="'$(RuntimeIdentifier)' != ''">true</SelfContained>

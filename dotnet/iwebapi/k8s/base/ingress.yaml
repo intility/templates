@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ContainerRepositoryPlaceholder
+  name: __CONTAINER_REPOSITORY__
   annotations:
     route.openshift.io/termination: edge
   labels:
     ingress-tenant: aa
 spec:
   rules:
-    - host: ContainerRepositoryPlaceholder.apps.int.intility.no
+    - host: __CONTAINER_REPOSITORY__.apps.int.intility.no
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: ContainerRepositoryPlaceholder
+                name: __CONTAINER_REPOSITORY__
                 port:
                   number: 8080
