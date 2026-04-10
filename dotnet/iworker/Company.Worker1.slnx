@@ -1,3 +1,3 @@
 <Solution>
-  <Project Path="Company.Worker1/Company.Worker1.csproj" />
+  <Project Path="__PROJECT_PATH__/__PROJECT_PATH__.csproj" />
 </Solution>

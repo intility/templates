@@ -1,4 +1,6 @@
 apiVersion: batch/v1
 kind: CronJob
+metadata:
+  name: __CONTAINER_REPOSITORY__
 spec:
   failedJobsHistoryLimit: 3

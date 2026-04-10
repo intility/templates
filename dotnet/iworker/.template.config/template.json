@@ -81,6 +81,13 @@
       "replaces": "__CONTAINER_REPOSITORY__",
       "description": "The container repository name, derived from project name and made safe for container registry."
     },
+    "ProjectPath": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "identity",
+      "replaces": "__PROJECT_PATH__",
+      "description": "The project name with original casing preserved, for use in .slnx paths where hyphens must be kept."
+    },
     "cronJob": {
       "type": "parameter",
       "datatype": "bool",
@@ -124,6 +131,9 @@
   "forms": {
     "kebabCase": {
       "identifier": "kebabCase"
+    },
+    "identity": {
+      "identifier": "identity"
     }
   },
   "defaultName": "IntilityWorkerService",
