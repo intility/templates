@@ -69,10 +69,6 @@
       "replaces": "__CONTAINER_REPOSITORY__",
       "description": "The container repository name, derived from project name and made safe for container registry."
     },
-    "HostIdentifier": {
-      "type": "bind",
-      "binding": "HostIdentifier"
-    },
     "ClientId": {
       "type": "parameter",
       "datatype": "string",

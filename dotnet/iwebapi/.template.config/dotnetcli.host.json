@@ -42,7 +42,7 @@
     }
   },
   "usageExamples": [
-    "--client-id \"__CLIENT_ID__\" --tenant-id \"__TENANT_ID__\"",
+    "--client-id \"<your-client-id>\" --tenant-id \"<your-tenant-id>\"",
     "--projectOnly --no-restore"
   ]
 }

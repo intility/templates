@@ -11,9 +11,11 @@ labels:
     pairs:
       app.kubernetes.io/part-of: __CONTAINER_REPOSITORY__-dev
 
+#if (!cronJob)
 replicas:
   - name: __CONTAINER_REPOSITORY__
     count: 2
+#endif
 
 configMapGenerator:
   - name: __CONTAINER_REPOSITORY__-config
