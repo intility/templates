@@ -28,10 +28,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@biomejs/biome": "2.4.10",
+    "@biomejs/biome": "2.4.14",
     "@intility/eslint-config-react-compiler": "^1.0.0",
     "@intility/vite-plugin-msal": "^0.4.0",
-    "@rolldown/plugin-babel": "^0.2.2",
+    "@rolldown/plugin-babel": "^0.2.3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -43,7 +43,7 @@
     "happy-dom": "^20.8.9",
     "typescript": "~5.9.3",
     "vite": "^8.0.0",
-    "vite-plugin-checker": "^0.12.0",
+    "vite-plugin-checker": "^0.13.0",
     "vitest": "^4.1.2"
   }
 }
