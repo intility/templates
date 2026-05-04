@@ -14,7 +14,7 @@ jobs:
       packages: write
       id-token: write
       attestations: write
-    uses: intility/reusable-react/.github/workflows/react.yaml@2e1463016451f218b2ff260010f49fc50a9dc8a2 # v1.1.3
+    uses: intility/reusable-react/.github/workflows/react.yaml@63f6620a76116d4127bd3bc4dd5759013e3141c7 # v1.1.4
     with:
       # image will be pushed to ghcr.io/intility/<project-name>/react-app
       image-name: __DOCKER_IMAGE_NAME__
