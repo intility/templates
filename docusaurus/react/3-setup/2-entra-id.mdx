@@ -3,7 +3,7 @@ title: Entra ID
 sidebar_position: 2
 ---
 
-:::tip Find and Replace
+:::tip[Find and Replace]
 Find and replace `__ENTRA_CLIENT_ID__` in the codebase with the `Application (Client) ID` GUID.
 :::
 
@@ -20,7 +20,7 @@ Select a fitting name for your project, this name will be presented to the user 
 Under `Supported account types`, choose either `Intility AS only - Single tenant` or `Any Microsoft Entra ID directory - Multitenant`.
 This can be changed later, so if you're unsure what to choose, select single tenant.
 
-:::note Redirect Bridge
+:::note[Redirect Bridge]
 MSAL requires a separate redirect bridge page from version 5.
 `@intility/vite-plugin-msal` will ensure you have the page in your application,
 but you must add `/redirect` to your Redirect URIs in Entra ID.
@@ -32,7 +32,7 @@ Hit the register button, and you will be taken to an overview of your newly crea
 
 ![Finding Client ID](/img/azure-clientid.png)
 
-:::tip Find and Replace
+:::tip[Find and Replace]
 Find and replace `__ENTRA_CLIENT_ID__` in the codebase with the `Application (Client) ID` GUID.
 :::
 
