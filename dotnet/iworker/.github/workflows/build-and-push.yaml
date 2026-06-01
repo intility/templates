@@ -18,7 +18,7 @@ jobs:
       packages: write
       attestations: write
       artifact-metadata: write
-    uses: intility/reusable-dotnet/.github/workflows/dotnet.yaml@b00ef8311a33005eb8d342b1a63e3ca577041fb1 # v1.4.0
+    uses: intility/reusable-dotnet/.github/workflows/dotnet.yaml@21456fd1f4a084b1ba9eb316dc543b02d151ddb7 # v1.4.1
     with:
       directory: ./
       docker: ${{ github.event_name != 'pull_request' }}
