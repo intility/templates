@@ -1,0 +1,14 @@
+# default owners
+* @h3rmanj @loekensgard
+
+# docusaurus
+# specify this first, subfolders get more specific owners
+/docusaurus/ @intility/react-working-group
+
+# react
+/react/ @intility/react-working-group
+/docusaurus/react/ @intility/react-working-group
+
+# dotnet
+/dotnet/ @intility/dotnet-working-group
+/docusaurus/dotnet/ @intility/dotnet-working-group
