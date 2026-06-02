@@ -1,9 +1,7 @@
 name: Publish dotnet Templates
 
 on:
-  push:
-    tags:
-      - "dotnet-v*"
+  workflow_dispatch:
 
 permissions:
   contents: read
