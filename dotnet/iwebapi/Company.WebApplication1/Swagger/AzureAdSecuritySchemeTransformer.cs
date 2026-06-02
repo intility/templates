@@ -32,19 +32,16 @@ public class AzureAdSecuritySchemeTransformer(IConfiguration config) : IOpenApiD
             }
         };
 
-        var requirement = new OpenApiSecurityRequirement
+        // Apply the requirement once at the document level (global). Operations
+        // can still override it individually if ever needed.
+        document.Security ??= [];
+        document.Security.Add(new OpenApiSecurityRequirement
         {
             {
                 new OpenApiSecuritySchemeReference("Azure AD", document),
                 [scope]
             }
-        };
-
-        foreach (var operation in document.Paths.Values.SelectMany(path => path.Operations?.Values ?? Enumerable.Empty<OpenApiOperation>()))
-        {
-            operation.Security ??= [];
-            operation.Security.Add(requirement);
-        }
+        });
 
         return Task.CompletedTask;
     }
