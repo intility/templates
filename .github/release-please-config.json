@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/refs/heads/main/schemas/config.json",
+  "packages": {
+    "dotnet": {
+      "release-type": "simple",
+      "component": "dotnet",
+      "extra-files": [
+        {
+          "type": "xml",
+          "path": "Intility.Templates.csproj",
+          "xpath": "//PackageVersion"
+        }
+      ]
+    }
+  }
+}
