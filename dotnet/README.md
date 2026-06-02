@@ -20,8 +20,8 @@ dotnet new intilityapi -o MyApi
 
 ## Release
 
-- Update the `PackageVersion` field in `Intility.Templates.csproj`
-- Create a new tag: `git tag dotnet-vX.X.X`
-- Push the tag: `git push --tags`
+Releases are automated with [release-please](https://github.com/googleapis/release-please) based on [Conventional Commits](https://www.conventionalcommits.org/). Do not bump `PackageVersion` or create tags manually.
 
-When the tag is pushed, it will trigger a GitHub Action that releases the package to NuGet.
+- Land changes to `dotnet/` on `main` using conventional commit messages (`fix:` → patch, `feat:` → minor, `feat!:`/`BREAKING CHANGE` → major).
+- release-please opens (and keeps updated) a release PR that bumps `PackageVersion` in `Intility.Templates.csproj` and the changelog.
+- Merging the release PR creates the `dotnet-vX.X.X` tag and GitHub release, then automatically dispatches the publish workflow that pushes the package to NuGet.
