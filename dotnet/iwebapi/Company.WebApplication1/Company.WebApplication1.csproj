@@ -24,12 +24,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.5.0" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="4.9.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.10.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.7" />
     <PackageReference Include="Intility.Logging.AspNetCore" Version="3.1.4" />
     <PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.1.4" />
     <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.1.4" />
-    <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.2.4" />
+    <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
