@@ -19,17 +19,17 @@
     "@fortawesome/pro-light-svg-icons": "^7.2.0",
     "@fortawesome/pro-regular-svg-icons": "^7.2.0",
     "@fortawesome/pro-solid-svg-icons": "^7.2.0",
-    "@intility/bifrost-react": "^6.15.2",
-    "@sentry/react": "^10.44.0",
+    "@intility/bifrost-react": "^6.18.0",
+    "@sentry/react": "^10.55.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router": "^7.14.2",
+    "react-router": "^7.16.0",
     "use-local-storage-state": "^19.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
+    "@babel/core": "^7.29.7",
     "@biomejs/biome": "2.4.16",
-    "@intility/eslint-config-react-compiler": "^1.0.0",
+    "@intility/eslint-config-react-compiler": "^1.1.0",
     "@intility/vite-plugin-msal": "^0.4.0",
     "@rolldown/plugin-babel": "^0.2.3",
     "@testing-library/dom": "^10.4.1",
@@ -37,13 +37,13 @@
     "@testing-library/react": "^16.3.2",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.4.1",
     "happy-dom": "^20.9.0",
-    "typescript": "~5.9.3",
+    "typescript": "~6.0.3",
     "vite": "^8.0.14",
     "vite-plugin-checker": "^0.14.1",
-    "vitest": "^4.1.2"
+    "vitest": "^4.1.8"
   }
 }
