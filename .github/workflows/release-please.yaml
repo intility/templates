@@ -1,0 +1,39 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  # required to dispatch publish-dotnet.yaml via `gh workflow run`
+  actions: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: .github/release-please-config.json
+          manifest-file: .github/release-please-manifest.json
+
+      # GITHUB_TOKEN-triggered push events don't cascade, so the tag created above
+      # won't trigger publish-dotnet on its own. workflow_dispatch is exempt from
+      # that restriction and always runs, so we dispatch it explicitly at the new tag.
+      - name: Dispatch publish-dotnet
+        if: ${{ steps.release.outputs['dotnet--release_created'] == 'true' }}
+        run: |
+          gh workflow run publish-dotnet.yaml \
+            --repo ${{ github.repository }} \
+            --ref ${{ steps.release.outputs['dotnet--tag_name'] }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
