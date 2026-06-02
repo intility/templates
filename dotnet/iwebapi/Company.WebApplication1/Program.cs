@@ -4,7 +4,6 @@ using Microsoft.Identity.Web;
 using Company.WebApplication1.Swagger;
 using Microsoft.Extensions.Options;
 using Serilog;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Intility.Extensions.Logging;
 using Intility.Authorization.Azure.GuestPolicies;
@@ -79,13 +78,21 @@ builder.Services.AddApiVersioning(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen()
-    // configre SwaggerGen and SwaggerUI with typed configurators to properly
-    // resolve their IApiVersionDescriptionProvider dependency through the DI system.
-    .AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerGenConfigurator>()
-    .AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerUIConfigurator>();
+// Generate the OpenAPI document with the built-in generator. The document name
+// MUST be a string literal so the .NET 10 XML-comment source generator activates.
+builder.Services.AddOpenApi("v1", options =>
+{
+    options.AddDocumentTransformer<AzureAdSecuritySchemeTransformer>();
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Info.Title = "Company.WebApplication1";
+        document.Info.Version = "1.0";
+        return Task.CompletedTask;
+    });
+});
+
+// Swagger UI is used purely as a frontend for the OpenAPI document generated above.
+builder.Services.AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerUIConfigurator>();
 
 
 var app = builder.Build();
@@ -94,7 +101,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
+    app.MapOpenApi();
     app.UseSwaggerUI();
 }
 

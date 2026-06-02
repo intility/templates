@@ -11,7 +11,7 @@ public class SwaggerUIConfigurator(IApiVersionDescriptionProvider apiVersionProv
         foreach (var description in apiVersionProvider.ApiVersionDescriptions)
         {
             options.SwaggerEndpoint(
-                $"/swagger/{description.GroupName}/swagger.json",
+                $"/openapi/{description.GroupName}.json",
                 $"Company.WebApplication1 {description.ApiVersion}"
             );
         }
