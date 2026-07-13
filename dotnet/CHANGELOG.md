@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.1](https://github.com/intility/templates/compare/dotnet-v2.3.0...dotnet-v2.3.1) (2026-07-13)
+
+
+### Bug Fixes
+
+* **dotnet:** Bump the dependencies group with 6 updates ([b67eef4](https://github.com/intility/templates/commit/b67eef41864eb11834209c0d05c14fbaa200b5d0))
+* **dotnet:** Bump the dependencies group with 8 updates ([e1e82c0](https://github.com/intility/templates/commit/e1e82c0ec9bc981c46e238d93c5c1fd4d57c184d))
+
 ## [2.3.0](https://github.com/intility/templates/compare/dotnet-v2.2.1...dotnet-v2.3.0) (2026-06-02)
 
 
