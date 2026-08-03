@@ -40,6 +40,9 @@ updates:
       prefix: "chore(react):"
     versioning-strategy: "increase"
     groups:
+      biome:
+        patterns:
+          - "@biomejs/*"
       react:
         patterns:
           - "react"
@@ -56,6 +59,7 @@ updates:
         patterns:
           - "*"
         exclude-patterns:
+          - "@biomejs/*"
           - "react"
           - "react-dom"
           - "@types/react"
@@ -65,6 +69,13 @@ updates:
         update-types:
           - patch
           - minor
+
+  - package-ecosystem: "docker"
+    directory: "/react"
+    schedule:
+      interval: 'cron'
+      cronjob: '0 8 * * MON#1'
+      timezone: 'Europe/Oslo'
 
   - package-ecosystem: "npm"
     directory: "/docusaurus"

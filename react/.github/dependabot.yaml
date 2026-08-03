@@ -8,6 +8,9 @@ updates:
       cronjob: '0 8 * * MON#1'
       timezone: 'Europe/Oslo'
     groups:
+      biome:
+        patterns:
+          - "@biomejs/*"
       react:
         patterns:
           - "react"
@@ -24,6 +27,7 @@ updates:
         patterns:
           - "*"
         exclude-patterns:
+          - "@biomejs/*"
           - "react"
           - "react-dom"
           - "@types/react"
