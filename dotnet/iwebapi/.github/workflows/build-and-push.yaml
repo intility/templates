@@ -18,7 +18,7 @@ jobs:
       packages: write
       attestations: write
       artifact-metadata: write
-    uses: intility/reusable-dotnet/.github/workflows/dotnet.yaml@e453a5f751410e99899c5c4123006d148a2a2d19 # v1.4.2
+    uses: intility/reusable-dotnet/.github/workflows/dotnet.yaml@da86f13447e647a949eacb36204fa9bff64a440c # v1.4.3
     with:
       docker: ${{ github.event_name != 'pull_request' }}
       locked-mode: true
