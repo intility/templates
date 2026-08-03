@@ -16,7 +16,7 @@ RUN --mount=type=secret,id=NODE_AUTH_TOKEN,env=NODE_AUTH_TOKEN \
 COPY . .
 RUN npm run build
 
-FROM ghcr.io/intility/nginx-unprivileged-react:2.5.1@sha256:0e071176f68f689bd8b7fbdc30062af2b20f935e85c5a7daadec156c0277ea04
+FROM ghcr.io/intility/nginx-unprivileged-react:2.6.3@sha256:55f192839dd4715568edc644edba96adeda7de41363ab5b0a102380d66f8a84d
 
 # Copy build files
 COPY --from=build /src/dist /usr/share/nginx/html
