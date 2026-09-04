@@ -1,0 +1,55 @@
+name: Build dotnet Templates
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "dotnet/**"
+      - ".github/workflows/build-dotnet.yaml"
+
+jobs:
+  build:
+    name: Build ${{ matrix.template.shortName }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        template:
+          - shortName: iwebapi
+            projectName: Company.WebApplication1
+            runTests: true
+          - shortName: iworker
+            projectName: Company.Worker1
+            runTests: false
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Pack template
+        run: dotnet pack dotnet/Intility.Templates.csproj -c Release -o dotnet/nupkg
+
+      - name: Install template
+        run: dotnet new install ./dotnet/nupkg/*.nupkg
+
+      - name: Create project from template
+        run: |
+          dotnet new ${{ matrix.template.shortName }} \
+            -n ${{ matrix.template.projectName }} \
+            -o ${{ runner.temp }}/${{ matrix.template.shortName }} \
+            --argo-project Demo \
+            --openshift-namespace aa-demo-dev \
+            --github-repo-url https://github.com/intility/demo.git
+
+      - name: Build generated project
+        working-directory: ${{ runner.temp }}/${{ matrix.template.shortName }}
+        run: dotnet build ${{ matrix.template.projectName }}.slnx -c Release
+
+      - name: Test generated project
+        if: matrix.template.runTests
+        working-directory: ${{ runner.temp }}/${{ matrix.template.shortName }}
+        run: dotnet test ${{ matrix.template.projectName }}.slnx -c Release --no-build
