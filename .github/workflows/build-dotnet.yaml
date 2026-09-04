@@ -8,6 +8,9 @@ on:
       - "dotnet/**"
       - ".github/workflows/build-dotnet.yaml"
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build ${{ matrix.template.shortName }}
