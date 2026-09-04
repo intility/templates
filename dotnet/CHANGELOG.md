@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.3](https://github.com/intility/templates/compare/dotnet-v2.3.2...dotnet-v2.3.3) (2026-09-04)
+
+
+### Bug Fixes
+
+* **dotnet:** pin Azure.Identity 1.21.0 in iwebapi template ([c04f8cf](https://github.com/intility/templates/commit/c04f8cf2d5e4839cb1681dd30a6383f72f910016))
+* **dotnet:** update dependencies ([be414b7](https://github.com/intility/templates/commit/be414b7c53a79fa9705df8db622b55a1bb5c4e7f))
+
 ## [2.3.2](https://github.com/intility/templates/compare/dotnet-v2.3.1...dotnet-v2.3.2) (2026-08-03)
 
 
