@@ -19,19 +19,19 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Asp.Versioning.Mvc" Version="10.0.1" />
-    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="10.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
+    <PackageReference Include="Asp.Versioning.Mvc" Version="10.2.1" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="10.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
     <!-- Explicit pin: Azure.Core >=1.53.0 type-forwards credential types. Azure.Identity <=1.20.0 also defines them (CS0433). 1.21.0 is a forwarding shim. See azure-sdk-for-net#58822. -->
     <PackageReference Include="Azure.Identity" Version="1.21.0" />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="8.6.0" />
     <PackageReference Include="Microsoft.Identity.Web" Version="4.14.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
-    <PackageReference Include="Intility.Logging.AspNetCore" Version="3.1.5" />
-    <PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.1.5" />
-    <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.1.5" />
-    <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.2.6" />
+    <PackageReference Include="Intility.Logging.AspNetCore" Version="3.1.7" />
+    <PackageReference Include="Intility.Extensions.Logging.Elasticsearch" Version="3.1.7" />
+    <PackageReference Include="Intility.Extensions.Logging.Sentry" Version="3.1.7" />
+    <PackageReference Include="Intility.Authorization.Azure.GuestPolicies" Version="2.2.8" />
   </ItemGroup>
 
   <ItemGroup>
