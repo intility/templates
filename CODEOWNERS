@@ -3,12 +3,12 @@
 
 # docusaurus
 # specify this first, subfolders get more specific owners
-/docusaurus/ @intility/react-working-group
+/docusaurus/ @intility/react-sig @loekensgard
 
 # react
-/react/ @intility/react-working-group
-/docusaurus/react/ @intility/react-working-group
+/react/ @intility/react-sig
+/docusaurus/react/ @intility/react-sig
 
 # dotnet
-/dotnet/ @intility/dotnet-working-group
-/docusaurus/dotnet/ @intility/dotnet-working-group
+/dotnet/ @intility/dotnet-sig
+/docusaurus/dotnet/ @intility/dotnet-sig
