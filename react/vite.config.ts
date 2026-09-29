@@ -15,10 +15,6 @@ export default defineConfig({
       biome: {
         command: "check",
       },
-      eslint: {
-        lintCommand: "eslint",
-        useFlatConfig: true,
-      },
     }),
   ],
   resolve: {
