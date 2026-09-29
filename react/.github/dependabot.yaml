@@ -20,6 +20,10 @@ updates:
       msal:
         patterns:
           - "@azure/msal-*"
+      react-compiler:
+        patterns:
+          - "@vitejs/plugin-react"
+          - "oxc-transform-react"
       fontawesome:
         patterns:
           - "@fortawesome/*"
@@ -33,6 +37,8 @@ updates:
           - "@types/react"
           - "@types/react-dom"
           - "@azure/msal-*"
+          - "@vitejs/plugin-react"
+          - "oxc-transform-react"
           - "@fortawesome/*"
         update-types:
           - patch
