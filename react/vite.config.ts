@@ -1,18 +1,14 @@
 /// <reference types="vitest/config" />
 
 import msal from "@intility/vite-plugin-msal";
-import babel from "@rolldown/plugin-babel";
-import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
-    babel({
-      presets: [reactCompilerPreset()],
-    }),
+    react({ compiler: true }),
     msal(),
     checker({
       typescript: true,
