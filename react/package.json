@@ -35,7 +35,7 @@
     "@types/react": "^19.2.18",
     "@vitejs/plugin-react": "^6.1.1",
     "@types/react-dom": "^19.2.7",
-    "happy-dom": "^20.11.1",
+    "happy-dom": "^20.14.5",
     "oxc-transform-react": "^0.145.0",
     "typescript": "~6.0.3",
     "vite": "^8.2.0",
