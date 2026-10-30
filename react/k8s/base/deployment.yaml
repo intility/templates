@@ -18,6 +18,8 @@ spec:
       labels:
         app: __APP_NAME__
     spec:
+      # Covers the 15 s preStop sleep plus time for nginx to finish open requests after SIGQUIT, before SIGKILL.
+      terminationGracePeriodSeconds: 30
       containers:
         - name: __APP_NAME__
           image: ghcr.io/intility/__DOCKER_IMAGE_NAME__
@@ -27,6 +29,11 @@ spec:
               memory: 32Mi
             limits:
               memory: 128Mi
+          lifecycle:
+            # The sleep delays SIGTERM so the router and endpoints stop sending traffic to this pod first.
+            preStop:
+              exec:
+                command: ["sleep", "15"]
           livenessProbe:
             httpGet:
               path: /
