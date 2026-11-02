@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.3.5](https://github.com/intility/templates/compare/dotnet-v2.3.4...dotnet-v2.3.5) (2026-11-02)
+
+
+### Bug Fixes
+
+* **dotnet:** Bump the dependencies group with 7 updates ([#732](https://github.com/intility/templates/issues/732)) ([67bc0c6](https://github.com/intility/templates/commit/67bc0c668bf3a20e6f42f7834c44c2ffd3e75156))
+* **dotnet:** Bump the dependencies group with 9 updates ([#734](https://github.com/intility/templates/issues/734)) ([0e3a370](https://github.com/intility/templates/commit/0e3a370edd105c1c660530bd12a4cac649db463d))
+* **templates:** drain pods before shutdown during rollouts ([87bdff7](https://github.com/intility/templates/commit/87bdff77dcfc6da024e4ef0747d848f459f2a8ae))
+
 ## [2.3.4](https://github.com/intility/templates/compare/dotnet-v2.3.3...dotnet-v2.3.4) (2026-10-05)
 
 
