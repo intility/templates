@@ -30,7 +30,7 @@ spec:
             limits:
               memory: 128Mi
           lifecycle:
-            # The sleep delays SIGTERM so the router and endpoints stop sending traffic to this pod first.
+            # The sleep delays the stop signal so the router and endpoints stop sending traffic to this pod first.
             preStop:
               exec:
                 command: ["sleep", "15"]
