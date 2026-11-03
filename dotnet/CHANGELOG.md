@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.7](https://github.com/intility/templates/compare/dotnet-v2.3.6...dotnet-v2.3.7) (2026-11-03)
+
+
+### Bug Fixes
+
+* **dotnet:** use reusable-dotnet v2.0.0 in iworker and drop OutputContainerDigest target ([#747](https://github.com/intility/templates/issues/747)) ([897b6e0](https://github.com/intility/templates/commit/897b6e00dc7514249809c3879238b7bfdcd39d38))
+* **dotnet:** wire iwebapi OpenAPI through API versioning and clear build warnings ([#748](https://github.com/intility/templates/issues/748)) ([8cec9bf](https://github.com/intility/templates/commit/8cec9bfbc44131abfe70f9012b90da7d754a5dd8))
+
 ## [2.3.6](https://github.com/intility/templates/compare/dotnet-v2.3.5...dotnet-v2.3.6) (2026-11-03)
 
 
