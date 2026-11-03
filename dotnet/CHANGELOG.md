@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.3.6](https://github.com/intility/templates/compare/dotnet-v2.3.5...dotnet-v2.3.6) (2026-11-03)
+
+
+### Bug Fixes
+
+* **dotnet:** bump iwebapi test project packages ([#742](https://github.com/intility/templates/issues/742)) ([fc2c3bb](https://github.com/intility/templates/commit/fc2c3bbefc8ee0700d44e40f3604bbbb7360e8c5))
+* **dotnet:** keep packages.lock.json in generated projects ([ddf9ac8](https://github.com/intility/templates/commit/ddf9ac89d4fff9e8a640fb6a2662915dc08e61ef))
+* **dotnet:** keep placeholder examples in CLAUDE.md ([#743](https://github.com/intility/templates/issues/743)) ([869a0d4](https://github.com/intility/templates/commit/869a0d45ebf7574b67eabf058174fdf781826519))
+* **dotnet:** make packages.lock.json regeneration work [#744](https://github.com/intility/templates/issues/744) ([749d3c6](https://github.com/intility/templates/commit/749d3c60a59fbffa5c0b6cb9873e53ee9a718003))
+* **dotnet:** use engine default pattern for .template.config exclude ([0ea3caa](https://github.com/intility/templates/commit/0ea3caa886aebbae883c6abcc019b112cd3382b9))
+
 ## [2.3.5](https://github.com/intility/templates/compare/dotnet-v2.3.4...dotnet-v2.3.5) (2026-11-02)
 
 
