@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -62,7 +63,14 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddHealthChecks();
 builder.Services.AddProblemDetails();
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    // Accept numbers only as JSON numbers, so the API matches the OpenAPI document.
+    .AddJsonOptions(options => options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.Strict);
+
+// The OpenAPI document reads these options, not the MVC options above. Without Strict,
+// .NET 10 writes int as type [integer, string] and Swagger UI rejects number parameters.
+builder.Services.ConfigureHttpJsonOptions(options =>
+    options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict);
 
 builder.Services.AddApiVersioning(options =>
 {
