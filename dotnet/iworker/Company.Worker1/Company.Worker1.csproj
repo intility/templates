@@ -26,9 +26,4 @@
 		<PackageReference Include="Microsoft.Identity.Abstractions" Version="12.8.0" />
 		<PackageReference Include="Microsoft.Identity.Web" Version="4.16.1" />
 	</ItemGroup>
-
-	<Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
-		<WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-digest=$(GeneratedContainerDigest)" />
-		<WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-image=$(ContainerRegistry)/$(ContainerRepository)" />
-  </Target>
 </Project>

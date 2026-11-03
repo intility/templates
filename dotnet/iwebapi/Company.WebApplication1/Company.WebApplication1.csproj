@@ -37,9 +37,4 @@
   <ItemGroup>
      <InternalsVisibleTo Include="Company.WebApplication1.Tests" />
   </ItemGroup>
-
-  <Target Name="OutputContainerDigest" AfterTargets="PublishContainer" Condition=" '$(GITHUB_OUTPUT)' != '' ">
-    <WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-digest=$(GeneratedContainerDigest)" />
-    <WriteLinesToFile File="$(GITHUB_OUTPUT)" Lines="container-image=$(ContainerRegistry)/$(ContainerRepository)" />
-  </Target>
 </Project>
