@@ -39,6 +39,9 @@ jobs:
       - name: Install template
         run: dotnet new install ./dotnet/nupkg/*.nupkg
 
+      # --no-restore: without it, the restore post-action creates or refreshes
+      # packages.lock.json on Linux and masks a missing or stale lock file in the
+      # step below.
       - name: Create project from template
         run: |
           dotnet new ${{ matrix.template.shortName }} \
@@ -46,10 +49,12 @@ jobs:
             -o ${{ runner.temp }}/${{ matrix.template.shortName }} \
             --argo-project Demo \
             --openshift-namespace aa-demo-dev \
-            --github-repo-url https://github.com/intility/demo.git
+            --github-repo-url https://github.com/intility/demo.git \
+            --no-restore
 
-      # Same restore as the reusable dotnet workflow in a generated repo. Fails when
-      # packages.lock.json is missing from the output or does not match the csproj.
+      # Same restore as the reusable dotnet workflow in a generated repo. The test
+      # fails when packages.lock.json is missing from the template output, and
+      # --locked-mode fails with NU1004 when the lock file does not match the csproj.
       - name: Restore generated project in locked mode
         working-directory: ${{ runner.temp }}/${{ matrix.template.shortName }}
         run: |
