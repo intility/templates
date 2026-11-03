@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.8](https://github.com/intility/templates/compare/dotnet-v2.3.7...dotnet-v2.3.8) (2026-11-03)
+
+
+### Bug Fixes
+
+* **dotnet:** use strict number handling so Swagger UI accepts number parameters ([#754](https://github.com/intility/templates/issues/754)) ([928d332](https://github.com/intility/templates/commit/928d3325290bf32209b617b26f37630158fd5b1e))
+
 ## [2.3.7](https://github.com/intility/templates/compare/dotnet-v2.3.6...dotnet-v2.3.7) (2026-11-03)
 
 
