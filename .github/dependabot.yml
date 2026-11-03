@@ -116,7 +116,9 @@ updates:
       prefix: "chore(dotnet):"
 
   - package-ecosystem: "nuget"
-    directory: "/dotnet/iwebapi/Company.WebApplication1"
+    directories:
+      - "/dotnet/iwebapi/Company.WebApplication1"
+      - "/dotnet/iwebapi/Company.WebApplication1.Tests"
     schedule:
       interval: 'cron'
       cronjob: '0 8 * * MON#1'
