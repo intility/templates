@@ -20,6 +20,17 @@
           "Asp.Versioning.Mvc": "10.2.1"
         }
       },
+      "Asp.Versioning.OpenApi": {
+        "type": "Direct",
+        "requested": "[10.2.3, )",
+        "resolved": "10.2.3",
+        "contentHash": "wi5rcQc7YjO6q/3RAvrhQ/bceBGAKImBU1DKF1OvSvX3mLOgXu3GyxBcYB+aJMupc1Th4r2Sb9ggCptUe6JUBQ==",
+        "dependencies": {
+          "Asp.Versioning.Mvc.ApiExplorer": "10.2.1",
+          "Microsoft.AspNetCore.OpenApi": "10.0.10",
+          "Microsoft.OpenApi": "[2.7.5, 3.0.0)"
+        }
+      },
       "Azure.Identity": {
         "type": "Direct",
         "requested": "[1.21.0, )",
