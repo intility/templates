@@ -21,6 +21,7 @@
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc" Version="10.2.1" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="10.2.1" />
+    <PackageReference Include="Asp.Versioning.OpenApi" Version="10.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.14" />
     <!-- Explicit pin: Azure.Core >=1.53.0 type-forwards credential types. Azure.Identity <=1.20.0 also defines them (CS0433). 1.21.0 is a forwarding shim. See azure-sdk-for-net#58822. -->

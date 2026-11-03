@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
@@ -66,32 +67,31 @@ builder.Services.AddControllers();
 builder.Services.AddApiVersioning(options =>
 {
     options.ReportApiVersions = true;
-    options.AssumeDefaultVersionWhenUnspecified = true;
-}).AddApiExplorer(options =>
+    // The API version is read only from the URL segment, for example /api/v1/...
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+})
+.AddMvc()
+.AddApiExplorer(options =>
 {
-    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
     // note: the specified format code will format the version as "'v'major[.minor][-status]"
     options.GroupNameFormat = "'v'VVV";
 
     // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
     // can also be used to control the format of the API version in route templates
     options.SubstituteApiVersionInUrl = true;
-});
-
-// Generate the OpenAPI document with the built-in generator. The document name
-// MUST be a string literal so the .NET 10 XML-comment source generator activates.
-builder.Services.AddOpenApi("v1", options =>
+})
+// Generate one OpenAPI document for each API version, for example /openapi/v1.json.
+.AddOpenApi(options =>
 {
-    options.AddDocumentTransformer<AzureAdSecuritySchemeTransformer>();
-    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    options.Document.AddDocumentTransformer<AzureAdSecuritySchemeTransformer>();
+    options.Document.AddDocumentTransformer((document, context, cancellationToken) =>
     {
         document.Info.Title = "Company.WebApplication1";
-        document.Info.Version = "1.0";
         return Task.CompletedTask;
     });
 });
 
-// Swagger UI is used purely as a frontend for the OpenAPI document generated above.
+// Swagger UI is used purely as a frontend for the OpenAPI documents generated above.
 builder.Services.AddTransient<IConfigureOptions<SwaggerUIOptions>, SwaggerUIConfigurator>();
 
 
@@ -101,7 +101,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.MapOpenApi();
+    app.MapOpenApi().WithDocumentPerVersion();
     app.UseSwaggerUI();
 }
 
