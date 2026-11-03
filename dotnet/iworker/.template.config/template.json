@@ -19,6 +19,13 @@
   ],
   "sources": [
     {
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        ".template.config/**/*",
+        "**/*.filelist",
+        "**/*.user"
+      ],
       "modifiers": [
         {
           "condition": "(windir == 'C:\\Windows')",

@@ -48,6 +48,14 @@ jobs:
             --openshift-namespace aa-demo-dev \
             --github-repo-url https://github.com/intility/demo.git
 
+      # Same restore as the reusable dotnet workflow in a generated repo. Fails when
+      # packages.lock.json is missing from the output or does not match the csproj.
+      - name: Restore generated project in locked mode
+        working-directory: ${{ runner.temp }}/${{ matrix.template.shortName }}
+        run: |
+          test -f ${{ matrix.template.projectName }}/packages.lock.json
+          dotnet restore -r linux-musl-x64 --locked-mode
+
       - name: Build generated project
         working-directory: ${{ runner.temp }}/${{ matrix.template.shortName }}
         run: dotnet build ${{ matrix.template.projectName }}.slnx -c Release
