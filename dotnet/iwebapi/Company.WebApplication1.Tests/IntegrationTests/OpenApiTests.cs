@@ -95,11 +95,68 @@ public class OpenApiTests(WebApplicationFactory<Program> factory) : IClassFixtur
         Assert.Equal(1, document.RootElement.GetProperty("security").GetArrayLength());
     }
 
+    [Fact]
+    public async Task OpenApiDocument_NumbersAreNotTypedAsStrings()
+    {
+        // Arrange
+        // .NET types numbers as ["integer", "string"] or ["number", "string"] when JSON
+        // serialization may read them from strings. Swagger UI cannot validate such
+        // schemas, so no schema in the document may combine "string" with a number type.
+        using var document = await GetV1DocumentAsync();
+        var violations = new List<string>();
+
+        // Act
+        CollectNumbersTypedAsStrings(document.RootElement, "$", violations);
+
+        // Assert
+        Assert.True(
+            violations.Count == 0,
+            $"Schemas that type numbers as strings: {string.Join(", ", violations)}");
+    }
+
     private async Task<JsonDocument> GetV1DocumentAsync()
     {
         var client = factory.CreateClient();
         var response = await client.GetAsync("/openapi/v1.json");
         response.EnsureSuccessStatusCode();
         return JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    }
+
+    // Walks the whole document, including paths and components, because every number
+    // parameter, request body, and response schema must be usable in Swagger UI.
+    private static void CollectNumbersTypedAsStrings(JsonElement element, string path, List<string> violations)
+    {
+        switch (element.ValueKind)
+        {
+            case JsonValueKind.Object:
+                if (element.TryGetProperty("type", out var type) && type.ValueKind == JsonValueKind.Array)
+                {
+                    var typeNames = type.EnumerateArray().Select(t => t.GetString()).ToHashSet();
+
+                    if (typeNames.Contains("string")
+                        && (typeNames.Contains("integer") || typeNames.Contains("number")))
+                    {
+                        violations.Add(path);
+                    }
+                }
+
+                foreach (var property in element.EnumerateObject())
+                {
+                    CollectNumbersTypedAsStrings(property.Value, $"{path}.{property.Name}", violations);
+                }
+
+                break;
+
+            case JsonValueKind.Array:
+                var index = 0;
+
+                foreach (var item in element.EnumerateArray())
+                {
+                    CollectNumbersTypedAsStrings(item, $"{path}[{index}]", violations);
+                    index++;
+                }
+
+                break;
+        }
     }
 }
