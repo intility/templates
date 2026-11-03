@@ -1,12 +1,13 @@
 <Project>
-  <!-- On macOS/Windows, keep packages.lock.json in sync after each restore. SkipCrossPlatformRestore prevents recursion. -->
+  <!-- On macOS/Windows, keep packages.lock.json in sync after each restore. SkipCrossPlatformRestore prevents recursion.
+       RuntimeIdentifier is passed explicitly. The -r option sets RuntimeIdentifiers (plural), which does not enable the lock file. -->
   <Target
     Name="RestoreLinuxLockFiles"
     AfterTargets="Restore"
     Condition="($([MSBuild]::IsOSPlatform('OSX')) or $([MSBuild]::IsOSPlatform('Windows'))) and '$(SkipCrossPlatformRestore)' != 'true'"
   >
     <Exec
-      Command="dotnet restore -r linux-musl-x64 -p:SkipCrossPlatformRestore=true"
+      Command="dotnet restore -r linux-musl-x64 -p:RuntimeIdentifier=linux-musl-x64 -p:SkipCrossPlatformRestore=true"
       WorkingDirectory="$(MSBuildThisFileDirectory)"
     />
   </Target>

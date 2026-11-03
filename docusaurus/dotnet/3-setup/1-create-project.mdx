@@ -255,7 +255,15 @@ The following parameters are specific to the `iworker` template:
 The template includes a committed `packages.lock.json` for supply chain security. It is kept up to date automatically when you run `dotnet restore`. If it is ever deleted, recreate it with:
 
 ```sh
-dotnet restore -r linux-musl-x64 -p:RestorePackagesWithLockFile=true -p:NuGetLockFilePath=packages.lock.json
+dotnet restore MyApiService/MyApiService.csproj -p:RuntimeIdentifier=linux-musl-x64 -p:RestorePackagesWithLockFile=true
+```
+
+Replace `MyApiService` with your project name. The command restores only the main project. The test project must not get a lock file. If it does, every later `dotnet restore` fails with error NU1005.
+
+For a `--projectOnly` project, the `.csproj` file is in the output folder root. Run the command from that folder:
+
+```sh
+dotnet restore MyApiService.csproj -p:RuntimeIdentifier=linux-musl-x64 -p:RestorePackagesWithLockFile=true
 ```
 
 See [NuGet lock files](https://devblogs.microsoft.com/dotnet/enable-repeatable-package-restores-using-a-lock-file/) for more details.
