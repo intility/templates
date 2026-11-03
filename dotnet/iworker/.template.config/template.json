@@ -57,7 +57,8 @@
             "k8s/overlays/production/cronjob-patch.yaml"
           ]
         }
-      ]
+      ],
+      "copyOnly": ["CLAUDE.md"]
     }
   ],
   "symbols": {

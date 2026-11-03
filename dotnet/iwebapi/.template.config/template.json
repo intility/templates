@@ -45,7 +45,8 @@
             "Company.WebApplication1/": "./"
           }
         }
-      ]
+      ],
+      "copyOnly": ["CLAUDE.md"]
     }
   ],
   "symbols": {
