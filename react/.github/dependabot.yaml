@@ -4,9 +4,9 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: 'cron'
-      cronjob: '0 8 * * MON#1'
-      timezone: 'Europe/Oslo'
+      interval: "cron"
+      cronjob: "0 8 * * MON#1"
+      timezone: "Europe/Oslo"
     groups:
       biome:
         patterns:
@@ -47,13 +47,13 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
-      interval: 'cron'
-      cronjob: '0 8 * * MON#1'
-      timezone: 'Europe/Oslo'
+      interval: "cron"
+      cronjob: "0 8 * * MON#1"
+      timezone: "Europe/Oslo"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: 'cron'
-      cronjob: '0 8 * * MON#1'
-      timezone: 'Europe/Oslo'
+      interval: "cron"
+      cronjob: "0 8 * * MON#1"
+      timezone: "Europe/Oslo"
