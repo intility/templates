@@ -37,7 +37,7 @@ spec:
             limits:
               memory: 512Mi
             requests:
-              cpu: 20m
+              cpu: 5m
               memory: 128Mi
           envFrom:
             - secretRef:

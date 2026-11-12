@@ -25,7 +25,7 @@ spec:
           image: ghcr.io/intility/__DOCKER_IMAGE_NAME__
           resources:
             requests:
-              cpu: 10m
+              cpu: 2m
               memory: 32Mi
             limits:
               memory: 128Mi
