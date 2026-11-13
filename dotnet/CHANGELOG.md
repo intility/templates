@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.9](https://github.com/intility/templates/compare/dotnet-v2.3.8...dotnet-v2.3.9) (2026-11-13)
+
+
+### Performance Improvements
+
+* rightsize default CPU requests ([#759](https://github.com/intility/templates/issues/759)) ([ace9f5e](https://github.com/intility/templates/commit/ace9f5ee7b871799f391d0aa19fef60b217c9039))
+
 ## [2.3.8](https://github.com/intility/templates/compare/dotnet-v2.3.7...dotnet-v2.3.8) (2026-11-03)
 
 
